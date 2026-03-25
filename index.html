@@ -1,0 +1,1149 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Knowledge Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Fraunces:ital,wght@0,300;0,400;1,300&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F1EB;--sf:#FDFCF9;--sf2:#F0EDE4;--bd:#DDD8CC;--bd2:#C8C2B2;--tx:#1C1A14;--tx2:#6B6555;--tx3:#9C957F;--ac:#2D5A3D;--acl:#E8F0EA;--act:#1A3D28;--dv:#3D2D5A;--dvl:#EDE8F0;--dvt:#28183D;--er:#8B2020;--erl:#F5EAEA;--wn:#7A5A10;--wnl:#F5F0E4;--bl:#1A4A8A;--bll:#E8EEF8;--r:10px;--rl:16px;--sh:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);--shm:0 2px 8px rgba(0,0,0,.08),0 8px 32px rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;display:flex;flex-direction:column}
+
+/* ── LANDING ── */
+#landing{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--tx3);margin-bottom:20px}
+.title{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(34px,5.5vw,60px);text-align:center;line-height:1.1;margin-bottom:14px}
+.title em{font-style:italic;color:var(--ac)}
+.subtitle{font-size:15.5px;color:var(--tx2);text-align:center;max-width:420px;line-height:1.6;margin-bottom:44px}
+.cards{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;max-width:680px;width:100%;margin-bottom:20px}
+.card{flex:1;min-width:260px;max-width:320px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:26px 22px 22px;cursor:pointer;transition:all .2s;box-shadow:var(--sh);text-align:left;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--rl) var(--rl) 0 0}
+.cs::before{background:var(--ac)}.cd::before{background:var(--dv)}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shm);border-color:var(--bd2)}
+.ctag{display:inline-flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:12px}
+.cts{background:var(--acl);color:var(--act)}.ctd{background:var(--dvl);color:var(--dvt)}
+.cname{font-family:'Fraunces',serif;font-weight:400;font-size:21px;margin-bottom:7px}
+.cdesc{font-size:13px;color:var(--tx2);line-height:1.5;margin-bottom:16px}
+.traits{display:flex;flex-direction:column;gap:4px}
+.trait{font-size:12px;color:var(--tx3);display:flex;align-items:center;gap:6px}
+.trait::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0}
+.cs .trait::before{background:var(--ac)}.cd .trait::before{background:var(--dv)}
+.ccta{margin-top:18px;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:500;border:none;cursor:pointer;width:100%;transition:opacity .15s;font-family:'DM Sans',sans-serif}
+.ccta:hover{opacity:.85}
+.ctas{background:var(--ac);color:#fff}.ctad{background:var(--dv);color:#fff}
+.brain-bar{margin-top:14px;display:flex;align-items:center;gap:8px;font-size:12px;font-family:'DM Mono',monospace;color:var(--tx3)}
+.bdot{width:7px;height:7px;border-radius:50%;background:var(--bd2);flex-shrink:0}
+.bdot.ready{background:#22A85A}
+.admin-link{margin-top:20px;font-size:12px;color:var(--tx3);cursor:pointer;display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;letter-spacing:.04em;border:none;background:none;transition:color .15s}
+.admin-link:hover{color:var(--tx2)}
+
+/* ── CHAT ── */
+#chat-view{display:none;flex-direction:column;height:100vh;overflow:hidden}
+.chdr{background:var(--sf);border-bottom:1px solid var(--bd);padding:0 20px;height:56px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.bbtn{width:30px;height:30px;border-radius:8px;border:1px solid var(--bd);background:var(--sf);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--tx2);font-size:16px;transition:background .15s;flex-shrink:0}
+.bbtn:hover{background:var(--sf2)}
+.hdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.hds{background:var(--ac)}.hdd{background:var(--dv)}
+.hname{font-family:'Fraunces',serif;font-weight:400;font-size:17px}
+.htag{font-size:11px;font-family:'DM Mono',monospace;color:var(--tx3);letter-spacing:.06em;margin-left:auto}
+.msgs{flex:1;overflow-y:auto;padding:24px 20px;display:flex;flex-direction:column;gap:18px;scroll-behavior:smooth}
+.msgs::-webkit-scrollbar{width:4px}
+.msgs::-webkit-scrollbar-thumb{background:var(--bd);border-radius:4px}
+.mrow{display:flex;gap:12px;max-width:800px;width:100%;margin:0 auto}
+.mrow.user{flex-direction:row-reverse}
+.avat{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px;font-family:'DM Mono',monospace}
+.avs{background:var(--acl);color:var(--act)}.avd{background:var(--dvl);color:var(--dvt)}.avu{background:var(--sf2);color:var(--tx2);border:1px solid var(--bd)}
+.bubble{max-width:calc(100% - 44px);padding:12px 16px;border-radius:14px;font-size:14.5px;line-height:1.7;word-wrap:break-word}
+.bu{background:var(--sf);border:1px solid var(--bd);border-top-right-radius:4px;white-space:pre-wrap}
+.bbs{background:var(--acl);color:var(--act);border:1px solid rgba(45,90,61,.12);border-top-left-radius:4px}
+.bbd{background:var(--dvl);color:var(--dvt);border:1px solid rgba(61,45,90,.12);border-top-left-radius:4px}
+.btyp{display:flex;align-items:center;gap:5px;padding:14px 18px}
+.btyp span{width:6px;height:6px;border-radius:50%;display:inline-block;animation:bnc 1.2s ease-in-out infinite}
+.btyp span:nth-child(2){animation-delay:.15s}.btyp span:nth-child(3){animation-delay:.3s}
+@keyframes bnc{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-5px);opacity:1}}
+.welcome{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:22px;max-width:640px;width:100%;margin:0 auto}
+.welcome h3{font-family:'Fraunces',serif;font-weight:400;font-size:19px;margin-bottom:7px}
+.welcome p{font-size:13.5px;color:var(--tx2);line-height:1.6}
+.suggs{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.sugg{font-size:12px;padding:5px 11px;border-radius:7px;border:1px solid var(--bd);background:var(--sf2);cursor:pointer;color:var(--tx2);transition:all .15s;font-family:'DM Sans',sans-serif}
+.sugg:hover{background:var(--sf);border-color:var(--bd2);color:var(--tx)}
+.iarea{background:var(--sf);border-top:1px solid var(--bd);padding:14px 20px;flex-shrink:0}
+.iwrap{max-width:800px;margin:0 auto;display:flex;gap:10px;align-items:flex-end;background:var(--bg);border:1px solid var(--bd2);border-radius:12px;padding:10px 12px;transition:border-color .15s}
+.iwrap:focus-within{border-color:var(--tx2)}
+#cinput{flex:1;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:14.5px;color:var(--tx);resize:none;outline:none;min-height:24px;max-height:160px;line-height:1.5}
+#cinput::placeholder{color:var(--tx3)}
+#sbtn{width:32px;height:32px;border-radius:8px;border:none;background:var(--tx);color:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
+#sbtn:hover{opacity:.8}
+#sbtn:disabled{opacity:.35;cursor:not-allowed}
+.hint{text-align:center;font-size:11.5px;color:var(--tx3);margin-top:7px;font-family:'DM Mono',monospace}
+.cnotice{border-bottom:1px solid rgba(122,90,16,.15);padding:7px 20px;font-size:12px;color:var(--wn);display:none;align-items:center;gap:8px;font-family:'DM Mono',monospace;background:var(--wnl)}
+.cnotice.show{display:flex}
+
+/* ── ADMIN ── */
+#admin-view{display:none;flex-direction:column;height:100vh;overflow:hidden}
+.ahdr{background:var(--sf);border-bottom:1px solid var(--bd);height:56px;padding:0 24px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.atitle{font-family:'Fraunces',serif;font-weight:400;font-size:18px}
+.abadge{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--wnl);color:var(--wn)}
+.abody{flex:1;overflow-y:auto;padding:24px}
+.atabs{display:flex;gap:2px;background:var(--sf2);border:1px solid var(--bd);border-radius:var(--r);padding:3px;margin-bottom:20px;max-width:900px;margin-left:auto;margin-right:auto}
+.atab{flex:1;padding:7px 8px;border-radius:7px;font-size:13px;font-weight:500;border:none;cursor:pointer;background:transparent;color:var(--tx2);transition:all .15s;font-family:'DM Sans',sans-serif;text-align:center}
+.atab.active{background:var(--sf);color:var(--tx);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.apanel{display:none;max-width:900px;margin:0 auto}
+.apanel.active{display:block}
+.sec-ttl{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tx3);margin-bottom:11px}
+.acard{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:20px;margin-bottom:14px}
+.acard.muted{background:var(--sf2)}
+.acard h3{font-size:15px;font-weight:500;margin-bottom:5px}
+.acard > p{font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:12px}
+.acard code{font-family:'DM Mono',monospace;font-size:12px;background:var(--sf2);padding:2px 6px;border-radius:4px}
+.actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;align-items:center}
+.btn{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;border:none;cursor:pointer;transition:all .15s}
+.btn:hover{opacity:.85}
+.btn-p{background:var(--ac);color:#fff}
+.btn-s{background:var(--sf2);color:var(--tx2);border:1px solid var(--bd)}
+.btn-d{background:var(--erl);color:var(--er);border:1px solid rgba(139,32,32,.15)}
+.btn-b{background:var(--bll);color:var(--bl);border:1px solid rgba(26,74,138,.15)}
+.st{font-size:12px;font-family:'DM Mono',monospace;color:var(--tx3)}
+.st.ok{color:var(--ac)}.st.err{color:var(--er)}
+
+/* ── PUBLISH BUTTON — the big one ── */
+.publish-hero{background:var(--sf);border:2px solid var(--ac);border-radius:var(--rl);padding:28px 24px;margin-bottom:14px;text-align:center}
+.publish-hero h3{font-family:'Fraunces',serif;font-weight:400;font-size:22px;margin-bottom:8px}
+.publish-hero p{font-size:13.5px;color:var(--tx2);line-height:1.6;margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto}
+#publish-btn{padding:14px 36px;border-radius:10px;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;border:none;cursor:pointer;background:var(--ac);color:#fff;transition:all .2s;display:inline-flex;align-items:center;gap:10px}
+#publish-btn:hover{opacity:.88;transform:translateY(-1px)}
+#publish-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.publish-status{margin-top:16px;min-height:24px}
+.publish-status .st{font-size:13px}
+.pub-progress{display:none;flex-direction:column;gap:6px;margin-top:12px;text-align:left;max-width:380px;margin-left:auto;margin-right:auto}
+.pub-progress.show{display:flex}
+.pub-step{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--tx3);font-family:'DM Mono',monospace}
+.pub-step.done{color:var(--ac)}.pub-step.active{color:var(--tx2)}.pub-step.err{color:var(--er)}
+.pub-step-icon{width:16px;text-align:center;flex-shrink:0}
+.pspin{width:12px;height:12px;border:1.5px solid var(--bd2);border-top-color:var(--ac);border-radius:50%;animation:spin .6s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── GITHUB SETUP ── */
+.gh-connected{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--acl);border:1px solid rgba(45,90,61,.2);border-radius:var(--r);margin-bottom:14px}
+.gh-dot{width:9px;height:9px;border-radius:50%;background:#22A85A;flex-shrink:0}
+.gh-info{flex:1}
+.gh-title{font-size:13.5px;font-weight:500}
+.gh-url{font-size:12px;font-family:'DM Mono',monospace;color:var(--act);margin-top:2px}
+.gh-url a{color:var(--act);text-decoration:none}
+.gh-url a:hover{text-decoration:underline}
+.gh-not-connected{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--wnl);border:1px solid rgba(122,90,16,.2);border-radius:var(--r);margin-bottom:14px}
+.gh-warn-icon{font-size:16px;flex-shrink:0}
+
+/* ── SETUP STEPS ── */
+.setup-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin:14px 0}
+.ss{display:flex;border-bottom:1px solid var(--bd)}
+.ss:last-child{border-bottom:none}
+.ss-n{width:40px;display:flex;align-items:flex-start;justify-content:center;padding-top:15px;font-family:'DM Mono',monospace;font-size:11px;color:var(--tx3);flex-shrink:0;background:var(--sf2);border-right:1px solid var(--bd)}
+.ss-b{flex:1;padding:12px 14px}
+.ss-t{font-size:13.5px;font-weight:500;margin-bottom:4px}
+.ss-d{font-size:12.5px;color:var(--tx2);line-height:1.55}
+.ss-d code{font-family:'DM Mono',monospace;font-size:11.5px;background:var(--sf2);padding:1px 5px;border-radius:4px;color:var(--tx)}
+.ss-d a{color:var(--bl);text-decoration:none}.ss-d a:hover{text-decoration:underline}
+.ss-img{margin-top:8px;background:var(--sf2);border:1px solid var(--bd);border-radius:6px;padding:8px 12px;font-family:'DM Mono',monospace;font-size:11.5px;color:var(--tx3);line-height:1.6}
+
+/* ── BRAIN SECTIONS ── */
+.srow{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px}
+.scard{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:14px}
+.sval{font-family:'Fraunces',serif;font-size:24px;font-weight:300;line-height:1;margin-bottom:3px}
+.slbl{font-size:11px;color:var(--tx3);font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.bsec-list{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.bsec{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
+.bsec:hover{border-color:var(--bd2)}
+.bsec-hdr{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;user-select:none}
+.bsec-ico{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.ico-def{background:var(--acl);color:var(--act)}.ico-pdf{background:#FEF0E8;color:#C24A0A}
+.ico-txt{background:var(--bll);color:var(--bl)}.ico-man{background:var(--dvl);color:var(--dvt)}.ico-url{background:var(--sf2);color:var(--tx2)}
+.bsec-meta{flex:1;min-width:0}
+.bsec-name{font-size:13.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bsec-info{font-size:11px;color:var(--tx3);font-family:'DM Mono',monospace;margin-top:2px}
+.bsec-del{width:26px;height:26px;border-radius:6px;border:none;background:transparent;cursor:pointer;color:var(--tx3);font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.bsec-del:hover{background:var(--erl);color:var(--er)}
+.bsec-body{display:none;border-top:1px solid var(--bd)}
+.bsec-body.open{display:block}
+.bsec-ed{width:100%;min-height:140px;max-height:360px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.6;background:var(--sf2);border:none;padding:12px 14px;color:var(--tx);resize:vertical;outline:none}
+.bsec-foot{padding:9px 14px;border-top:1px solid var(--bd);display:flex;gap:8px;align-items:center;background:var(--sf)}
+
+/* ── UPLOAD ── */
+.upzone{border:2px dashed var(--bd2);border-radius:var(--rl);padding:30px 20px;text-align:center;cursor:pointer;transition:all .2s;background:var(--sf);position:relative;margin-bottom:12px}
+.upzone:hover,.upzone.drag{border-color:var(--ac);background:var(--acl)}
+.upzone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.uz-icon{font-size:26px;margin-bottom:9px}
+.uz-ttl{font-size:15px;font-weight:500;margin-bottom:3px}
+.uz-sub{font-size:13px;color:var(--tx3);line-height:1.5}
+.uz-types{display:flex;gap:5px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.uz-type{font-size:11px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:4px;background:var(--sf2);color:var(--tx3);border:1px solid var(--bd)}
+.add-tabs{display:flex;gap:0;border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
+.add-tab{flex:1;padding:8px 10px;font-size:13px;border:none;cursor:pointer;background:var(--sf2);color:var(--tx2);transition:all .15s;font-family:'DM Sans',sans-serif}
+.add-tab.act{background:var(--sf);color:var(--tx);font-weight:500}
+.add-panel{display:none}.add-panel.act{display:block}
+.proc-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);margin-top:7px}
+.proc-spin{width:15px;height:15px;border:2px solid var(--bd2);border-top-color:var(--ac);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+.proc-name{flex:1;color:var(--tx2);font-family:'DM Mono',monospace;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── FIELDS ── */
+.fld{margin-bottom:11px}
+.fld label{display:block;font-size:11px;color:var(--tx3);font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.fld input,.fld textarea{width:100%;font-family:'DM Mono',monospace;font-size:12.5px;background:var(--sf2);border:1px solid var(--bd);border-radius:6px;padding:8px 10px;color:var(--tx);outline:none;transition:border-color .15s;resize:vertical}
+.fld textarea{min-height:90px}
+.fld input:focus,.fld textarea:focus{border-color:var(--bd2)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.cfg-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:15px}
+.cfg-hdr{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.cfg-dot{width:8px;height:8px;border-radius:50%}
+
+/* ── MODAL ── */
+.overlay{position:fixed;inset:0;background:rgba(28,26,20,.5);display:none;align-items:center;justify-content:center;z-index:100;backdrop-filter:blur(2px)}
+.overlay.open{display:flex}
+.modal{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:30px;width:100%;max-width:400px;box-shadow:var(--shm)}
+.modal h2{font-family:'Fraunces',serif;font-weight:400;font-size:21px;margin-bottom:6px}
+.modal p{font-size:13px;color:var(--tx2);margin-bottom:18px;line-height:1.5}
+.modal input{width:100%;font-family:'DM Mono',monospace;font-size:14px;padding:10px 13px;border-radius:8px;border:1px solid var(--bd2);background:var(--bg);color:var(--tx);outline:none;margin-bottom:11px;transition:border-color .15s}
+.modal input:focus{border-color:var(--tx2)}
+.merr{font-size:12px;color:var(--er);margin-bottom:9px;display:none}
+.mbtns{display:flex;gap:8px}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<script id="embedded-brain" type="application/json">[{"id":"default","name":"UVG Core Knowledge","type":"default","created":"2026-03-25T11:00:04.000Z","wordCount":289,"content":"# UVG CORE KNOWLEDGE\n\n## Business Overview\nThis organisation provides professional workforce accommodation services. We manage camp facilities, rooms, bookings, housekeeping, and maintenance for long-term and short-term guests including fly-in fly-out (FIFO) workers.\n\n## Booking Rules\n- Check-in: 14:00. Check-out: 10:00.\n- Booking requires: guest name, company, room number, arrival date, departure date.\n- No overbooking. One booking per room at a time.\n- Alterations amend a booking without cancelling it.\n- Early check-in must be approved and logged as an alteration.\n- Overstays must be logged and may incur charges.\n- Cancellations need a reason and timestamp.\n\n## Room Management\n- Types: Standard, Superior, Suite.\n- Statuses: Available, Occupied, Dirty, Maintenance, Out of Order.\n- Maintenance or OOO rooms cannot be booked.\n- Dirty rooms must be cleaned before check-in.\n- Pre-Arrival check: room clean, stocked, key card active.\n\n## Housekeeping\n- Daily Service: light tidy, bins, towels on request.\n- Full Service: linen change, full clean, restock.\n- Departure Clean: full service + mattress check + condition report.\n- Priority cleans: same-day arrivals, flagged urgent.\n- Run sheets generated at 07:00 daily.\n\n## Maintenance\n- Priorities: Low, Medium, High, Emergency.\n- Emergency SLA: 2 hours. High SLA: 24 hours.\n- SLA breach: escalate to facility manager.\n- Completion requires: technician name, time, resolution notes.\n- Unusable room: mark OOO, relocate all bookings.\n\n## Reporting\n- Occupancy = (occupied rooms / total rooms) x 100.\n- Occupied = checked in AND not yet checked out.\n- Arrivals included, departures excluded.\n\n## Terminology\n- FIFO: fly-in fly-out worker.\n- Run Sheet: daily housekeeping task list.\n- Pre-Arrival: room readiness check.\n- Alteration: change to an existing booking.\n- OOO: Out of Order.\n- Chargeable Room: billable to a company."}]</script>
+<script id="cfg-store" type="application/json">{"staff":{"name":"Assist","fullName":"Staff Assistant","persona":"You are a friendly, helpful assistant for frontline accommodation camp staff. Answer questions about procedures, bookings, housekeeping, and room management in a clear, simple, step-by-step way. Avoid technical jargon. Give practical, actionable answers. Use short sentences.","suggestions":["How do I log an early check-in?","What is a Pre-Arrival check?","How do I report a maintenance issue?","What does Out of Order mean?"]},"dev":{"name":"Logic","fullName":"Developer Assistant","persona":"You are a precise technical assistant for developers and system administrators. Explain business rules, system logic, edge cases, and operational procedures in structured detail. Use precise terminology. Reference specific rules, conditions, and exceptions.","suggestions":["Explain the alteration vs cancellation logic","What are the occupancy calculation rules?","Walk me through the booking conflict edge cases","Explain the maintenance SLA escalation logic"]}}</script>
+
+<!-- LANDING -->
+<div id="landing" style="display: none;">
+  <p class="eyebrow">AI Knowledge Platform — Powered by Google Gemini</p>
+  <h1 class="title">One brain,<br><em>many assistants</em></h1>
+  <p class="subtitle">Both assistants share the same knowledge. Upload your documents — everyone gets the same answers instantly.</p>
+  <div class="cards">
+    <div class="card cs" onclick="openChat('staff')">
+      <div class="ctag cts"><svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>For staff</div>
+      <div class="cname" id="ln-staff">Assist</div>
+      <div class="cdesc">Practical guidance in plain language. Step-by-step instructions, no jargon.</div>
+      <div class="traits"><div class="trait">Simple, clear answers</div><div class="trait">Step-by-step instructions</div><div class="trait">Practical and direct</div></div>
+      <button class="ccta ctas">Open Staff Assistant</button>
+    </div>
+    <div class="card cd" onclick="openChat('dev')">
+      <div class="ctag ctd"><svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>For developers</div>
+      <div class="cname" id="ln-dev">Logic</div>
+      <div class="cdesc">Detailed logic, rules, edge cases, and system behaviour. Structured and precise.</div>
+      <div class="traits"><div class="trait">Business logic and rules</div><div class="trait">Edge cases and exceptions</div><div class="trait">Structured and technical</div></div>
+      <button class="ccta ctad">Open Developer Assistant</button>
+    </div>
+  </div>
+  <div class="brain-bar">
+    <div class="bdot ready" id="bdot"></div>
+    <span id="blabel">1 sections · 289 words</span>
+  </div>
+  <button class="admin-link" onclick="showAuth()">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="8" height="6" rx="1.5"></rect><path d="M4 5V3.5a2 2 0 0 1 4 0V5"></path></svg>
+    Admin panel
+  </button>
+</div>
+
+<!-- CHAT -->
+<div id="chat-view" style="display: none;">
+  <div class="cnotice" id="cnotice">
+    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="5"></circle><path d="M6 5v3M6 3.5v.5"></path></svg>
+    <span id="cnotice-txt"></span>
+  </div>
+  <div class="chdr">
+    <button class="bbtn" onclick="goHome()">←</button>
+    <div class="hdot" id="hdot"></div>
+    <span class="hname" id="hname"></span>
+    <span class="htag" id="htag"></span>
+  </div>
+  <div class="msgs" id="msgs"></div>
+  <div class="iarea">
+    <div class="iwrap">
+      <textarea id="cinput" rows="1" placeholder="Ask anything..."></textarea>
+      <button id="sbtn" onclick="sendMsg()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7H2M12 7L8 3M12 7L8 11"></path></svg>
+      </button>
+    </div>
+    <div class="hint">Enter to send · Shift+Enter for new line</div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-view" style="display: flex; flex-direction: column;">
+  <div class="ahdr">
+    <button class="bbtn" onclick="goHome()">←</button>
+    <span class="atitle">Admin Panel</span>
+    <span class="abadge">restricted</span>
+    <div style="margin-left:auto"><button class="btn btn-s" onclick="goHome()">Back to home</button></div>
+  </div>
+  <div class="abody">
+    <div class="atabs">
+      <button class="atab" onclick="switchTab('brain')">Knowledge Brain</button>
+      <button class="atab active" onclick="switchTab('publish')">Publish</button>
+      <button class="atab" onclick="switchTab('assistants')">Assistants</button>
+      <button class="atab" onclick="switchTab('settings')">Settings</button>
+    </div>
+
+    <!-- ══ BRAIN TAB ══ -->
+    <div class="apanel" id="tab-brain">
+      <div class="srow">
+        <div class="scard"><div class="sval" id="st-secs">1</div><div class="slbl">Sections</div></div>
+        <div class="scard"><div class="sval" id="st-words">289</div><div class="slbl">Total words</div></div>
+        <div class="scard"><div class="sval" id="st-key">Set</div><div class="slbl">Gemini key</div></div>
+        <div class="scard"><div class="sval" id="st-gh">mirandaob/uvg-knowledge</div><div class="slbl">GitHub</div></div>
+      </div>
+
+      <div class="sec-ttl">Brain sections — combined into knowledge for both assistants</div>
+      <div class="bsec-list" id="bsec-list"><div class="bsec"><div class="bsec-hdr" onclick="toggleSec('default')"><div class="bsec-ico ico-def">🏠</div><div class="bsec-meta"><div class="bsec-name">UVG Core Knowledge</div><div class="bsec-info">289 words · 25/03/2026</div></div></div><div class="bsec-body" id="body-default"><textarea class="bsec-ed" id="ed-default"># UVG CORE KNOWLEDGE
+
+## Business Overview
+This organisation provides professional workforce accommodation services. We manage camp facilities, rooms, bookings, housekeeping, and maintenance for long-term and short-term guests including fly-in fly-out (FIFO) workers.
+
+## Booking Rules
+- Check-in: 14:00. Check-out: 10:00.
+- Booking requires: guest name, company, room number, arrival date, departure date.
+- No overbooking. One booking per room at a time.
+- Alterations amend a booking without cancelling it.
+- Early check-in must be approved and logged as an alteration.
+- Overstays must be logged and may incur charges.
+- Cancellations need a reason and timestamp.
+
+## Room Management
+- Types: Standard, Superior, Suite.
+- Statuses: Available, Occupied, Dirty, Maintenance, Out of Order.
+- Maintenance or OOO rooms cannot be booked.
+- Dirty rooms must be cleaned before check-in.
+- Pre-Arrival check: room clean, stocked, key card active.
+
+## Housekeeping
+- Daily Service: light tidy, bins, towels on request.
+- Full Service: linen change, full clean, restock.
+- Departure Clean: full service + mattress check + condition report.
+- Priority cleans: same-day arrivals, flagged urgent.
+- Run sheets generated at 07:00 daily.
+
+## Maintenance
+- Priorities: Low, Medium, High, Emergency.
+- Emergency SLA: 2 hours. High SLA: 24 hours.
+- SLA breach: escalate to facility manager.
+- Completion requires: technician name, time, resolution notes.
+- Unusable room: mark OOO, relocate all bookings.
+
+## Reporting
+- Occupancy = (occupied rooms / total rooms) x 100.
+- Occupied = checked in AND not yet checked out.
+- Arrivals included, departures excluded.
+
+## Terminology
+- FIFO: fly-in fly-out worker.
+- Run Sheet: daily housekeeping task list.
+- Pre-Arrival: room readiness check.
+- Alteration: change to an existing booking.
+- OOO: Out of Order.
+- Chargeable Room: billable to a company.</textarea><div class="bsec-foot"><button class="btn btn-p" style="padding:6px 12px;font-size:12px" onclick="saveSecEdit('default')">Save edits</button><span class="st" id="seced-default"></span></div></div></div></div>
+
+      <div class="acard">
+        <h3>Add knowledge</h3>
+        <p>Upload files, paste text, or add from a URL. Gemini reads and structures the content. Each source becomes a section in the brain.</p>
+        <div class="add-tabs">
+          <button class="add-tab act" onclick="switchAddTab('upload')">📄 Upload files</button>
+          <button class="add-tab" onclick="switchAddTab('paste')">✎ Paste text</button>
+          <button class="add-tab" onclick="switchAddTab('url')">🌐 From URL</button>
+        </div>
+        <div class="add-panel act" id="ap-upload">
+          <div class="upzone" id="drop-zone" ondragover="onDrag(event,true)" ondragleave="onDrag(event,false)" ondrop="onDrop(event)">
+            <input type="file" id="file-input" multiple="" accept=".pdf,.txt,.md,.csv" onchange="onFileSel(event)">
+            <div class="uz-icon">📄</div>
+            <div class="uz-ttl">Drop files here or click to browse</div>
+            <div class="uz-sub">Gemini reads and extracts the knowledge from each file</div>
+            <div class="uz-types"><span class="uz-type">PDF</span><span class="uz-type">TXT</span><span class="uz-type">MD</span><span class="uz-type">CSV</span></div>
+          </div>
+          <div id="proc-list"></div>
+        </div>
+        <div class="add-panel" id="ap-paste">
+          <div class="fld"><label>Section name</label><input type="text" id="paste-name" placeholder="e.g. Fire Safety Procedures"></div>
+          <div class="fld"><label>Content — paste from Word, email, anywhere</label><textarea id="paste-content" rows="7" placeholder="Paste procedures, policies, rules, FAQs, or any knowledge here..."></textarea></div>
+          <div class="actions"><button class="btn btn-p" onclick="addPasted()">Add to brain</button><span class="st" id="paste-st"></span></div>
+        </div>
+        <div class="add-panel" id="ap-url">
+          <div class="fld"><label>Section name</label><input type="text" id="url-name" placeholder="e.g. Company intranet page"></div>
+          <div class="fld"><label>URL</label><input type="text" id="url-inp" placeholder="https://..."></div>
+          <p style="font-size:12px;color:var(--tx3);margin-bottom:10px">Only publicly accessible pages can be fetched. Requires Gemini API key.</p>
+          <div class="actions"><button class="btn btn-p" onclick="addFromUrl()">Fetch and add</button><span class="st" id="url-st"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PUBLISH TAB ══ -->
+    <div class="apanel active" id="tab-publish">
+
+      <!-- BIG PUBLISH BUTTON -->
+      <div class="publish-hero">
+        <h3>Publish knowledge to all staff</h3>
+        <p>When you're ready, click this button. It pushes the latest knowledge to GitHub Pages in seconds. The staff link never changes — everyone gets the update automatically.</p>
+        <button id="publish-btn" onclick="publishToGitHub()" disabled="">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 1v10M9 1L5 5M9 1l4 4"></path><path d="M1 13v2a2 2 0 002 2h12a2 2 0 002-2v-2"></path></svg>
+          Publish update to all staff
+        </button>
+        <div class="publish-status">
+          <span class="st" id="pub-main-st"></span>
+        </div>
+        <div class="pub-progress show" id="pub-progress">
+          <div class="pub-step active" id="ps-1"><span class="pub-step-icon"><span class="pspin"></span></span>Building file with latest knowledge</div>
+          <div class="pub-step" id="ps-2"><span class="pub-step-icon">○</span>Connecting to GitHub</div>
+          <div class="pub-step" id="ps-3"><span class="pub-step-icon">○</span>Uploading to repository</div>
+          <div class="pub-step" id="ps-4"><span class="pub-step-icon">○</span>GitHub Pages deploying</div>
+        </div>
+      </div>
+
+      <!-- GITHUB CONNECTION STATUS -->
+      <div id="gh-connected-bar" class="gh-connected">
+        <div class="gh-dot"></div>
+        <div class="gh-info">
+          <div class="gh-title">GitHub Pages connected</div>
+          <div class="gh-url">Staff link: <a id="gh-pages-link" href="https://mirandaob.github.io/uvg-knowledge/" target="_blank">https://mirandaob.github.io/uvg-knowledge/</a></div>
+        </div>
+        <button class="btn btn-s" style="font-size:12px;padding:6px 12px" onclick="switchTab('publish');setTimeout(function(){document.getElementById('gh-setup').scrollIntoView({behavior:'smooth'})},100)">Edit</button>
+      </div>
+      <div id="gh-not-connected-bar" class="gh-not-connected hidden">
+        <span class="gh-warn-icon">⚠️</span>
+        <div>
+          <div style="font-size:13.5px;font-weight:500">GitHub not connected yet</div>
+          <div style="font-size:12.5px;color:var(--wn);margin-top:2px">Complete the setup below to enable one-click publishing</div>
+        </div>
+      </div>
+
+      <!-- GITHUB SETUP -->
+      <div id="gh-setup">
+        <div class="sec-ttl" style="margin-top:8px">GitHub Pages setup — one time only, takes 5 minutes</div>
+        <div class="setup-steps">
+          <div class="ss"><div class="ss-n">1</div><div class="ss-b">
+            <div class="ss-t">Create a free GitHub account</div>
+            <div class="ss-d">Go to <a href="https://github.com/signup" target="_blank">github.com/signup</a> and create a free account if you don't have one.</div>
+          </div></div>
+          <div class="ss"><div class="ss-n">2</div><div class="ss-b">
+            <div class="ss-t">Create a new repository</div>
+            <div class="ss-d">Go to <a href="https://github.com/new" target="_blank">github.com/new</a>. Name it something like <code>uvg-knowledge</code>. Set it to <strong>Public</strong>. Tick <strong>Add a README file</strong>. Click Create repository.</div>
+          </div></div>
+          <div class="ss"><div class="ss-n">3</div><div class="ss-b">
+            <div class="ss-t">Enable GitHub Pages</div>
+            <div class="ss-d">In your new repository, go to <strong>Settings → Pages</strong>. Under Source, select <strong>Deploy from a branch</strong>. Choose branch <code>main</code> and folder <code>/ (root)</code>. Click Save. GitHub will give you your permanent URL.</div>
+          </div></div>
+          <div class="ss"><div class="ss-n">4</div><div class="ss-b">
+            <div class="ss-t">Create a personal access token</div>
+            <div class="ss-d">Go to <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a>. Give it a name like <code>uvg-platform</code>. Set expiration to <strong>No expiration</strong>. Under Scopes, tick <strong>repo</strong> (the top checkbox). Scroll down and click <strong>Generate token</strong>. Copy the token immediately — you only see it once.</div>
+          </div></div>
+          <div class="ss"><div class="ss-n">5</div><div class="ss-b">
+            <div class="ss-t">Enter your details below and connect</div>
+            <div class="ss-d">Fill in the fields below with your GitHub username, repository name, and the token you just created.</div>
+          </div></div>
+        </div>
+
+        <div class="acard">
+          <h3>Connect GitHub</h3>
+          <div class="fld"><label>GitHub username</label><input type="text" id="gh-user" placeholder="your-github-username"></div>
+          <div class="fld"><label>Repository name</label><input type="text" id="gh-repo" placeholder="uvg-knowledge"></div>
+          <div class="fld"><label>Personal access token</label><input type="password" id="gh-token" placeholder="ghp_..."></div>
+          <div class="fld"><label>Pre-fill Gemini API key for staff (optional)</label>
+            <input type="password" id="gh-embed-key" placeholder="Leave blank — staff enter their own key">
+            <p style="font-size:11.5px;color:var(--tx3);margin-top:4px">If set, staff never need to enter a key. Use a shared team key. Anyone who has the link can see it in page source.</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-p" onclick="saveGitHubSettings()">Save and connect</button>
+            <button class="btn btn-d" onclick="clearGitHubSettings()">Disconnect</button>
+            <span class="st" id="gh-st"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ ASSISTANTS TAB ══ -->
+    <div class="apanel" id="tab-assistants">
+      <div class="acard">
+        <h3>Assistant configuration</h3>
+        <p>Both assistants use the same knowledge brain. Only the persona changes how they respond.</p>
+        <div class="two-col">
+          <div class="cfg-card">
+            <div class="cfg-hdr"><div class="cfg-dot" style="background:var(--ac)"></div><strong style="font-size:13px">Staff Assistant</strong></div>
+            <div class="fld"><label>Display name</label><input type="text" id="cfg-sn"></div>
+            <div class="fld"><label>Persona</label><textarea id="cfg-sp" style="min-height:100px"></textarea></div>
+          </div>
+          <div class="cfg-card">
+            <div class="cfg-hdr"><div class="cfg-dot" style="background:var(--dv)"></div><strong style="font-size:13px">Developer Assistant</strong></div>
+            <div class="fld"><label>Display name</label><input type="text" id="cfg-dn"></div>
+            <div class="fld"><label>Persona</label><textarea id="cfg-dp" style="min-height:100px"></textarea></div>
+          </div>
+        </div>
+        <div class="actions" style="margin-top:4px"><button class="btn btn-p" onclick="saveCfg()">Save</button><span class="st" id="cfg-st"></span></div>
+      </div>
+    </div>
+
+    <!-- ══ SETTINGS TAB ══ -->
+    <div class="apanel" id="tab-settings">
+      <div class="acard">
+        <h3>Gemini API key (free)</h3>
+        <p>Required for file uploads and AI responses in this admin session. Get a free key at <strong>aistudio.google.com → Get API key → Create API key</strong>. No credit card needed.</p>
+        <div class="fld"><label>Gemini API key</label><input type="password" id="key-input" placeholder="AIza..."></div>
+        <div class="actions"><button class="btn btn-p" onclick="saveKey()">Save</button><button class="btn btn-d" onclick="clearKey()">Clear</button><span class="st" id="key-st"></span></div>
+      </div>
+      <div class="acard">
+        <h3>Change admin password</h3>
+        <div class="fld"><label>Current password</label><input type="password" id="pw-cur"></div>
+        <div class="fld"><label>New password</label><input type="password" id="pw-new"></div>
+        <div class="actions"><button class="btn btn-p" onclick="changePw()">Update</button><span class="st" id="pw-st"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="overlay" id="auth-modal">
+  <div class="modal">
+    <h2>Admin access</h2>
+    <p>Enter the admin password to manage the knowledge base.<br>Default: <code>admin123</code></p>
+    <div class="merr" id="auth-err" style="display: none;">Incorrect password.</div>
+    <input type="password" id="auth-pw" placeholder="Password" onkeydown="if(event.key==='Enter')checkAuth()">
+    <div class="mbtns"><button class="btn btn-p" onclick="checkAuth()">Enter</button><button class="btn btn-s" onclick="closeModal()">Cancel</button></div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════
+   CONSTANTS
+══════════════════════════════════════════════════ */
+var GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+var GITHUB_API = 'https://api.github.com';
+var K_SECS  = 'uvg_secs_v6';
+var K_CFG   = 'uvg_cfg_v6';
+var K_KEY   = 'uvg_gkey_v1';
+var K_PW    = 'uvg_pw_v1';
+var K_GH    = 'uvg_gh_v1'; // {user, repo, token, embedKey}
+
+/* ══════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════ */
+var adminPw  = localStorage.getItem(K_PW)  || 'admin123';
+var apiKey   = localStorage.getItem(K_KEY) || '';
+var ghConfig = JSON.parse(localStorage.getItem(K_GH) || 'null') || {};
+var cfg      = {};
+var sections = [];
+var curAsst  = null;
+var hist     = [];
+var busy     = false;
+
+var DEFAULT_BRAIN = '# UVG CORE KNOWLEDGE\n\n## Business Overview\nThis organisation provides professional workforce accommodation services. We manage camp facilities, rooms, bookings, housekeeping, and maintenance for long-term and short-term guests including fly-in fly-out (FIFO) workers.\n\n## Booking Rules\n- Check-in: 14:00. Check-out: 10:00.\n- Booking requires: guest name, company, room number, arrival date, departure date.\n- No overbooking. One booking per room at a time.\n- Alterations amend a booking without cancelling it.\n- Early check-in must be approved and logged as an alteration.\n- Overstays must be logged and may incur charges.\n- Cancellations need a reason and timestamp.\n\n## Room Management\n- Types: Standard, Superior, Suite.\n- Statuses: Available, Occupied, Dirty, Maintenance, Out of Order.\n- Maintenance or OOO rooms cannot be booked.\n- Dirty rooms must be cleaned before check-in.\n- Pre-Arrival check: room clean, stocked, key card active.\n\n## Housekeeping\n- Daily Service: light tidy, bins, towels on request.\n- Full Service: linen change, full clean, restock.\n- Departure Clean: full service + mattress check + condition report.\n- Priority cleans: same-day arrivals, flagged urgent.\n- Run sheets generated at 07:00 daily.\n\n## Maintenance\n- Priorities: Low, Medium, High, Emergency.\n- Emergency SLA: 2 hours. High SLA: 24 hours.\n- SLA breach: escalate to facility manager.\n- Completion requires: technician name, time, resolution notes.\n- Unusable room: mark OOO, relocate all bookings.\n\n## Reporting\n- Occupancy = (occupied rooms / total rooms) x 100.\n- Occupied = checked in AND not yet checked out.\n- Arrivals included, departures excluded.\n\n## Terminology\n- FIFO: fly-in fly-out worker.\n- Run Sheet: daily housekeeping task list.\n- Pre-Arrival: room readiness check.\n- Alteration: change to an existing booking.\n- OOO: Out of Order.\n- Chargeable Room: billable to a company.';
+
+/* ══════════════════════════════════════════════════
+   BOOT
+══════════════════════════════════════════════════ */
+function boot() {
+  cfg = JSON.parse(localStorage.getItem(K_CFG) || 'null') ||
+        JSON.parse(document.getElementById('cfg-store').textContent);
+
+  document.getElementById('ln-staff').textContent = cfg.staff.name;
+  document.getElementById('ln-dev').textContent   = cfg.dev.name;
+
+  // Embedded brain takes priority (published file)
+  var embedded = JSON.parse(document.getElementById('embedded-brain').textContent);
+  if (embedded && Array.isArray(embedded) && embedded.length > 0) {
+    sections = embedded;
+    if (!localStorage.getItem(K_SECS)) saveSections();
+  } else {
+    sections = JSON.parse(localStorage.getItem(K_SECS) || 'null') || [{
+      id:'default', name:'UVG Core Knowledge', type:'default',
+      created: new Date().toISOString(),
+      wordCount: DEFAULT_BRAIN.trim().split(/\s+/).length,
+      content: DEFAULT_BRAIN
+    }];
+    saveSections();
+  }
+
+  setBrainBar(sections.length + ' sections · ' + totalWords() + ' words');
+}
+
+function totalWords(){ return sections.reduce(function(a,s){ return a+(s.wordCount||0); },0); }
+function setBrainBar(msg){ document.getElementById('bdot').className='bdot ready'; document.getElementById('blabel').textContent=msg; }
+function saveSections(){ localStorage.setItem(K_SECS,JSON.stringify(sections)); }
+
+/* ══════════════════════════════════════════════════
+   BRAIN ASSEMBLY
+══════════════════════════════════════════════════ */
+function buildBrain(){
+  return sections.map(function(s){ return '=== '+s.name.toUpperCase()+' ===\n'+s.content; }).join('\n\n---\n\n');
+}
+function buildSys(){
+  return 'You are an AI assistant with access to a centralised knowledge base containing all authoritative rules, procedures, and information for this organisation. Always base your answers on this knowledge. If something is not covered, say so.\n\nKNOWLEDGE BASE:\n'+buildBrain()+'\n\nASSISTANT PERSONA:\n'+cfg[curAsst].persona;
+}
+
+/* ══════════════════════════════════════════════════
+   BUILD STANDALONE HTML
+══════════════════════════════════════════════════ */
+function buildStandaloneHTML(embedKeyOverride) {
+  var html = document.documentElement.outerHTML;
+
+  // Bake brain
+  html = html.replace(
+    '<script id="embedded-brain" type="application/json">null<\/script>',
+    '<script id="embedded-brain" type="application/json">'+JSON.stringify(sections)+'<\/script>'
+  );
+
+  // Bake config
+  html = html.replace(
+    /<script id="cfg-store" type="application\/json">[\s\S]*?<\/script>/,
+    '<script id="cfg-store" type="application/json">'+JSON.stringify(cfg)+'<\/script>'
+  );
+
+  // Bake API key if provided
+  var keyToEmbed = embedKeyOverride || ghConfig.embedKey || '';
+  if (keyToEmbed) {
+    html = html.replace(
+      "var apiKey   = localStorage.getItem(K_KEY) || '';",
+      "var apiKey   = localStorage.getItem(K_KEY) || '"+keyToEmbed.replace(/'/g,"\\'")+"';"
+    );
+  }
+
+  return html;
+}
+
+/* ══════════════════════════════════════════════════
+   GITHUB PAGES PUBLISH
+══════════════════════════════════════════════════ */
+async function publishToGitHub() {
+  if (!ghConfig.user || !ghConfig.repo || !ghConfig.token) {
+    // Not configured — switch to publish tab and scroll to setup
+    switchTab('publish');
+    setTimeout(function(){ document.getElementById('gh-setup').scrollIntoView({behavior:'smooth'}); }, 100);
+    showSt('pub-main-st', 'Set up GitHub first — see the instructions below', false);
+    return;
+  }
+
+  var btn = document.getElementById('publish-btn');
+  btn.disabled = true;
+
+  // Show progress
+  var prog = document.getElementById('pub-progress');
+  prog.classList.add('show');
+  ['ps-1','ps-2','ps-3','ps-4'].forEach(function(id){ setPubStep(id,'idle'); });
+
+  showSt('pub-main-st', '', null);
+
+  try {
+    // Step 1: Build the file
+    setPubStep('ps-1','active');
+    var html = buildStandaloneHTML();
+    var content = btoa(unescape(encodeURIComponent(html)));
+    setPubStep('ps-1','done');
+
+    // Step 2: Get current file SHA (needed for update)
+    setPubStep('ps-2','active');
+    var sha = await getFileSHA();
+    setPubStep('ps-2','done');
+
+    // Step 3: Push to GitHub
+    setPubStep('ps-3','active');
+    var pushRes = await fetch(GITHUB_API+'/repos/'+ghConfig.user+'/'+ghConfig.repo+'/contents/index.html', {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'token '+ghConfig.token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify({
+        message: 'Update knowledge base — '+new Date().toLocaleString(),
+        content: content,
+        sha: sha || undefined
+      })
+    });
+
+    if (!pushRes.ok) {
+      var pushErr = await pushRes.json().catch(function(){return{};});
+      throw new Error(pushErr.message || 'Push failed '+pushRes.status);
+    }
+    setPubStep('ps-3','done');
+
+    // Step 4: Done — GitHub Pages deploys automatically (takes ~30s)
+    setPubStep('ps-4','active');
+    await new Promise(function(r){ setTimeout(r, 2000); });
+    setPubStep('ps-4','done');
+
+    var pagesUrl = 'https://'+ghConfig.user+'.github.io/'+ghConfig.repo+'/';
+    showSt('pub-main-st', '&#10003; Published! All staff will see the update within 1 minute.', true);
+
+    // Update the connected bar
+    updateGHStatusBar();
+
+    setTimeout(function(){ prog.classList.remove('show'); }, 5000);
+
+  } catch(e) {
+    // Mark current active step as error
+    ['ps-1','ps-2','ps-3','ps-4'].forEach(function(id){
+      if (document.getElementById(id).classList.contains('active')) setPubStep(id,'err');
+    });
+    showSt('pub-main-st', 'Error: '+e.message, false);
+  }
+
+  btn.disabled = false;
+}
+
+async function getFileSHA() {
+  var res = await fetch(GITHUB_API+'/repos/'+ghConfig.user+'/'+ghConfig.repo+'/contents/index.html', {
+    headers: { 'Authorization':'token '+ghConfig.token, 'Accept':'application/vnd.github.v3+json' }
+  });
+  if (res.status === 404) return null; // File doesn't exist yet
+  if (!res.ok) return null;
+  var d = await res.json();
+  return d.sha || null;
+}
+
+function setPubStep(id, state) {
+  var el = document.getElementById(id);
+  el.className = 'pub-step' + (state==='done'?' done':state==='active'?' active':state==='err'?' err':'');
+  var icon = el.querySelector('.pub-step-icon');
+  if (state==='done')   icon.innerHTML='&#10003;';
+  else if (state==='active') icon.innerHTML='<span class="pspin"></span>';
+  else if (state==='err')    icon.innerHTML='&#10005;';
+  else                  icon.innerHTML='&#9675;';
+}
+
+/* ══════════════════════════════════════════════════
+   GITHUB SETTINGS
+══════════════════════════════════════════════════ */
+function saveGitHubSettings() {
+  var user  = document.getElementById('gh-user').value.trim();
+  var repo  = document.getElementById('gh-repo').value.trim();
+  var token = document.getElementById('gh-token').value.trim();
+  var ekey  = document.getElementById('gh-embed-key').value.trim();
+  if (!user)  { showSt('gh-st','Enter your GitHub username',false); return; }
+  if (!repo)  { showSt('gh-st','Enter the repository name',false); return; }
+  if (!token) { showSt('gh-st','Enter your personal access token',false); return; }
+  ghConfig = { user:user, repo:repo, token:token, embedKey:ekey };
+  localStorage.setItem(K_GH, JSON.stringify(ghConfig));
+  updateGHStatusBar();
+  updateStats();
+  showSt('gh-st','Connected — ready to publish',true);
+}
+
+function clearGitHubSettings() {
+  ghConfig = {};
+  localStorage.removeItem(K_GH);
+  document.getElementById('gh-user').value='';
+  document.getElementById('gh-repo').value='';
+  document.getElementById('gh-token').value='';
+  document.getElementById('gh-embed-key').value='';
+  updateGHStatusBar();
+  updateStats();
+  showSt('gh-st','Disconnected',true);
+}
+
+function updateGHStatusBar() {
+  var connected = ghConfig.user && ghConfig.repo && ghConfig.token;
+  document.getElementById('gh-connected-bar').classList.toggle('hidden', !connected);
+  document.getElementById('gh-not-connected-bar').classList.toggle('hidden', !!connected);
+  if (connected) {
+    var url = 'https://'+ghConfig.user+'.github.io/'+ghConfig.repo+'/';
+    var linkEl = document.getElementById('gh-pages-link');
+    linkEl.href = url;
+    linkEl.textContent = url;
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   VIEWS
+══════════════════════════════════════════════════ */
+function showView(id){
+  ['landing','chat-view','admin-view'].forEach(function(v){ document.getElementById(v).style.display='none'; });
+  var el=document.getElementById(id);
+  el.style.display='flex';
+  if(id!=='landing') el.style.flexDirection='column';
+}
+function goHome(){ showView('landing'); curAsst=null; hist=[]; }
+
+/* ══════════════════════════════════════════════════
+   CHAT
+══════════════════════════════════════════════════ */
+function openChat(type){
+  curAsst=type; hist=[];
+  var c=cfg[type];
+  document.getElementById('hdot').className='hdot '+(type==='staff'?'hds':'hdd');
+  document.getElementById('hname').textContent=c.name;
+  document.getElementById('htag').textContent=c.fullName;
+  var noticeEl=document.getElementById('cnotice');
+  var noticeTxt=document.getElementById('cnotice-txt');
+  if(!apiKey){ noticeEl.classList.add('show'); noticeTxt.textContent='No API key set. Add your free Gemini key in Admin \u2192 Settings.'; }
+  else { noticeEl.classList.remove('show'); }
+  var desc=type==='staff'
+    ?"I'm here to help with everyday camp operations. Ask me anything in plain English."
+    :"I'm here to explain system logic, business rules, and edge cases in precise technical detail.";
+  var suggs=c.suggestions.map(function(s){ return '<button class="sugg" onclick="useSugg(this.textContent)">'+esc(s)+'</button>'; }).join('');
+  document.getElementById('msgs').innerHTML=
+    '<div class="welcome"><h3>Hi, I\'m '+esc(c.name)+'</h3><p>'+esc(desc)+'</p><div class="suggs">'+suggs+'</div></div>';
+  showView('chat-view');
+  var inp=document.getElementById('cinput');
+  inp.value=''; resize(inp);
+  setTimeout(function(){ inp.focus(); },100);
+}
+function useSugg(t){ document.getElementById('cinput').value=t; sendMsg(); }
+
+async function sendMsg(){
+  if(busy) return;
+  var inp=document.getElementById('cinput');
+  var txt=inp.value.trim();
+  if(!txt) return;
+  inp.value=''; resize(inp);
+  document.getElementById('sbtn').disabled=true;
+  addUserBubble(txt);
+  hist.push({role:'user',content:txt});
+  var typing=addTypingBubble();
+  busy=true;
+  try{
+    var reply=apiKey ? await callGemini() : await demoReply(txt);
+    typing.remove(); addAIBubble(reply);
+    hist.push({role:'assistant',content:reply});
+  }catch(e){
+    typing.remove();
+    addAIBubble('Error: '+e.message+'\n\nCheck your Gemini API key in Admin \u2192 Settings.');
+  }
+  busy=false;
+  document.getElementById('sbtn').disabled=false;
+  document.getElementById('cinput').focus();
+}
+
+async function callGemini(){
+  var contents=hist.slice(-20).map(function(m){ return {role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]}; });
+  var res=await fetch(GEMINI_URL+'?key='+apiKey,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      system_instruction:{parts:[{text:buildSys()}]},
+      contents:contents,
+      generationConfig:{maxOutputTokens:4096,temperature:0.3}
+    })
+  });
+  if(!res.ok){ var e=await res.json().catch(function(){return{};}); throw new Error((e.error&&e.error.message)||'API error '+res.status); }
+  var d=await res.json();
+  try{ return d.candidates[0].content.parts[0].text; }catch(_){ return 'No response received.'; }
+}
+
+async function demoReply(txt){
+  await new Promise(function(r){ setTimeout(r,900+Math.random()*500); });
+  var lo=txt.toLowerCase(),isS=curAsst==='staff';
+  if(lo.indexOf('check')!==-1&&lo.indexOf('in')!==-1) return isS
+    ?'1. Confirm guest name and booking.\n2. Make sure the room is clean and ready.\n3. Issue the key card, note the time.\n4. If before 14:00, log as early check-in.\n5. Welcome the guest!'
+    :'Check-in rules:\n- Standard time: 14:00\n- Early arrival: alteration event, needs timestamp + approver\n- Room must be Available (not Dirty/Maintenance/OOO)\n- Edge: Dirty at arrival \u2192 redirect guest, escalate to priority clean';
+  return isS
+    ?'[Demo mode] Add a free Gemini key in Admin \u2192 Settings for full AI responses.\n\nBrain: '+sections.length+' sections, '+totalWords()+' words.'
+    :'[Demo mode] Add Gemini key in Admin \u2192 Settings.\n\nBrain: '+sections.length+' sections, '+totalWords()+' words. All sections injected as system_instruction on every request.';
+}
+
+/* ══════════════════════════════════════════════════
+   ADMIN
+══════════════════════════════════════════════════ */
+function showAuth(){
+  document.getElementById('auth-pw').value='';
+  document.getElementById('auth-err').style.display='none';
+  document.getElementById('auth-modal').classList.add('open');
+  setTimeout(function(){ document.getElementById('auth-pw').focus(); },100);
+}
+function closeModal(){ document.getElementById('auth-modal').classList.remove('open'); }
+function checkAuth(){
+  if(document.getElementById('auth-pw').value===adminPw){ closeModal(); openAdmin(); }
+  else{ document.getElementById('auth-err').style.display='block'; document.getElementById('auth-pw').value=''; }
+}
+
+function openAdmin(){
+  renderSections(); updateStats(); updateGHStatusBar();
+  document.getElementById('cfg-sn').value=cfg.staff.name;
+  document.getElementById('cfg-sp').value=cfg.staff.persona;
+  document.getElementById('cfg-dn').value=cfg.dev.name;
+  document.getElementById('cfg-dp').value=cfg.dev.persona;
+  document.getElementById('key-input').value=apiKey?('...'+apiKey.slice(-6)):'';
+  if(ghConfig.user){ document.getElementById('gh-user').value=ghConfig.user; }
+  if(ghConfig.repo){ document.getElementById('gh-repo').value=ghConfig.repo; }
+  if(ghConfig.token){ document.getElementById('gh-token').value='...'+ghConfig.token.slice(-6); }
+  showView('admin-view');
+}
+
+function switchTab(name){
+  var tabs=['brain','publish','assistants','settings'];
+  document.querySelectorAll('.atab').forEach(function(t,i){ t.classList.toggle('active',tabs[i]===name); });
+  document.querySelectorAll('.apanel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('tab-'+name).classList.add('active');
+}
+
+function switchAddTab(name){
+  var tabs=['upload','paste','url'];
+  document.querySelectorAll('.add-tab').forEach(function(t,i){ t.classList.toggle('act',tabs[i]===name); });
+  document.querySelectorAll('.add-panel').forEach(function(p){ p.classList.remove('act'); });
+  document.getElementById('ap-'+name).classList.add('act');
+}
+
+/* ══════════════════════════════════════════════════
+   BRAIN SECTIONS UI
+══════════════════════════════════════════════════ */
+function renderSections(){
+  var c=document.getElementById('bsec-list');
+  if(!sections.length){ c.innerHTML='<p style="font-size:13px;color:var(--tx3);padding:12px 0">No sections yet.</p>'; return; }
+  c.innerHTML=sections.map(function(s){
+    var ico=s.type==='pdf'?'ico-pdf':s.type==='txt'||s.type==='md'?'ico-txt':s.type==='default'?'ico-def':s.type==='url'?'ico-url':'ico-man';
+    var sym=s.type==='pdf'?'&#128196;':s.type==='url'?'&#127760;':s.type==='default'?'&#127968;':'&#9998;';
+    var dt=s.created?new Date(s.created).toLocaleDateString():'';
+    return '<div class="bsec"><div class="bsec-hdr" onclick="toggleSec(\''+s.id+'\')">' +
+      '<div class="bsec-ico '+ico+'">'+sym+'</div>' +
+      '<div class="bsec-meta"><div class="bsec-name">'+esc(s.name)+'</div>' +
+      '<div class="bsec-info">'+(s.wordCount||0)+' words'+(dt?' &middot; '+dt:'')+'</div></div>' +
+      (s.id!=='default'?'<button class="bsec-del" onclick="event.stopPropagation();delSec(\''+s.id+'\')" title="Delete">&#10005;</button>':'') +
+      '</div><div class="bsec-body" id="body-'+s.id+'">' +
+      '<textarea class="bsec-ed" id="ed-'+s.id+'">'+esc(s.content)+'</textarea>' +
+      '<div class="bsec-foot"><button class="btn btn-p" style="padding:6px 12px;font-size:12px" onclick="saveSecEdit(\''+s.id+'\')">Save edits</button>' +
+      '<span class="st" id="seced-'+s.id+'"></span></div></div></div>';
+  }).join('');
+}
+
+function toggleSec(id){ document.getElementById('body-'+id).classList.toggle('open'); }
+function delSec(id){
+  var s=sections.find(function(x){return x.id===id;});
+  if(!s||!confirm('Delete "'+s.name+'"?')) return;
+  sections=sections.filter(function(x){return x.id!==id;});
+  saveSections(); renderSections(); updateStats();
+}
+function saveSecEdit(id){
+  var s=sections.find(function(x){return x.id===id;});
+  if(!s) return;
+  s.content=document.getElementById('ed-'+id).value;
+  s.wordCount=s.content.trim().split(/\s+/).filter(Boolean).length;
+  saveSections(); updateStats();
+  showSt('seced-'+id,'Saved',true);
+}
+function updateStats(){
+  document.getElementById('st-secs').textContent=sections.length;
+  document.getElementById('st-words').textContent=totalWords().toLocaleString();
+  document.getElementById('st-key').textContent=apiKey?'Set':'Not set';
+  document.getElementById('st-gh').textContent=(ghConfig.user&&ghConfig.repo)?ghConfig.user+'/'+ghConfig.repo:'Not set';
+}
+
+/* ══════════════════════════════════════════════════
+   FILE UPLOAD
+══════════════════════════════════════════════════ */
+function onDrag(e,on){ e.preventDefault(); document.getElementById('drop-zone').classList.toggle('drag',on); }
+function onDrop(e){ e.preventDefault(); document.getElementById('drop-zone').classList.remove('drag'); processFiles(Array.from(e.dataTransfer.files)); }
+function onFileSel(e){ processFiles(Array.from(e.target.files)); e.target.value=''; }
+
+function processFiles(files){
+  if(!files.length) return;
+  if(!apiKey){ alert('A Gemini API key is needed to read uploaded files.\n\nAdd your free key in Admin \u2192 Settings.'); return; }
+  files.forEach(function(f){ processFile(f); });
+}
+
+async function processFile(file){
+  var plist=document.getElementById('proc-list');
+  var pid='p'+Date.now()+Math.random().toString(36).slice(2);
+  var item=document.createElement('div');
+  item.className='proc-item'; item.id=pid;
+  item.innerHTML='<div class="proc-spin"></div><span class="proc-name">'+esc(file.name)+'</span><span style="font-size:12px;color:var(--tx3)">Reading...</span>';
+  plist.appendChild(item);
+  try{
+    var ext=file.name.split('.').pop().toLowerCase();
+    var raw=ext==='pdf'?await extractPDF(file):await readText(file);
+    item.querySelector('span:last-child').textContent='Structuring...';
+    var content=await structureViaGemini(file.name,raw);
+    var sec={id:'sec-'+Date.now(),name:file.name.replace(/\.[^.]+$/,''),type:ext,
+      created:new Date().toISOString(),wordCount:content.trim().split(/\s+/).filter(Boolean).length,content:content};
+    sections.push(sec); saveSections(); renderSections(); updateStats();
+    item.innerHTML='<span style="color:var(--ac);font-size:14px">&#10003;</span><span class="proc-name">'+esc(file.name)+'</span><span style="font-size:12px;color:var(--tx3)">'+sec.wordCount+' words added</span>';
+    setTimeout(function(){ item.remove(); },5000);
+  }catch(e){
+    item.innerHTML='<span style="color:var(--er);font-size:14px">&#10005;</span><span class="proc-name">'+esc(file.name)+'</span><span style="font-size:12px;color:var(--er)">'+esc(e.message)+'</span>';
+    setTimeout(function(){ item.remove(); },8000);
+  }
+}
+
+async function extractPDF(file){
+  var b64=await toBase64(file);
+  var res=await fetch(GEMINI_URL+'?key='+apiKey,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({contents:[{role:'user',parts:[
+      {inline_data:{mime_type:'application/pdf',data:b64}},
+      {text:'Extract all text from this PDF. Return the complete text preserving headings and structure. Do not summarise or skip anything.'}
+    ]}],generationConfig:{maxOutputTokens:8192}})
+  });
+  if(!res.ok){ var e=await res.json().catch(function(){return{};}); throw new Error((e.error&&e.error.message)||'PDF read failed'); }
+  var d=await res.json();
+  try{ return d.candidates[0].content.parts[0].text; }
+  catch(_){ throw new Error('PDF returned no content — it may be image-only or scanned'); }
+}
+
+function readText(file){
+  return new Promise(function(res,rej){
+    var r=new FileReader();
+    r.onload=function(e){ res(e.target.result); };
+    r.onerror=function(){ rej(new Error('Could not read file')); };
+    r.readAsText(file);
+  });
+}
+
+function toBase64(file){
+  return new Promise(function(res,rej){
+    var r=new FileReader();
+    r.onload=function(e){ res(e.target.result.split(',')[1]); };
+    r.onerror=function(){ rej(new Error('Could not read file')); };
+    r.readAsDataURL(file);
+  });
+}
+
+async function structureViaGemini(fname,raw){
+  var res=await fetch(GEMINI_URL+'?key='+apiKey,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      contents:[{role:'user',parts:[{text:
+        'The following content is from a file called "'+fname+'". Format it as structured knowledge using # headings and bullet points. Keep ALL facts, rules, and details — do not remove or summarise anything. Return only the formatted content.\n\nCONTENT:\n'+raw.slice(0,100000)
+      }]}],
+      generationConfig:{maxOutputTokens:8192}
+    })
+  });
+  if(!res.ok) return raw;
+  var d=await res.json();
+  try{ return d.candidates[0].content.parts[0].text||raw; }catch(_){ return raw; }
+}
+
+/* ══════════════════════════════════════════════════
+   PASTE / URL
+══════════════════════════════════════════════════ */
+async function addPasted(){
+  var name=document.getElementById('paste-name').value.trim();
+  var cont=document.getElementById('paste-content').value.trim();
+  if(!name){ showSt('paste-st','Enter a section name',false); return; }
+  if(!cont){ showSt('paste-st','Add some content first',false); return; }
+  showSt('paste-st','Adding...',null);
+  var finalContent=cont;
+  if(apiKey){ try{ finalContent=await structureViaGemini(name,cont); }catch(_){} }
+  var sec={id:'sec-'+Date.now(),name:name,type:'manual',created:new Date().toISOString(),
+    wordCount:finalContent.trim().split(/\s+/).filter(Boolean).length,content:finalContent};
+  sections.push(sec); saveSections(); renderSections(); updateStats();
+  document.getElementById('paste-name').value='';
+  document.getElementById('paste-content').value='';
+  showSt('paste-st','Added to brain',true);
+}
+
+async function addFromUrl(){
+  var name=document.getElementById('url-name').value.trim();
+  var url=document.getElementById('url-inp').value.trim();
+  if(!name){ showSt('url-st','Enter a section name',false); return; }
+  if(!url||!url.startsWith('http')){ showSt('url-st','Enter a valid URL',false); return; }
+  if(!apiKey){ showSt('url-st','Gemini API key required',false); return; }
+  showSt('url-st','Fetching...',null);
+  try{
+    var res=await fetch(GEMINI_URL+'?key='+apiKey,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{role:'user',parts:[{text:'Fetch the content from this URL and extract all useful text as structured knowledge with # headings. URL: '+url+'\nReturn only the formatted knowledge content.'}]}],
+        tools:[{url_context:{}}],generationConfig:{maxOutputTokens:8192}})
+    });
+    var d=await res.json();
+    var content='';
+    try{ content=d.candidates[0].content.parts[0].text; }catch(_){}
+    if(!content) content='# '+name+'\nSource: '+url+'\n\nContent could not be fetched automatically.';
+    var sec={id:'sec-'+Date.now(),name:name,type:'url',created:new Date().toISOString(),
+      wordCount:content.trim().split(/\s+/).filter(Boolean).length,content:content};
+    sections.push(sec); saveSections(); renderSections(); updateStats();
+    document.getElementById('url-name').value='';
+    document.getElementById('url-inp').value='';
+    showSt('url-st','Added',true);
+  }catch(e){ showSt('url-st','Error: '+e.message,false); }
+}
+
+/* ══════════════════════════════════════════════════
+   SETTINGS
+══════════════════════════════════════════════════ */
+function saveKey(){
+  var v=document.getElementById('key-input').value.trim();
+  if(!v||v.startsWith('...')){ showSt('key-st','Enter a new key',false); return; }
+  apiKey=v; localStorage.setItem(K_KEY,apiKey);
+  document.getElementById('key-input').value='...'+apiKey.slice(-6);
+  updateStats();
+  showSt('key-st','Saved',true);
+}
+function clearKey(){
+  apiKey=''; localStorage.removeItem(K_KEY);
+  document.getElementById('key-input').value='';
+  updateStats();
+  showSt('key-st','Cleared',true);
+}
+function changePw(){
+  var cur=document.getElementById('pw-cur').value;
+  var nw=document.getElementById('pw-new').value.trim();
+  if(cur!==adminPw){ showSt('pw-st','Incorrect current password',false); return; }
+  if(nw.length<4){ showSt('pw-st','Too short',false); return; }
+  adminPw=nw; localStorage.setItem(K_PW,adminPw);
+  document.getElementById('pw-cur').value='';
+  document.getElementById('pw-new').value='';
+  showSt('pw-st','Updated',true);
+}
+function saveCfg(){
+  cfg.staff.name    =document.getElementById('cfg-sn').value.trim()||cfg.staff.name;
+  cfg.staff.persona =document.getElementById('cfg-sp').value.trim()||cfg.staff.persona;
+  cfg.dev.name      =document.getElementById('cfg-dn').value.trim()||cfg.dev.name;
+  cfg.dev.persona   =document.getElementById('cfg-dp').value.trim()||cfg.dev.persona;
+  localStorage.setItem(K_CFG,JSON.stringify(cfg));
+  document.getElementById('ln-staff').textContent=cfg.staff.name;
+  document.getElementById('ln-dev').textContent=cfg.dev.name;
+  showSt('cfg-st','Saved',true);
+}
+
+/* ══════════════════════════════════════════════════
+   CHAT DOM HELPERS
+══════════════════════════════════════════════════ */
+function addUserBubble(txt){
+  var msgs=document.getElementById('msgs');
+  var row=document.createElement('div');
+  row.className='mrow user';
+  row.innerHTML='<div class="avat avu">you</div><div class="bubble bu">'+esc(txt)+'</div>';
+  msgs.appendChild(row); scrollBot();
+}
+function addAIBubble(txt){
+  var msgs=document.getElementById('msgs');
+  var c=cfg[curAsst],cls=curAsst==='staff'?'s':'d';
+  var row=document.createElement('div');
+  row.className='mrow';
+  row.innerHTML='<div class="avat av'+cls+'">'+esc(c.name.slice(0,2).toUpperCase())+'</div>'+
+    '<div class="bubble bb'+cls+'">'+fmt(txt)+'</div>';
+  msgs.appendChild(row); scrollBot();
+}
+function addTypingBubble(){
+  var msgs=document.getElementById('msgs');
+  var c=cfg[curAsst],cls=curAsst==='staff'?'s':'d';
+  var row=document.createElement('div');
+  row.className='mrow';
+  row.innerHTML='<div class="avat av'+cls+'">'+esc(c.name.slice(0,2).toUpperCase())+'</div>'+
+    '<div class="bubble bb'+cls+' btyp"><span></span><span></span><span></span></div>';
+  msgs.appendChild(row); scrollBot();
+  return row;
+}
+function fmt(t){
+  return esc(t)
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/`(.+?)`/g,'<code style="font-family:\'DM Mono\',monospace;font-size:12.5px;background:rgba(0,0,0,.07);padding:1px 5px;border-radius:4px;">$1</code>');
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function scrollBot(){ var m=document.getElementById('msgs'); setTimeout(function(){m.scrollTop=m.scrollHeight;},20); }
+function resize(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,160)+'px'; }
+function showSt(id,msg,ok){
+  var el=document.getElementById(id); if(!el) return;
+  el.textContent=''; el.innerHTML=msg;
+  el.className='st'+(ok===true?' ok':ok===false?' err':'');
+  if(ok!==null&&ok!==undefined) setTimeout(function(){ if(el){el.textContent='';el.className='st';} },4000);
+}
+
+/* ══════════════════════════════════════════════════
+   EVENTS
+══════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded',function(){
+  var inp=document.getElementById('cinput');
+  inp.addEventListener('input',function(){ resize(inp); });
+  inp.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();} });
+  document.getElementById('auth-modal').addEventListener('click',function(e){ if(e.target===e.currentTarget)closeModal(); });
+  boot();
+});
+</script>
+
+
+</body></html>
