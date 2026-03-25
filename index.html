@@ -8,7 +8,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;display:flex;flex-direction:column}
 /* GATE */
-#gate{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+#gate{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;overflow-y:auto}
 .gbox{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:40px 36px;width:100%;max-width:360px;box-shadow:var(--shm);text-align:center}
 .glogo{font-family:'Fraunces',serif;font-weight:300;font-size:26px;margin-bottom:6px}
 .glogo em{font-style:italic;color:var(--ac)}
@@ -519,19 +519,18 @@ function boot(){
   else{ac=localStorage.getItem(KC);if(ac===null)ac='';org=localStorage.getItem(KO)||'UVG Staff Portal';}
   logs=JSON.parse(localStorage.getItem(KL)||'[]');
   document.getElementById('gfoot').textContent=org;
-  // Only show gate if a non-empty access code has been explicitly set
+  // Hide all views first
+  ['landing','chat','admin'].forEach(function(x){var e=document.getElementById(x);if(e)e.style.display='none';});
+  // Show gate if access code set, otherwise go straight to landing
   if(!ac||ac===''){document.getElementById('gate').style.display='none';showLanding();}
   else{document.getElementById('gate').style.display='flex';}
 }
 
 function showLanding(){
-  // If no API key saved, show the key setup prompt first
-  if(!apiKey){
-    document.getElementById('setup-banner').style.display='flex';
-  } else {
-    document.getElementById('setup-banner').style.display='none';
-  }
-  document.getElementById('landing').style.display='flex';buildCards();
+  sv('landing');
+  var banner=document.getElementById('setup-banner');
+  if(banner) banner.style.display=(!apiKey)?'flex':'none';
+  buildCards();
 }
 function buildCards(){
   document.getElementById('agent-cards').innerHTML=agents.map(function(a){
@@ -551,7 +550,7 @@ function chkAC(){
   var stored=localStorage.getItem(KC);
   if(stored!==null) ac=stored;
   if(!ac||v.toLowerCase()===ac.toLowerCase()){
-    document.getElementById('gate').style.display='none';showLanding();
+    showLanding();
   } else {
     document.getElementById('gerr').textContent='Incorrect code. Try again.';
     document.getElementById('ginp').value='';
@@ -564,7 +563,8 @@ function saveSetupKey(){
   var v=document.getElementById('setup-key-inp').value.trim();
   if(!v){return;}
   apiKey=v;localStorage.setItem(KK,apiKey);
-  document.getElementById('setup-banner').style.display='none';
+  var banner=document.getElementById('setup-banner');
+  if(banner)banner.style.display='none';
 }
 function tw(){return secs.reduce(function(a,s){return a+(s.wordCount||0);},0);}
 function brain(){return secs.map(function(s){return '=== '+s.name.toUpperCase()+' ===\n'+s.content;}).join('\n\n---\n\n');}
@@ -572,8 +572,8 @@ function sys(a){var g=a.guardrails?'\n\nGUARDRAILS — refuse these topics:\n'+a
 function ss(){localStorage.setItem(KS,JSON.stringify(secs));}
 function sa(){localStorage.setItem(KA,JSON.stringify(agents));}
 
-function sv(id,v){['#landing','#chat','#admin'].forEach(function(x){document.querySelector(x).style.display='none';});var el=document.getElementById(id);el.style.display='flex';if(id!=='landing')el.style.flexDirection='column';}
-function goHome(){sv('landing');cur=null;hist=[];}
+function sv(id){['landing','chat','admin'].forEach(function(x){var e=document.getElementById(x);if(e)e.style.display='none';});document.getElementById('gate').style.display='none';var el=document.getElementById(id);el.style.display='flex';if(id!=='landing')el.style.flexDirection='column';}
+function goHome(){sv('landing');buildCards();cur=null;hist=[];}
 
 function openChat(id){
   cur=agents.find(function(a){return a.id===id;});if(!cur)return;hist=[];
