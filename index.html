@@ -347,11 +347,11 @@ This organisation provides professional workforce accommodation services. We man
         <h3>Add knowledge</h3>
         <p>Upload files, paste text, or add from a URL. Gemini reads and structures the content. Each source becomes a section in the brain.</p>
         <div class="add-tabs">
-          <button class="add-tab act" onclick="switchAddTab('upload')">📄 Upload files</button>
-          <button class="add-tab" onclick="switchAddTab('paste')">✎ Paste text</button>
+          <button class="add-tab" onclick="switchAddTab('upload')">📄 Upload files</button>
+          <button class="add-tab act" onclick="switchAddTab('paste')">✎ Paste text</button>
           <button class="add-tab" onclick="switchAddTab('url')">🌐 From URL</button>
         </div>
-        <div class="add-panel act" id="ap-upload">
+        <div class="add-panel" id="ap-upload">
           <div class="upzone" id="drop-zone" ondragover="onDrag(event,true)" ondragleave="onDrag(event,false)" ondrop="onDrop(event)">
             <input type="file" id="file-input" multiple="" accept=".pdf,.txt,.md,.csv" onchange="onFileSel(event)">
             <div class="uz-icon">📄</div>
@@ -361,7 +361,7 @@ This organisation provides professional workforce accommodation services. We man
           </div>
           <div id="proc-list"></div>
         </div>
-        <div class="add-panel" id="ap-paste">
+        <div class="add-panel act" id="ap-paste">
           <div class="fld"><label>Section name</label><input type="text" id="paste-name" placeholder="e.g. Fire Safety Procedures"></div>
           <div class="fld"><label>Content — paste from Word, email, anywhere</label><textarea id="paste-content" rows="7" placeholder="Paste procedures, policies, rules, FAQs, or any knowledge here..."></textarea></div>
           <div class="actions"><button class="btn btn-p" onclick="addPasted()">Add to brain</button><span class="st" id="paste-st"></span></div>
