@@ -251,6 +251,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-h
   <p class="subtitle">Select an assistant. Each one is trained on the same knowledge base.</p>
   <div class="cards" id="agent-cards"><div class="card" onclick="openChat('a-staff')" style="border-top-color:#2D5A3D"><div class="ctag" style="background:rgba(45,90,61,.13);color:rgb(20,40,27)"><svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>For everyday staff</div><div class="cname">Assist</div><div class="cdesc">You are a friendly assistant for camp staff. Answer in plain language, step by step. No ja...</div><button class="ccta" style="background:#2D5A3D;color:#fff">Open Assist</button></div><div class="card" onclick="openChat('a-dev')" style="border-top-color:#3D2D5A"><div class="ctag" style="background:rgba(61,45,90,.13);color:rgb(27,20,40)"><svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>For developers and managers</div><div class="cname">Logic</div><div class="cdesc">You are a precise technical assistant for developers and managers. Explain rules, logic, a...</div><button class="ccta" style="background:#3D2D5A;color:#fff">Open Logic</button></div></div>
   <div class="bbar"><div class="bdot on" id="bdot"></div><span id="blbl">1 knowledge sections · 181 words</span></div>
+  <div id="setup-banner" style="display:none;margin-top:16px;background:var(--sf);border:1px solid var(--bd2);border-radius:var(--rl);padding:20px 24px;max-width:440px;width:100%;text-align:center;box-shadow:var(--sh)">
+    <div style="font-size:13px;font-weight:500;margin-bottom:6px">One-time setup required</div>
+    <div style="font-size:12.5px;color:var(--tx2);line-height:1.5;margin-bottom:14px">Enter the API key provided by your admin to activate the assistant.</div>
+    <input type="password" id="setup-key-inp" placeholder="sk-ant-..." style="width:100%;font-family:'DM Mono',monospace;font-size:13px;padding:9px 12px;border-radius:8px;border:1px solid var(--bd2);background:var(--bg);color:var(--tx);outline:none;margin-bottom:10px">
+    <button onclick="saveSetupKey()" style="width:100%;padding:9px;border-radius:8px;background:var(--ac);color:#fff;border:none;cursor:pointer;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif">Activate</button>
+    <div style="font-size:11px;color:var(--tx3);margin-top:10px;font-family:'DM Mono',monospace">This is saved in your browser — you only need to do this once.</div>
+  </div>
   <button class="alink" onclick="showAuth()">
     <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="8" height="6" rx="1.5"></rect><path d="M4 5V3.5a2 2 0 0 1 4 0V5"></path></svg>
     Admin panel
@@ -422,10 +429,7 @@ FIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alt
         <div class="fld"><label>GitHub username</label><input type="text" id="ghu" placeholder="your-username"></div>
         <div class="fld"><label>Repository name</label><input type="text" id="ghr" placeholder="uvg-knowledge"></div>
         <div class="fld"><label>Personal access token</label><input type="password" id="ght" placeholder="ghp_..."></div>
-        <div class="fld"><label>Pre-fill Gemini key for staff (optional)</label>
-          <input type="password" id="ghe" placeholder="Leave blank — staff enter their own">
-          <p style="font-size:11px;color:var(--tx3);margin-top:3px">If set, visible in page source. Use a shared team key.</p>
-        </div>
+
         <div class="acts"><button class="btn btn-p" onclick="saveGH()">Save and connect</button><button class="btn btn-d" onclick="clearGH()">Disconnect</button><span class="st" id="ghst"></span></div>
       </div>
     </div>
@@ -440,9 +444,9 @@ FIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alt
         <div class="acts"><button class="btn btn-p" onclick="saveAC()">Save</button><span class="st" id="acst"></span></div>
       </div>
       <div class="ac">
-        <h3>Gemini API key (free)</h3>
-        <p>Get a free key at <strong>aistudio.google.com → Get API key → Create API key</strong>. No credit card needed.</p>
-        <div class="fld"><label>Gemini API key</label><input type="password" id="ki" placeholder="AIza..."></div>
+        <h3>Claude API key (free tier)</h3>
+        <p>Get a free key at <strong>console.anthropic.com</strong> → sign up free → API Keys → Create Key. Free tier included on sign-up.</p>
+        <div class="fld"><label>Claude API key</label><input type="password" id="ki" placeholder="sk-ant-..."></div>
         <div class="acts"><button class="btn btn-p" onclick="saveKey()">Save</button><button class="btn btn-d" onclick="clearKey()">Clear</button><span class="st" id="kst"></span></div>
       </div>
       <div class="ac">
@@ -484,7 +488,7 @@ What is a Pre-Arrival check?"></textarea></div>
 </div>
 
 <script>
-var GU='https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+var GU='https://api.anthropic.com/v1/messages';
 var GA='https://api.github.com';
 var KS='uvg_s8',KA='uvg_a8',KL='uvg_l8',KK='uvg_k1',KP='uvg_p1',KG='uvg_g3',KC='uvg_c1',KO='uvg_o1';
 var COLS=['#2D5A3D','#3D2D5A','#1A4A8A','#8B2020','#7A5A10','#1A6A6A','#6A1A5A','#3A5A1A','#5A3A1A','#1A3A7A'];
@@ -494,7 +498,7 @@ var DA=[
   {id:'a-dev',name:'Logic',role:'For developers and managers',color:'#3D2D5A',persona:'You are a precise technical assistant for developers and managers. Explain rules, logic, and edge cases in structured detail.',guardrails:'',suggestions:['Explain alteration vs cancellation logic','What are the occupancy rules?','Booking conflict edge cases','Maintenance SLA escalation']}
 ];
 var pw=localStorage.getItem(KP)||'admin123';
-var apiKey=localStorage.getItem(KK)||'AIzaSyA1-6y2iTaFHVCIyQ-BrnFdlvizZqmhO1U';
+var apiKey=localStorage.getItem(KK)||'';
 var ghC=JSON.parse(localStorage.getItem(KG)||'null')||{};
 var ac='',org='',secs=[],agents=[],logs=[],cur=null,hist=[],busy=false;
 
@@ -520,7 +524,15 @@ function boot(){
   else{document.getElementById('gate').style.display='flex';}
 }
 
-function showLanding(){document.getElementById('landing').style.display='flex';buildCards();}
+function showLanding(){
+  // If no API key saved, show the key setup prompt first
+  if(!apiKey){
+    document.getElementById('setup-banner').style.display='flex';
+  } else {
+    document.getElementById('setup-banner').style.display='none';
+  }
+  document.getElementById('landing').style.display='flex';buildCards();
+}
 function buildCards(){
   document.getElementById('agent-cards').innerHTML=agents.map(function(a){
     var l=h2l(a.color),d=h2d(a.color);
@@ -548,6 +560,12 @@ function chkAC(){
   }
 }
 
+function saveSetupKey(){
+  var v=document.getElementById('setup-key-inp').value.trim();
+  if(!v){return;}
+  apiKey=v;localStorage.setItem(KK,apiKey);
+  document.getElementById('setup-banner').style.display='none';
+}
 function tw(){return secs.reduce(function(a,s){return a+(s.wordCount||0);},0);}
 function brain(){return secs.map(function(s){return '=== '+s.name.toUpperCase()+' ===\n'+s.content;}).join('\n\n---\n\n');}
 function sys(a){var g=a.guardrails?'\n\nGUARDRAILS — refuse these topics:\n'+a.guardrails+'\nPolitely decline and suggest speaking to management.':'';return 'You are an AI assistant. Base all answers on the knowledge base. If not covered, say so.\n\nKNOWLEDGE BASE:\n'+brain()+'\n\nPERSONA:\n'+a.persona+g;}
@@ -563,7 +581,7 @@ function openChat(id){
   document.getElementById('hname').textContent=cur.name;
   document.getElementById('htag').textContent=cur.role;
   var nc=document.getElementById('cnotice');
-  if(!apiKey){nc.classList.add('show');document.getElementById('cntxt').textContent='No API key — add your free Gemini key in Admin \u2192 Settings.';}
+  if(!apiKey){nc.classList.add('show');document.getElementById('cntxt').textContent='No API key — add your free Claude API key in Admin \u2192 Settings.';}
   else nc.classList.remove('show');
   var s=(cur.suggestions||[]).map(function(x){return '<button class="sugg" onclick="useSugg(this.textContent)">'+esc(x)+'</button>';}).join('');
   document.getElementById('msgs').innerHTML='<div class="welcome"><h3>Hi, I\'m '+esc(cur.name)+'</h3><p>'+esc(cur.persona.slice(0,110))+'...</p><div class="suggs">'+s+'</div></div>';
@@ -579,18 +597,19 @@ async function sendMsg(){
   addU(txt);hist.push({role:'user',content:txt});
   var tp=addT();busy=true;
   try{var r=apiKey?await callG():await demo(txt);tp.remove();addA(r);hist.push({role:'assistant',content:r});slog(txt,r);}
-  catch(e){tp.remove();addA('Error: '+e.message+'\n\nCheck your Gemini key in Admin \u2192 Settings.');}
+  catch(e){tp.remove();addA('Error: '+e.message+'\n\nCheck your Claude API key in Admin \u2192 Settings.');}
   busy=false;document.getElementById('sbtn').disabled=false;document.getElementById('cinput').focus();
 }
 
 async function callG(){
-  var c=hist.slice(-20).map(function(m){return{role:m.role==='assistant'?'model':'user',parts:[{text:m.content}]};});
-  var r=await fetch(GU+'?key='+apiKey,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({system_instruction:{parts:[{text:sys(cur)}]},contents:c,generationConfig:{maxOutputTokens:4096,temperature:0.3}})});
+  var c=hist.slice(-20).map(function(m){return{role:m.role,content:m.content};});
+  var r=await fetch(GU,{method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:4096,system:sys(cur),messages:c})});
   if(!r.ok){var e=await r.json().catch(function(){return{};});throw new Error((e.error&&e.error.message)||'API error '+r.status);}
-  var d=await r.json();try{return d.candidates[0].content.parts[0].text;}catch(_){return 'No response received.';}
+  var d=await r.json();try{return d.content[0].text;}catch(_){return 'No response received.';}
 }
-async function demo(t){await new Promise(function(r){setTimeout(r,700+Math.random()*400);});return '[Demo mode] Add a free Gemini key in Admin \u2192 Settings.\n\nBrain: '+secs.length+' sections, '+tw()+' words.';}
+async function demo(t){await new Promise(function(r){setTimeout(r,700+Math.random()*400);});return '[Demo mode] Add your free Claude API key in Admin \u2192 Settings.\n\nBrain: '+secs.length+' sections, '+tw()+' words.';}
 
 function slog(q,a){logs.push({id:'l'+Date.now(),aid:cur.id,an:cur.name,ac:cur.color,ts:new Date().toISOString(),q:q,a:a});if(logs.length>500)logs=logs.slice(-500);localStorage.setItem(KL,JSON.stringify(logs));}
 
@@ -741,10 +760,12 @@ async function pFile(file){
 
 async function xPDF(file){
   var b=await b64(file);
-  var r=await fetch(GU+'?key='+apiKey,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({contents:[{role:'user',parts:[{inline_data:{mime_type:'application/pdf',data:b}},{text:'Extract all text from this PDF preserving structure. Do not summarise.'}]}],generationConfig:{maxOutputTokens:8192}})});
+  var r=await fetch(GU,{method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:8192,
+      messages:[{role:'user',content:[{type:'document',source:{type:'base64',media_type:'application/pdf',data:b}},{type:'text',text:'Extract all text from this PDF preserving structure. Do not summarise.'}]}]})});
   if(!r.ok){var e=await r.json().catch(function(){return{};});throw new Error((e.error&&e.error.message)||'PDF read failed');}
-  var d=await r.json();try{return d.candidates[0].content.parts[0].text;}catch(_){throw new Error('PDF returned no content');}
+  var d=await r.json();try{return d.content[0].text;}catch(_){throw new Error('PDF returned no content');}
 }
 
 async function xDOCX(file){
@@ -753,10 +774,12 @@ async function xDOCX(file){
   try{var t=await docxTxt(ab);if(t&&t.length>50)return t;}catch(_){}
   // Fallback to Gemini
   var b=await b64(file);
-  var r=await fetch(GU+'?key='+apiKey,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({contents:[{role:'user',parts:[{inline_data:{mime_type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',data:b}},{text:'Extract all text from this Word document preserving headings and structure.'}]}],generationConfig:{maxOutputTokens:8192}})});
+  var r=await fetch(GU,{method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:8192,
+      messages:[{role:'user',content:'Extract all text from this Word document, preserving headings and structure. Return the full text only.\n\nNote: This is a Word document converted to text: '+b.slice(0,50000)}]})});
   if(!r.ok)throw new Error('Word doc could not be read. Try saving as PDF.');
-  var d=await r.json();try{return d.candidates[0].content.parts[0].text;}catch(_){throw new Error('Word doc returned no content');}
+  var d=await r.json();try{return d.content[0].text;}catch(_){throw new Error('Word doc returned no content');}
 }
 
 async function docxTxt(ab){
@@ -773,19 +796,23 @@ async function docxTxt(ab){
 async function xImg(file,ext){
   var mm={jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',gif:'image/gif',webp:'image/webp'};
   var b=await b64(file);
-  var r=await fetch(GU+'?key='+apiKey,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({contents:[{role:'user',parts:[{inline_data:{mime_type:mm[ext]||'image/jpeg',data:b}},{text:'Extract all text, data, and information visible in this image. Return as structured text with headings.'}]}],generationConfig:{maxOutputTokens:4096}})});
+  var r=await fetch(GU,{method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:4096,
+      messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:mm[ext]||'image/jpeg',data:b}},{type:'text',text:'Extract all text, data, and information visible in this image. Return as structured text with headings.'}]}]})});
   if(!r.ok){var e=await r.json().catch(function(){return{};});throw new Error((e.error&&e.error.message)||'Image read failed');}
-  var d=await r.json();try{return d.candidates[0].content.parts[0].text;}catch(_){throw new Error('Image returned no content');}
+  var d=await r.json();try{return d.content[0].text;}catch(_){throw new Error('Image returned no content');}
 }
 
 function rTxt(file){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(e){res(e.target.result);};r.onerror=function(){rej(new Error('Could not read file'));};r.readAsText(file);});}
 function b64(file){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(e){res(e.target.result.split(',')[1]);};r.onerror=function(){rej(new Error('Could not read'));};r.readAsDataURL(file);});}
 
 async function struct(fn,raw){
-  var r=await fetch(GU+'?key='+apiKey,{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({contents:[{role:'user',parts:[{text:'Format content from "'+fn+'" as structured knowledge using # headings and bullets. Keep ALL facts. Return only formatted content.\n\nCONTENT:\n'+raw.slice(0,100000)}]}],generationConfig:{maxOutputTokens:8192}})});
-  if(!r.ok)return raw;var d=await r.json();try{return d.candidates[0].content.parts[0].text||raw;}catch(_){return raw;}
+  var r=await fetch(GU,{method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:8192,
+      messages:[{role:'user',content:'Format content from "'+fn+'" as structured knowledge using # headings and bullets. Keep ALL facts. Return only formatted content.\n\nCONTENT:\n'+raw.slice(0,100000)}]})});
+  if(!r.ok)return raw;var d=await r.json();try{return d.content[0].text||raw;}catch(_){return raw;}
 }
 
 async function addPasted(){
@@ -804,7 +831,7 @@ async function addUrl(){
   try{
     var r=await fetch(GU+'?key='+apiKey,{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({contents:[{role:'user',parts:[{text:'Fetch content from '+u+' and extract all text as structured knowledge with # headings.'}]}],tools:[{url_context:{}}],generationConfig:{maxOutputTokens:8192}})});
-    var d=await r.json();var c='';try{c=d.candidates[0].content.parts[0].text;}catch(_){}
+    var d=await r.json();var c='';try{c=d.content[0].text;}catch(_){}
     if(!c)c='# '+n+'\nSource: '+u+'\n\nContent could not be fetched.';
     secs.push({id:'s'+Date.now(),name:n,type:'url',created:new Date().toISOString(),wordCount:c.trim().split(/\s+/).filter(Boolean).length,content:c});
     ss();rSecs();updSt();document.getElementById('un').value='';document.getElementById('ui').value='';showSt('ust','Added',true);
@@ -823,12 +850,12 @@ function clearKey(){apiKey='';localStorage.removeItem(KK);document.getElementByI
 function changePw(){var c=document.getElementById('pwc').value,n=document.getElementById('pwn').value.trim();if(c!==pw){showSt('pwst','Wrong password',false);return;}if(n.length<4){showSt('pwst','Too short',false);return;}pw=n;localStorage.setItem(KP,pw);document.getElementById('pwc').value='';document.getElementById('pwn').value='';showSt('pwst','Updated',true);}
 
 function saveGH(){
-  var u=document.getElementById('ghu').value.trim(),r=document.getElementById('ghr').value.trim(),t=document.getElementById('ght').value.trim(),e=document.getElementById('ghe').value.trim();
+  var u=document.getElementById('ghu').value.trim(),r=document.getElementById('ghr').value.trim(),t=document.getElementById('ght').value.trim();
   if(!u||!r||!t){showSt('ghst','Fill in all three fields',false);return;}
   if(t.startsWith('...')&&ghC.token)t=ghC.token;
-  ghC={user:u,repo:r,token:t,embedKey:e};localStorage.setItem(KG,JSON.stringify(ghC));updGH();showSt('ghst','Connected',true);
+  ghC={user:u,repo:r,token:t};localStorage.setItem(KG,JSON.stringify(ghC));updGH();showSt('ghst','Connected',true);
 }
-function clearGH(){ghC={};localStorage.removeItem(KG);['ghu','ghr','ght','ghe'].forEach(function(i){document.getElementById(i).value='';});updGH();showSt('ghst','Disconnected',true);}
+function clearGH(){ghC={};localStorage.removeItem(KG);['ghu','ghr','ght'].forEach(function(i){document.getElementById(i).value='';});updGH();showSt('ghst','Disconnected',true);}
 function updGH(){
   var ok=ghC.user&&ghC.repo&&ghC.token;
   document.getElementById('ghok').classList.toggle('hidden',!ok);
@@ -841,8 +868,7 @@ function bHTML(){
   h=h.replace('<script id="eb" type="application/json">null<\/script>','<script id="eb" type="application/json">'+JSON.stringify(secs)+'<\/script>');
   h=h.replace('<script id="ea" type="application/json">null<\/script>','<script id="ea" type="application/json">'+JSON.stringify(agents)+'<\/script>');
   h=h.replace('<script id="eac" type="application/json">null<\/script>','<script id="eac" type="application/json">'+JSON.stringify({code:ac,org:org})+'<\/script>');
-  var ek=ghC.embedKey||'';
-  if(ek)h=h.replace("var apiKey=localStorage.getItem(KK)||'';","var apiKey=localStorage.getItem(KK)||'"+ek.replace(/'/g,"\\'")+'\';');
+  // API key never embedded in published file
   return h;
 }
 
