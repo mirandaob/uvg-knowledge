@@ -426,7 +426,7 @@ FIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alt
           <input type="password" id="ghe" placeholder="Leave blank — staff enter their own">
           <p style="font-size:11px;color:var(--tx3);margin-top:3px">If set, visible in page source. Use a shared team key.</p>
         </div>
-        <div class="acts"><button class="btn btn-p" onclick="saveGH()">Save and connect</button><button class="btn btn-d" onclick="clearGH()">Disconnect</button><span class="st" id="ghst"></span></div>
+        <div class="acts"><button class="btn btn-p" onclick="saveGH()">Save and connect</button><button class="btn btn-d" onclick="clearGH()">Disconnect</button><span class="st ok" id="ghst">Connected</span></div>
       </div>
     </div>
 
@@ -494,7 +494,7 @@ var DA=[
   {id:'a-dev',name:'Logic',role:'For developers and managers',color:'#3D2D5A',persona:'You are a precise technical assistant for developers and managers. Explain rules, logic, and edge cases in structured detail.',guardrails:'',suggestions:['Explain alteration vs cancellation logic','What are the occupancy rules?','Booking conflict edge cases','Maintenance SLA escalation']}
 ];
 var pw=localStorage.getItem(KP)||'admin123';
-var apiKey=localStorage.getItem(KK)||'';
+var apiKey=localStorage.getItem(KK)||'AIzaSyCb8aWJdFChLgA3M8kVkfU-RhsWufH4ZIA';
 var ghC=JSON.parse(localStorage.getItem(KG)||'null')||{};
 var ac='',org='',secs=[],agents=[],logs=[],cur=null,hist=[],busy=false;
 
