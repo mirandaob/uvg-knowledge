@@ -399,7 +399,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-h
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 1v12M1 7h12"></path></svg>
       New conversation
     </button>
-    <div class="sb-section" id="sb-today-lbl" style="display: none;">Today</div>
+    <div class="sb-section" id="sb-today-lbl" style="display:none">Today</div>
     <div class="sb-list" id="chat-list"></div>
     <div class="sb-bottom">
       <button class="sb-btn" onclick="showAdmin()">
@@ -437,7 +437,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-h
     </div>
 
     <!-- CHAT -->
-    <div id="chat" style="display: none; flex-direction: column;">
+    <div id="chat" style="display: none;">
       <div class="pinned-bar" id="pinned-bar">
         <span>📌</span>
         <span id="pinned-txt"></span>
@@ -445,10 +445,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-h
       </div>
       <div class="chdr">
         <button class="bbtn" onclick="goHome()" title="Home">←</button>
-        <div class="hdot" id="hdot" style="width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: rgb(45, 90, 61);"></div>
+        <div class="hdot" id="hdot"></div>
         <div>
-          <div class="hname" id="hname">Assist</div>
-          <div class="htag" id="htag">For everyday staff</div>
+          <div class="hname" id="hname"></div>
+          <div class="htag" id="htag"></div>
         </div>
         <div class="hactions">
           <span id="resp-mode-lbl" style="font-size:11px;color:var(--tx3);font-family:'DM Mono',monospace"></span>
@@ -658,7 +658,7 @@ FIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alt
               <input type="password" id="embed-api-key" placeholder="sk-ant-... — staff won't need to enter it themselves">
               <p style="font-size:11px;color:var(--tx3);margin-top:3px">Stored obfuscated in the file. Staff never see a setup screen — the assistant works immediately on first open.</p>
             </div>
-            <div class="acts"><button class="btn btn-p" onclick="saveGH()">Save and connect</button><button class="btn btn-d" onclick="clearGH()">Disconnect</button><span class="st ok" id="ghst">Connected — ready to publish</span></div>
+            <div class="acts"><button class="btn btn-p" onclick="saveGH()">Save and connect</button><button class="btn btn-d" onclick="clearGH()">Disconnect</button><span class="st" id="ghst"></span></div>
           </div>
         </div>
 
@@ -702,7 +702,7 @@ FIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alt
             <h3>Claude API key (free tier)</h3>
             <p style="font-size:12.5px;color:var(--tx2);margin-bottom:10px">Get your free key at <strong>console.anthropic.com</strong> → API Keys → Create Key. Starts with <code>sk-ant-</code>.</p>
             <div class="fld"><label>Claude API key</label><input type="password" id="ki" placeholder="sk-ant-..."></div>
-            <div class="acts"><button class="btn btn-p" onclick="saveKey()">Save</button><button class="btn btn-d" onclick="clearKey()">Clear</button><span class="st" id="kst"></span></div>
+            <div class="acts"><button class="btn btn-p" onclick="saveKey()">Save</button><button class="btn btn-d" onclick="clearKey()">Clear</button><span class="st ok" id="kst">Saved</span></div>
           </div>
           <div class="ac">
             <h3>Change admin password</h3>
@@ -1849,6 +1849,29 @@ function showSt(id,msg,ok){
 /* ══════════════════════════════════════════════
    EVENTS
 ══════════════════════════════════════════════ */
+// Listen for Chrome extension sync requests
+if(typeof chrome !== 'undefined' && chrome.runtime){
+  try{
+    chrome.runtime.onMessage && chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
+      if(msg && msg.action === 'sync_brain'){
+        var words = secs.reduce(function(a,s){return a+(s.wordCount||0);},0);
+        // Push to extension storage
+        try{
+          chrome.storage.local.set({
+            uvg_secs: secs,
+            uvg_agents: agents,
+            uvg_brand: brand,
+            uvg_brain_words: words
+          }, function(){
+            sendResponse({success:true, words:words, agents:agents.length});
+          });
+        }catch(e){ sendResponse({success:false}); }
+        return true; // async
+      }
+    });
+  }catch(e){}
+}
+
 document.addEventListener('DOMContentLoaded',function(){
   var inp=document.getElementById('cinput');
   inp.addEventListener('input',function(){rsz(inp);var l=inp.value.length;document.getElementById('char-count').textContent=l>0?l+' chars':'';});
@@ -1861,4 +1884,4 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 
 
-</body></html>
+<div id="uvg-widget-root"><button id="uvg-bubble" title="UVG Assistant" style="background: rgb(45, 90, 61);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span id="uvg-badge"></span></button><div id="uvg-panel"><div id="uvg-header" style="background: rgb(45, 90, 61);"><span id="uvg-header-dot" style="background: rgb(45, 90, 61);"></span><span id="uvg-header-name">Assist</span><span id="uvg-header-role">For everyday staff</span><button class="uvg-hbtn" id="uvg-dark-btn" title="Toggle dark mode">☾</button><button class="uvg-hbtn" id="uvg-clear-btn" title="Clear chat">⟳</button><button class="uvg-hbtn" id="uvg-open-btn" title="Open full platform">↗</button><button class="uvg-hbtn" id="uvg-close-btn" title="Close">✕</button></div><div id="uvg-agents"><button class="uvg-agent-btn active" data-agent="a1" style="border-bottom-color:#2D5A3D;color:#2D5A3D">Assist</button><button class="uvg-agent-btn" data-agent="a2" style="">Logic</button></div><div id="uvg-setup" style="display: block;"><div id="uvg-setup-title">🔑 One-time setup</div><div id="uvg-setup-sub">Enter your Claude API key to activate the assistant. You only do this once.</div><input type="password" id="uvg-setup-input" placeholder="sk-ant-..."><button id="uvg-setup-btn" style="background: rgb(45, 90, 61);">Activate assistant</button></div><div id="uvg-attach-prev"></div><div id="uvg-msgs"></div><div id="uvg-input-area"><div id="uvg-ibar"><button id="uvg-attach-btn" title="Attach file">📎</button><input type="file" id="uvg-file-input" multiple="" accept=".pdf,.txt,.md,.csv,.docx,.doc,.jpg,.jpeg,.png,.gif,.webp" style="display:none"><textarea id="uvg-textarea" rows="1" placeholder="Ask anything..."></textarea><button id="uvg-send" style="background: rgb(45, 90, 61);"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7H2M12 7L8 3M12 7L8 11"></path></svg></button></div><div id="uvg-mode-row"><button class="uvg-mode-pill" data-mode="brief">Brief</button><button class="uvg-mode-pill active" data-mode="normal">Normal</button><button class="uvg-mode-pill" data-mode="detail">Detailed</button><button id="uvg-open-full">Open full ↗</button></div></div></div></div></body></html>
