@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UVG Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F1EB;--sf:#FDFCF9;--sf2:#F0EDE4;--bd:#DDD8CC;--bd2:#C8C2B2;--tx:#1C1A14;--tx2:#6B6555;--tx3:#9C957F;--ac:#2D5A3D;--acl:#E8F0EA;--act:#1A3D28;--er:#8B2020;--sh:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06)}
+.dark{--bg:#141210;--sf:#1E1C18;--sf2:#252320;--bd:#2E2C27;--bd2:#3A3830;--tx:#F0EDE4;--tx2:#9C957F;--tx3:#6B6555;--acl:#1A3228;--act:#7DC99A}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+/* HEADER */
+.hdr{background:var(--ac);color:#fff;padding:0 14px;height:48px;display:flex;align-items:center;gap:10px;flex-shrink:0;user-select:none}
+.hdr-title{flex:1;font-size:14.5px;font-weight:500;font-family:'DM Sans',sans-serif}
+.hdr-btn{width:28px;height:28px;border-radius:6px;border:none;cursor:pointer;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;transition:background .15s;flex-shrink:0}
+.hdr-btn:hover{background:rgba(255,255,255,.25)}
+
+/* AGENT TABS */
+.agent-tabs{display:flex;gap:0;border-bottom:1px solid var(--bd);background:var(--sf);flex-shrink:0;overflow-x:auto}
+.agent-tab{padding:8px 14px;font-size:12.5px;border:none;cursor:pointer;background:transparent;color:var(--tx2);transition:all .15s;font-family:'DM Sans',sans-serif;white-space:nowrap;border-bottom:2px solid transparent;flex-shrink:0}
+.agent-tab.active{color:var(--tx);border-bottom-color:var(--ac);font-weight:500}
+.agent-tab:hover:not(.active){color:var(--tx);background:var(--sf2)}
+
+/* MESSAGES */
+.msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.msgs::-webkit-scrollbar{width:3px}
+.msgs::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px}
+.mrow{display:flex;gap:8px;width:100%}
+.mrow.user{flex-direction:row-reverse}
+.avat{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;font-family:'DM Mono',monospace}
+.avu{background:var(--sf2);color:var(--tx2);border:1px solid var(--bd)}
+.bubble{max-width:calc(100% - 36px);padding:9px 12px;border-radius:11px;font-size:13.5px;line-height:1.65;word-wrap:break-word}
+.bu{background:var(--sf);border:1px solid var(--bd);border-top-right-radius:3px;white-space:pre-wrap}
+.btyp{display:flex;align-items:center;gap:4px;padding:10px 12px}
+.btyp span{width:5px;height:5px;border-radius:50%;display:inline-block;animation:bnc 1.2s ease-in-out infinite}
+.btyp span:nth-child(2){animation-delay:.15s}.btyp span:nth-child(3){animation-delay:.3s}
+@keyframes bnc{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-4px);opacity:1}}
+.bubble h1,.bubble h2,.bubble h3{font-size:13.5px;font-weight:600;margin:4px 0 2px}
+.bubble ul,.bubble ol{margin:3px 0 3px 16px}
+.bubble li{margin:1px 0}
+.bubble code{font-family:'DM Mono',monospace;font-size:11.5px;background:rgba(0,0,0,.07);padding:1px 4px;border-radius:3px}
+.bubble strong{font-weight:600}
+
+/* ATTACH PREVIEW */
+#attach-prev{padding:6px 10px 0;display:none;flex-wrap:wrap;gap:5px}
+.attach-chip{display:flex;align-items:center;gap:4px;background:var(--sf2);border:1px solid var(--bd);border-radius:5px;padding:3px 7px;font-size:11.5px;color:var(--tx2)}
+.attach-chip button{background:none;border:none;cursor:pointer;color:var(--tx3);font-size:10px;padding:0;margin-left:2px}
+
+/* SETUP BANNER */
+#setup{padding:16px;background:var(--sf2);border-bottom:1px solid var(--bd);flex-shrink:0}
+#setup h4{font-size:13px;font-weight:500;margin-bottom:5px}
+#setup p{font-size:12px;color:var(--tx2);line-height:1.5;margin-bottom:10px}
+#setup input{width:100%;font-family:'DM Mono',monospace;font-size:12.5px;padding:8px 10px;border-radius:7px;border:1px solid var(--bd2);background:var(--bg);color:var(--tx);outline:none;margin-bottom:8px;transition:border-color .15s}
+#setup input:focus{border-color:var(--ac)}
+#setup button{width:100%;padding:8px;border-radius:7px;background:var(--ac);color:#fff;border:none;cursor:pointer;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif}
+
+/* INPUT */
+.iarea{background:var(--sf);border-top:1px solid var(--bd);padding:10px;flex-shrink:0}
+.ibar{display:flex;gap:7px;align-items:flex-end;background:var(--bg);border:1px solid var(--bd2);border-radius:10px;padding:8px 10px;transition:border-color .15s}
+.ibar:focus-within{border-color:var(--tx2)}
+.attach-file-btn{width:26px;height:26px;border-radius:6px;border:none;background:transparent;cursor:pointer;color:var(--tx3);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:color .15s}
+.attach-file-btn:hover{color:var(--tx2)}
+#winput{flex:1;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--tx);resize:none;outline:none;min-height:22px;max-height:100px;line-height:1.5}
+#winput::placeholder{color:var(--tx3)}
+#wsbtn{width:28px;height:28px;border-radius:7px;border:none;background:var(--ac);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
+#wsbtn:hover{opacity:.85}
+#wsbtn:disabled{opacity:.4;cursor:not-allowed}
+.itools{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:11px;color:var(--tx3);font-family:'DM Mono',monospace}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="hdr" id="hdr">
+  <span id="hdr-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);flex-shrink:0"></span>
+  <span class="hdr-title" id="hdr-title">UVG Assistant</span>
+  <button class="hdr-btn" onclick="toggleDark()" title="Toggle dark mode">&#9790;</button>
+  <button class="hdr-btn" onclick="openFull()" title="Open full platform">&#8599;</button>
+  <button class="hdr-btn" onclick="clearChat()" title="Clear chat">&#10227;</button>
+</div>
+
+<div class="agent-tabs" id="agent-tabs"></div>
+
+<div id="setup" style="display:none">
+  <h4>&#128273; One-time setup</h4>
+  <p>Enter the Claude API key from your admin to activate the assistant.</p>
+  <input type="password" id="setup-key" placeholder="sk-ant-...">
+  <button onclick="saveKey()">Activate</button>
+</div>
+
+<div id="attach-prev"></div>
+
+<div class="msgs" id="msgs"></div>
+
+<div class="iarea">
+  <div class="ibar">
+    <button class="attach-file-btn" onclick="document.getElementById('wfile').click()" title="Attach file">&#128206;</button>
+    <input type="file" id="wfile" multiple accept=".pdf,.txt,.md,.csv,.docx,.doc,.jpg,.jpeg,.png,.gif,.webp" style="display:none" onchange="onFile(event)">
+    <textarea id="winput" rows="1" placeholder="Ask anything..."></textarea>
+    <button id="wsbtn" onclick="wSend()">
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7H2M12 7L8 3M12 7L8 11"/></svg>
+    </button>
+  </div>
+  <div class="itools">
+    <span id="mode-lbl"></span>
+    <span style="margin-left:auto;display:flex;gap:4px">
+      <button onclick="setMode('brief')" id="btn-brief" style="background:none;border:1px solid var(--bd);border-radius:4px;cursor:pointer;padding:1px 6px;font-size:10.5px;color:var(--tx3);font-family:'DM Mono',monospace">Brief</button>
+      <button onclick="setMode('normal')" id="btn-normal" style="background:none;border:1px solid var(--bd);border-radius:4px;cursor:pointer;padding:1px 6px;font-size:10.5px;color:var(--tx3);font-family:'DM Mono',monospace">Normal</button>
+      <button onclick="setMode('detail')" id="btn-detail" style="background:none;border:1px solid var(--bd);border-radius:4px;cursor:pointer;padding:1px 6px;font-size:10.5px;color:var(--tx3);font-family:'DM Mono',monospace">Detailed</button>
+    </span>
+  </div>
+</div>
+
+<script>
+var AU='https://api.anthropic.com/v1/messages';
+var MODEL='claude-haiku-4-5-20251001';
+var KK='uvg_k1',KBR='uvg_br1',KA='uvg_a9',KS='uvg_s9';
+
+var apiKey=localStorage.getItem(KK)||'';
+var agents=[];
+var secs=[];
+var cur=null;
+var hist=[];
+var busy=false;
+var respMode='normal';
+var attachments=[];
+var brand={primary:'#2D5A3D',name:'UVG Knowledge'};
+
+function deobfKey(k){if(!k)return'';try{return atob(k).split('').reverse().join('');}catch(_){return'';}}
+
+function boot(){
+  // Load brand
+  var savedBrand=localStorage.getItem(KBR);
+  if(savedBrand){try{brand=JSON.parse(savedBrand);}catch(_){}}
+
+  // Apply brand colour
+  document.documentElement.style.setProperty('--ac',brand.primary||'#2D5A3D');
+  document.getElementById('hdr').style.background=brand.primary||'#2D5A3D';
+  document.getElementById('hdr-title').textContent=(brand.name||'UVG Knowledge')+' Assistant';
+  document.title=(brand.name||'UVG')+' Assistant';
+
+  // Load agents
+  var savedAgents=localStorage.getItem(KA);
+  agents=savedAgents?JSON.parse(savedAgents):[
+    {id:'s1',name:'Assist',role:'For everyday staff',color:'#2D5A3D',persona:'You are a friendly assistant for camp staff. Answer in plain language, step by step. No jargon. Use markdown formatting.',guardrails:'Do not answer questions about pay, HR disputes, or legal matters.',suggestions:['How do I log an early check-in?','What is a Pre-Arrival check?','How do I report maintenance?']},
+    {id:'s2',name:'Logic',role:'For developers',color:'#3D2D5A',persona:'You are a precise technical assistant. Explain rules, logic, and edge cases in structured detail using markdown.',guardrails:'',suggestions:['Explain alteration vs cancellation','Occupancy calculation rules']}
+  ];
+
+  // Load brain sections
+  var savedSecs=localStorage.getItem(KS);
+  secs=savedSecs?JSON.parse(savedSecs):[];
+
+  cur=agents[0];
+
+  // Build agent tabs
+  var tabs=document.getElementById('agent-tabs');
+  tabs.innerHTML=agents.map(function(a){
+    return'<button class="agent-tab'+(a.id===cur.id?' active':'')+'" onclick="switchAgent(\''+a.id+'\')" style="'+(a.id===cur.id?'border-bottom-color:'+a.color+';color:'+a.color:'')+'">'+esc(a.name)+'</button>';
+  }).join('');
+
+  // Dark mode
+  if(localStorage.getItem('uvg_dark')==='1')document.body.classList.add('dark');
+
+  // Show setup if no API key
+  document.getElementById('setup').style.display=apiKey?'none':'block';
+
+  // Welcome message
+  addAIMsg('Hi, I\'m **'+cur.name+'**. '+cur.persona.split('.')[0]+'. How can I help you today?');
+
+  setMode('normal');
+}
+
+function switchAgent(id){
+  cur=agents.find(function(a){return a.id===id;})||agents[0];
+  hist=[];
+  // Update tab styles
+  document.querySelectorAll('.agent-tab').forEach(function(t,i){
+    var a=agents[i];if(!a)return;
+    t.classList.toggle('active',a.id===cur.id);
+    t.style.borderBottomColor=a.id===cur.id?a.color:'transparent';
+    t.style.color=a.id===cur.id?a.color:'';
+  });
+  document.getElementById('hdr-dot').style.background=cur.color;
+  document.getElementById('msgs').innerHTML='';
+  addAIMsg('Switched to **'+cur.name+'**. '+cur.persona.split('.')[0]+'. What do you need?');
+}
+
+function saveKey(){
+  var v=document.getElementById('setup-key').value.trim();
+  if(!v)return;
+  apiKey=v;localStorage.setItem(KK,apiKey);
+  document.getElementById('setup').style.display='none';
+}
+
+function brain(){
+  return secs.map(function(s){return'=== '+s.name.toUpperCase()+' ===\n'+s.content;}).join('\n\n---\n\n');
+}
+
+function sys(){
+  var g=cur.guardrails?'\n\nGUARDRAILS:\n'+cur.guardrails+'\nPolitely decline and redirect.':'';
+  var m=respMode==='brief'?'\n\nBE BRIEF: 2-4 sentences max.':respMode==='detail'?'\n\nBE DETAILED: Comprehensive with full context.':'';
+  return'You are an AI assistant. Base all answers on the knowledge base. Use markdown formatting for clarity.'+m+g+'\n\nKNOWLEDGE BASE:\n'+brain()+'\n\nPERSONA:\n'+cur.persona;
+}
+
+function setMode(m){
+  respMode=m;
+  document.getElementById('mode-lbl').textContent=m==='brief'?'Brief mode':m==='detail'?'Detailed mode':'';
+  ['brief','normal','detail'].forEach(function(x){
+    var btn=document.getElementById('btn-'+x);
+    if(btn){btn.style.background=x===m?'var(--sf2)':'none';btn.style.color=x===m?'var(--tx)':'var(--tx3)';}
+  });
+}
+
+// FILE ATTACHMENTS
+function onFile(e){
+  Array.from(e.target.files).forEach(function(f){attachments.push(f);});
+  e.target.value='';renderAttachPrev();
+}
+function renderAttachPrev(){
+  var p=document.getElementById('attach-prev');
+  if(!attachments.length){p.style.display='none';return;}
+  p.style.display='flex';
+  p.innerHTML=attachments.map(function(f,i){
+    var ic=['jpg','jpeg','png','gif','webp'].indexOf(f.name.split('.').pop().toLowerCase())!==-1?'🖼':'📄';
+    return'<div class="attach-chip">'+ic+' '+esc(f.name)+'<button onclick="rmAttach('+i+')">✕</button></div>';
+  }).join('');
+}
+function rmAttach(i){attachments.splice(i,1);renderAttachPrev();}
+
+async function buildContent(txt){
+  if(!attachments.length)return txt;
+  var parts=[];
+  for(var i=0;i<attachments.length;i++){
+    var f=attachments[i];var ext=f.name.split('.').pop().toLowerCase();var b=await b64(f);
+    if(ext==='pdf'){parts.push({type:'document',source:{type:'base64',media_type:'application/pdf',data:b}});}
+    else if(['jpg','jpeg','png','gif','webp'].indexOf(ext)!==-1){
+      var mm={jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',gif:'image/gif',webp:'image/webp'};
+      parts.push({type:'image',source:{type:'base64',media_type:mm[ext]||'image/jpeg',data:b}});
+    } else {try{var t=await rTxt(f);txt=t+'\n\n'+txt;}catch(_){}}
+  }
+  parts.push({type:'text',text:txt||'Please analyse the attached file(s).'});
+  return parts;
+}
+
+async function wSend(){
+  if(busy)return;
+  var inp=document.getElementById('winput'),txt=inp.value.trim();
+  var hasAttach=attachments.length>0;
+  if(!txt&&!hasAttach)return;
+  if(!txt)txt='Please analyse the attached file(s) and tell me what you observe.';
+  inp.value='';inp.style.height='auto';
+  document.getElementById('wsbtn').disabled=true;
+
+  var attachNames=attachments.map(function(f){return f.name;});
+  var dispTxt=txt+(attachNames.length?' ['+attachNames.join(', ')+']':'');
+  addUserMsg(dispTxt);
+
+  var content=await buildContent(txt);
+  hist.push({role:'user',content:typeof content==='string'?content:txt});
+  attachments=[];renderAttachPrev();
+
+  var tp=addTyping();busy=true;
+  try{
+    var r=apiKey?await callClaude(content):await demoReply(txt);
+    tp.remove();addAIMsg(r);
+    hist.push({role:'assistant',content:r});
+  }catch(e){tp.remove();addAIMsg('Error: '+e.message+'\n\nCheck your API key in settings.');}
+  busy=false;document.getElementById('wsbtn').disabled=false;inp.focus();
+}
+
+async function callClaude(currentContent){
+  var msgs=hist.slice(-19).filter(function(m){return m.role==='user'||m.role==='assistant';}).map(function(m){return{role:m.role,content:m.content};});
+  msgs.push({role:'user',content:currentContent});
+  var r=await fetch(AU,{method:'POST',
+    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:MODEL,max_tokens:2048,system:sys(),messages:msgs})});
+  if(!r.ok){var e=await r.json().catch(function(){return{};});throw new Error((e.error&&e.error.message)||'Error '+r.status);}
+  var d=await r.json();try{return d.content[0].text;}catch(_){return'No response.';}
+}
+
+async function demoReply(t){await new Promise(function(r){setTimeout(r,700+Math.random()*300);});
+  return'[Demo mode] Add your Claude API key above to enable AI responses.';}
+
+function addUserMsg(txt){
+  var m=document.getElementById('msgs');
+  var r=document.createElement('div');r.className='mrow user';
+  r.innerHTML='<div class="avat avu" style="font-size:9px">you</div><div class="bubble bu">'+esc(txt)+'</div>';
+  m.appendChild(r);scr();
+}
+
+function addAIMsg(txt){
+  var m=document.getElementById('msgs');
+  var l=h2l(cur.color),d=h2d(cur.color);
+  var r=document.createElement('div');r.className='mrow';
+  r.innerHTML='<div class="avat" style="background:'+l+';color:'+d+';font-size:9px">'+esc(cur.name.slice(0,2).toUpperCase())+'</div>'+
+    '<div class="bubble" style="background:'+l+';color:'+d+';border:1px solid rgba(0,0,0,.06);border-top-left-radius:3px"><p>'+mdRender(txt)+'</p></div>';
+  m.appendChild(r);scr();
+}
+
+function addTyping(){
+  var m=document.getElementById('msgs');
+  var l=h2l(cur.color),d=h2d(cur.color);
+  var r=document.createElement('div');r.className='mrow';
+  r.innerHTML='<div class="avat" style="background:'+l+';color:'+d+';font-size:9px">'+esc(cur.name.slice(0,2).toUpperCase())+'</div>'+
+    '<div class="bubble btyp" style="background:'+l+';border:1px solid rgba(0,0,0,.06);border-top-left-radius:3px"><span style="background:'+d+'"></span><span style="background:'+d+'"></span><span style="background:'+d+'"></span></div>';
+  m.appendChild(r);scr();return r;
+}
+
+function clearChat(){hist=[];document.getElementById('msgs').innerHTML='';addAIMsg('Chat cleared. How can I help you?');}
+
+function openFull(){
+  var base=window.location.href.replace('widget.html','').replace(/\?.*$/,'');
+  window.open(base,'_blank');
+}
+
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  localStorage.setItem('uvg_dark',document.body.classList.contains('dark')?'1':'0');
+}
+
+function mdRender(text){
+  var h=esc(text);
+  h=h.replace(/```[\s\S]*?```/g,function(m){return'<pre><code>'+m.slice(3,m.lastIndexOf('```')).replace(/^[^\n]*\n/,'')+'</code></pre>';});
+  h=h.replace(/`([^`]+)`/g,'<code>$1</code>');
+  h=h.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  h=h.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  h=h.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  h=h.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  h=h.replace(/((?:^[*\-] .+\n?)+)/gm,function(m){return'<ul>'+m.trim().split('\n').map(function(l){return'<li>'+l.replace(/^[*\-] /,'')+'</li>';}).join('')+'</ul>';});
+  h=h.replace(/((?:^\d+\. .+\n?)+)/gm,function(m){return'<ol>'+m.trim().split('\n').map(function(l){return'<li>'+l.replace(/^\d+\. /,'')+'</li>';}).join('')+'</ol>';});
+  h=h.replace(/\n\n/g,'</p><p>');
+  h=h.replace(/\n/g,'<br>');
+  return h;
+}
+
+function h2l(h){var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return'rgba('+r+','+g+','+b+',.13)';}
+function h2d(h){var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return'rgb('+Math.floor(r*.42)+','+Math.floor(g*.42)+','+Math.floor(b*.42)+')';}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function scr(){var m=document.getElementById('msgs');setTimeout(function(){m.scrollTop=m.scrollHeight;},20);}
+function b64(file){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(e){res(e.target.result.split(',')[1]);};r.onerror=function(){rej(new Error('Read error'));};r.readAsDataURL(file);});}
+function rTxt(file){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(e){res(e.target.result);};r.onerror=function(){rej(new Error('Read error'));};r.readAsText(file);});}
+
+document.addEventListener('DOMContentLoaded',function(){
+  var inp=document.getElementById('winput');
+  inp.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();wSend();}});
+  boot();
+});
+</script>
+</body>
+</html>
