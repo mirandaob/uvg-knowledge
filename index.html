@@ -365,7 +365,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-h
 </head>
 <body>
 
-<script id="eb" type="application/json">[{"id":"def","name":"UVG Core Knowledge","type":"default","created":"2026-03-26T00:47:24.842Z","wordCount":173,"content":"# UVG CORE KNOWLEDGE\n\n## Business Overview\nWorkforce accommodation services for FIFO and long-term guests.\n\n## Booking Rules\n- Check-in 14:00, check-out 10:00.\n- Booking needs: guest name, company, room number, dates.\n- No overbooking. Alterations amend without cancelling. Early check-in must be approved and logged. Overstays must be logged. Cancellations need reason and timestamp.\n\n## Room Management\n- Types: Standard, Superior, Suite.\n- Statuses: Available, Occupied, Dirty, Maintenance, Out of Order.\n- Maintenance/OOO cannot be booked. Dirty rooms need cleaning first. Pre-Arrival: clean, stocked, key card active.\n\n## Housekeeping\n- Daily: light tidy, bins, towels on request. Full Service: linen, full clean, restock. Departure Clean: full + mattress + condition report. Priority = same-day arrivals. Run sheets at 07:00.\n\n## Maintenance\n- Priorities: Low/Medium/High/Emergency. Emergency SLA 2hrs, High 24hrs. Breach = escalate to facility manager. Completion: technician, time, notes. Unusable = OOO + relocate bookings.\n\n## Reporting\nOccupancy=(occupied/total)x100. Occupied=checked in AND not out. Arrivals included, departures excluded.\n\n## Terminology\nFIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alteration=booking change. OOO=Out of Order."}]</script>
+<script id="eb" type="application/json">[{"id":"def","name":"UVG Core Knowledge","type":"default","created":"2026-03-26T00:47:24.842Z","wordCount":173,"content":"# UVG CORE KNOWLEDGE\n\n## Business Overview\nWorkforce accommodation services for FIFO and long-term guests.\n\n## Booking Rules\n- Check-in 14:00, check-out 10:00.\n- Booking needs: guest name, company, room number, dates.\n- No overbooking. Alterations amend without cancelling. Early check-in must be approved and logged. Overstays must be logged. Cancellations need reason and timestamp.\n\n## Room Management\n- Types: Standard, Superior, Suite.\n- Statuses: Available, Occupied, Dirty, Maintenance, Out of Order.\n- Maintenance/OOO cannot be booked. Dirty rooms need cleaning first. Pre-Arrival: clean, stocked, key card active.\n\n## Housekeeping\n- Daily: light tidy, bins, towels on request. Full Service: linen, full clean, restock. Departure Clean: full + mattress + condition report. Priority = same-day arrivals. Run sheets at 07:00.\n\n## Maintenance\n- Priorities: Low/Medium/High/Emergency. Emergency SLA 2hrs, High 24hrs. Breach = escalate to facility manager. Completion: technician, time, notes. Unusable = OOO + relocate bookings.\n\n## Reporting\nOccupancy=(occupied/total)x100. Occupied=checked in AND not out. Arrivals included, departures excluded.\n\n## Terminology\nFIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alteration=booking change. OOO=Out of Order."},{"id":"id1774490112053fc8uiohgna7","name":"Booking Alterations Specs","type":"docx","created":"2026-03-26T01:55:12.054Z","wordCount":113,"content":"I appreciate you sharing this, but I need to clarify the situation:\n\n**What I received:**\n- A message indicating binary/encoded Word document data\n- Instructions on how to extract text, rather than the actual document content\n\n**What I need to complete your request:**\n- The actual readable text content from \"Booking Alterations Specs.docx\"\n\n**To proceed, please:**\n\n1. Open the .docx file in Microsoft Word, Google Docs, or compatible application\n2. Select and copy all the text content\n3. Paste the plain text directly into our chat\n4. I will then format it with # headings and bullets, preserving all facts\n\nOnce you provide the readable text content, I'll structure it exactly as requested."},{"id":"id1774490126123cwwho6ns0h","name":"Booking Calendar Specs","type":"docx","created":"2026-03-26T01:55:26.123Z","wordCount":111,"content":"I appreciate you trying to share the document, but I don't have access to the actual file \"Booking Calendar Specs.docx\" or its contents.\n\nTo help you format this document as structured knowledge, please:\n\n1. **Copy and paste the text content** directly from the Word document into our chat\n2. **Or provide a screenshot** of the document\n3. **Or share the plain text version** of the content\n\nOnce you provide the actual text content, I'll immediately format it with:\n- `#` headings for main sections\n- `##` subheadings where appropriate\n- **Bullet points** for lists\n- **Preservation of ALL facts and details**\n\nPlease share the content and I'll get started right away!"},{"id":"id1774490143420w358pkesw6c","name":"Specs - Company Management","type":"docx","created":"2026-03-26T01:55:43.420Z","wordCount":117,"content":"I understand you want me to format content from \"Specs - Company Management.docx\" as structured knowledge, but I haven't received the actual document content.\n\nTo proceed, please provide the document text in one of these ways:\n\n1. **Copy and paste the text directly** from the Word document\n2. **Share as plain text** - the readable content without formatting codes\n3. **Provide readable content** in any text format\n\nOnce you share the actual content, I will:\n- Format it with `#` headings for main topics\n- Use `##` for subtopics\n- Organize information as bullet points\n- Preserve ALL facts and details\n- Return only the formatted content\n\nPlease paste the document content and I'll structure it immediately."},{"id":"id17744901518101hd1we8yfofj","name":"Dashboard Specs","type":"docx","created":"2026-03-26T01:55:51.810Z","wordCount":204,"content":"# Document Content Extraction\n\nI appreciate your request, but I'm unable to directly extract text from the Base64-encoded Word document content you've provided. The data you've shared is a compressed binary format (.docx file encoded as Base64), which requires proper decompression and parsing.\n\nHowever, I can explain what you can do:\n\n## Options to Extract Text:\n\n1. **Use Online Tools**: Convert the Base64 to a .docx file using an online decoder, then open it in Microsoft Word or a compatible application.\n\n2. **Use Python**: \n```python\nimport zipfile\nimport xml.etree.ElementTree as ET\nfrom base64 import b64decode\n\n# Decode and save\ndocx_data = b64decode(your_base64_string)\nwith open('document.docx', 'wb') as f:\n    f.write(docx_data)\n\n# Extract text\nwith zipfile.ZipFile('document.docx') as zip_ref:\n    xml_content = zip_ref.read('word/document.xml')\n    root = ET.fromstring(xml_content)\n    # Parse text elements\n```\n\n3. **Use Python-docx Library**:\n```python\nfrom docx import Document\n\ndoc = Document('document.docx')\nfor para in doc.paragraphs:\n    print(para.text)\n```\n\n## What I Can See:\n\nFrom the file structure encoded, this appears to be a standard .docx document containing:\n- Main document content (word/document.xml)\n- Headers and footers\n- Styles and formatting\n- Comments and footnotes\n- Numbering and fonts\n\n**Could you provide the document in plain text format, or would you like guidance on how to extract it yourself?**"},{"id":"id1774490185170807nuy0637p","name":"Housekeeping Specs","type":"docx","created":"2026-03-26T01:56:25.171Z","wordCount":165,"content":"# Word Document Content\n\nI appreciate your request, but I need to let you know that the content you've provided appears to be the binary/encoded data from a Word document file rather than extractable text content.\n\nThe string you've shared looks like Base64-encoded or compressed document data (typical of the internal .docx file format, which is actually a zipped XML structure). This cannot be directly converted to readable text without:\n\n1. **Decoding the binary data** first\n2. **Extracting the XML** from the compressed archive\n3. **Parsing the document structure** to retrieve the text content\n\n## To help you better, please:\n\n- **Copy and paste the actual text** from the Word document directly, or\n- **Upload or share the .docx file** through a file-sharing method that preserves the document format, or\n- **Use Word's \"Save As\" feature** to export as plain text (.txt) first\n\nOnce you provide the actual text content, I'll be happy to extract and organize it while preserving all headings and structural formatting!"},{"id":"id1774490233196pji8r3gi7z","name":"Room Management Specs","type":"docx","created":"2026-03-26T01:57:13.196Z","wordCount":171,"content":"I appreciate you sharing this file, but I need to let you know that what you've provided is a base64-encoded binary file (a .docx Word document file), not plain text content.\n\nTo extract text from this Word document, I would need to:\n\n1. **Decode the base64** data\n2. **Decompress the ZIP archive** (docx files are ZIP archives)\n3. **Parse the XML files** inside to extract the text content\n\nHowever, I cannot directly process binary files or execute decompression operations.\n\n**Here are your options:**\n\n1. **Convert the document to plain text or PDF** using Microsoft Word, Google Docs, or an online converter, then share the text version with me\n\n2. **Copy and paste the text directly** from your Word document into our chat\n\n3. **Use an online tool** to convert the DOCX to text, then share the result\n\n4. **Share a screenshot** of the document content\n\nOnce you provide the text in one of these formats, I'll be happy to help you extract and organize any headings, structure, and content you need!"},{"id":"id17744903723195pqusy7nnjt","name":"Permanent Room Logic","type":"pdf","created":"2026-03-26T01:59:32.319Z","wordCount":730,"content":"# Permanent Rooms – Occupancy vs Usage Logic\n\n## 1. Concept Overview\n\nPermanent rooms are **specific physical rooms allocated to a company** and optionally assigned to a specific guest within that company for a defined period.\n\nThey represent **room ownership, not necessarily room usage**.\n\nThis means a permanent room can exist in three states:\n\n1. Allocated but unused\n2. Allocated and used\n3. Allocated but temporarily vacant\n\nThe system must treat **ownership and usage as separate concepts**.\n\n## 2. Two Different Metrics\n\nThe system must distinguish between two key metrics:\n\n### Physical Usage (Actual Occupancy)\n\nThis represents **whether a guest is physically staying in the room on a given night**.\n\nExample:\n\n| Room | Guest | Used |\n|------|-------|------|\n| 101 | John Smith | Yes |\n| 102 | — | No |\n| 103 | — | No |\n\nPhysical usage = **1 room**\n\nOnly one room is actually occupied.\n\n### Allocated Occupancy (Company Allocation)\n\nThis represents **how many rooms belong to a company regardless of whether they are being used**.\n\nExample:\n\nCompany permanent allocation:\n\n| Room | Status |\n|------|--------|\n| 101 | Used |\n| 102 | Empty |\n| 103 | Empty |\n\nAllocated occupancy = **3 rooms**\n\nEven though only one guest is staying.\n\n## 3. Why This Separation Is Required\n\nWorkforce accommodation contracts often involve **capacity ownership rather than purely nightly usage**.\n\nPermanent rooms guarantee that:\n\n• specific rooms are always available for a company\n• long-term workers keep the same room\n• other companies cannot use those rooms\n\nBecause of this, **vacant permanent rooms are still reserved inventory**.\n\nThey are **not available for general bookings**.\n\n## 4. Behaviour Rules for Permanent Rooms\n\nPermanent rooms must follow strict system rules.\n\n### Rule 1: Company Ownership\n\nPermanent rooms belong to a company allocation.\n\nExample:\n\nCompany: Yancoal\nPermanent rooms:\n101\n102\n103\n\nOther companies cannot book these rooms.\n\n### Rule 2: Guest Assignment (Optional)\n\nA permanent room may be assigned to a specific guest.\n\nExample:\n\n| Guest | Permanent Room |\n|-------|----------------|\n| John Smith | 101 |\n\nWhen a booking is created for that guest:\n\n• the system automatically assigns room 101\n• other rooms cannot be selected\n\n### Rule 3: Room Reservation Even When Empty\n\nIf the assigned guest is not currently staying, the room remains reserved.\n\nExample:\n\n| Room | Guest | Occupied |\n|------|-------|----------|\n| 101 | John Smith | No |\n\nThe room is still unavailable to other guests.\n\n### Rule 4: Permanent Room Expiry\n\nPermanent room assignments can have an expiry date.\n\nExample:\n\n| Guest | Room | Start | Expiry |\n|-------|------|-------|--------|\n| John Smith | 101 | Jan 1 | Jun 30 |\n\nAfter expiry:\n\n• the room returns to the company's permanent allocation pool\n• it can be reassigned to another guest.\n\n## 5. Impact on Availability\n\nPermanent rooms reduce the general availability pool.\n\nExample:\n\nTotal rooms: **200**\n\nPermanent allocations:\n\n| Company | Permanent Rooms |\n|---------|-----------------|\n| Yancoal | 10 |\n| ABM | 5 |\n\nAvailable general rooms:\n\n200 - 15 = **185**\n\nThose 15 rooms cannot be used by other companies.\n\n## 6. Impact on Occupancy Reporting\n\nReports must distinguish between **physical occupancy and allocated capacity**.\n\n### Physical Occupancy Example\n\n| Room | Occupied |\n|------|----------|\n| 101 | Yes |\n| 102 | No |\n| 103 | No |\n\nPhysical occupancy = **1**\n\n### Allocation Example\n\n| Company | Permanent Rooms |\n|---------|-----------------|\n| Yancoal | 3 |\n\nAllocation occupancy = **3**\n\n## 7. Calendar Behaviour\n\nPermanent rooms must display clearly in the booking calendar.\n\nRequired behaviour:\n\n• show lock icon on permanent rooms\n• prevent other guests from selecting those rooms\n• automatically assign the room to the correct guest\n• keep the room blocked when unused\n\n## 8. Example Scenario\n\nCamp capacity:\n\n200 rooms\n\nCompany allocations:\n\n| Company | Permanent | Prepaid |\n|---------|-----------|---------|\n| Yancoal | 10 | 30 |\n\nTonight:\n\n| Company | Guests Staying |\n|---------|-----------------|\n| Yancoal | 24 |\n\nResults:\n\nPhysical occupancy:\n\n24 rooms used\n\nFinancial/allocated occupancy:\n\n30 rooms charged\n\nPermanent rooms simply ensure **specific rooms remain reserved for certain workers within that allocation**.\n\n## 9. Key Principle for the System\n\nPermanent rooms represent:\n\n**Room ownership**\n\n**not**\n\n**room usage**\n\nUsage is determined by **actual guest bookings**.\n\nOwnership is determined by **company allocation and permanent room assignments**.\n\nBoth must be tracked separately in the system."},{"id":"id177449042462094xdkdsjymf","name":"Guest Management Screen Specs pdf","type":"pdf","created":"2026-03-26T02:00:24.620Z","wordCount":3506,"content":"# Guest Management Screen, Full Functional Description & Operational Guide\n\n## 1. Overview and Purpose\n\nThe Guest Management screen is the guest **profile and guest history module** of the UVG Program.\n\nIts purpose is to give staff a single place where they can look up any guest and immediately understand:\n\n• who the guest is\n• which company and sub-company they belong to\n• whether they have a room preference or a permanent room\n• all past, current, and future bookings\n• all booking alterations linked to that guest\n• any internal notes or operational comments\n• any files or documents attached to that guest profile\n\nThis screen is not supposed to behave like a traditional hotel CRM. UVG is not a public hotel with normal front-desk check-in workflows. It is workforce accommodation, and the guest profile is more of an **operational record** than a hospitality contact card. That is why traditional fields like age, address, room status, and hotel-style check-in status are not important here, while booking history, allocation logic, and internal notes are critical.\n\nFreelancer Chat History\n\nFreelancer Chat History\n\nAt a high level, the Guest Management screen exists to answer these questions quickly:\n\n• Who is this guest?\n• What company are they linked to?\n• Have they stayed here before?\n• What room do they usually prefer?\n• Do they have a permanent room?\n• What bookings do they currently have?\n• Have any alterations happened to their bookings?\n• Are there any notes staff need to know before booking or moving them?\n\n## 2. Core Responsibility of the Screen\n\nThis screen is responsible for the **individual guest as an entity across time**, while the Booking Calendar is responsible for the **live room allocation by date**.\n\nThat means the Guest Management screen should own:\n\n• guest master record\n• company association\n• room preference or permanent room profile settings\n• guest notes\n• files and attachments\n• booking history\n• future bookings\n• alteration history\n• quick access to create bookings or alterations for that guest\n\nIt should not be reduced to a simple grid of guest names. You made it very clear that the correct direction is **individual guest profiles**, similar to your existing customer management spreadsheet, where the profile is the focus and the list is mainly for finding the person.\n\nFreelancer Chat History\n\nFreelancer Chat History\n\n## 3. What the Screen Is Not\n\nThe Guest Management screen is not:\n\n• a payment screen\n• a public guest portal\n• a traditional hotel check-in screen\n• a front-desk arrival-status tool\n• a room allocation screen by itself\n• a company management screen\n\nIt should not focus on unnecessary hospitality-style fields that do not help operations, such as:\n\n• age\n• address\n• room status as a hotel-style field\n• generic \"status\" fields that do not serve a practical purpose\n\nYou specifically rejected those types of fields because they clutter the screen and distract from the real operational use case.\n\nFreelancer Chat History\n\n## 4. Main Design Philosophy\n\nThe key design principle for Guest Management is:\n\n**The profile should be the focus, not the search list.**\n\nYou also noted that the page felt overcrowded when too much space was being given to the search area and side widgets, rather than the selected guest's profile. The main panel should focus on the selected guest's information, while the search/list area should simply help locate the guest.\n\nUVG Program Feedback 5th Feb 1.…\n\nSo the page should feel like:\n\n• left side, searchable guest list and basic filters\n• main centre/right side, full guest profile view\n• tabs or structured sections inside the profile for bookings, alterations, files, and notes\n\nThat is the operationally correct layout for UVG.\n\n## 5. Page Layout and Structure\n\n### A. Left Panel, Guest Search and Guest List\n\nThe left-hand section should be a **guest finder panel**.\n\nIt should include:\n\n• search bar\n• active/inactive filter\n• optional company/sub-company filter\n• configurable guest list columns\n• sorting controls\n• quick new guest button\n\nThe user must be able to:\n\n• search by typing guest name\n• sort by selected columns\n• add or hide columns in the search results\n• filter active vs inactive guests\n\nThis was explicitly required.\n\nUVG Program Notes\n\n#### Search/list expectations\n\nThe search results should show enough information to identify the guest quickly, but not overload the list. Likely useful columns include:\n\n• guest name\n• company\n• sub-company\n• phone\n• email\n• preference/permanent indicator\n• current in-house or future booking indicator\n\nThe list should not dominate the screen. It should be functional and compact.\n\n### B. Main Guest Profile Area\n\nOnce a guest is clicked, the main panel should show that guest's profile in full detail.\n\nThis main area is the true heart of the screen.\n\nIt should show:\n\n• guest identity details\n• linked company/sub-company\n• preference or permanent room setting\n• notes\n• bookings\n• alterations\n• uploaded files\n\nThe selected guest should remain visible while related tabs are browsed.\n\n### C. Top Action Bar\n\nAt the top of the guest profile there should be action buttons for common tasks.\n\nThese should include things like:\n\n• Edit Guest\n• New Booking\n• Add Alteration\n• Upload File\n• Mark Active / Inactive\n• Status button, moved to top because it is not frequently used in the main form area\n\nYou specifically noted that \"status\" should be moved to a button at the top, because it is not something used frequently enough to deserve major form space.\n\nUVG Program Notes\n\n### D. Profile Sections or Tabs\n\nThe profile should ideally be broken into structured sections or tabs, such as:\n\n#### 1. Guest Details\n\nBasic personal and operational profile fields.\n\n#### 2. Bookings\n\nAll past, present, and future bookings for the guest.\n\n#### 3. Alterations\n\nAll alterations linked to that guest.\n\n#### 4. Files\n\nAttachments and downloads.\n\n#### 5. Notes\n\nOperational notes, preferences, special instructions.\n\n#### 6. Shift Type view inside bookings\n\nShift is booking-specific, not just guest-specific, so this belongs in booking records, but the guest screen must expose it clearly.\n\nUVG Program Notes\n\n## 6. Guest Details Section, What It Must Contain\n\nThe guest details section should contain the important identifying and operational fields only.\n\n### Core fields\n\nThese should include:\n\n• Guest full name\n• Company\n• Sub-company, if applicable\n• Phone number, optional\n• Email address, optional\n• Active / inactive status\n• Perm or Preference selector\n• Selected room if applicable\n• Notes section beneath the room setting\n\nThis comes directly from your notes that:\n\n• \"Allow perm room\" should be replaced with \"Perm or Preference\"\n• depending on what is selected, the user is then prompted to choose a room\n• there should be a notes section beneath that area\n\nUVG Program Notes\n\n### Fields that are not required\n\nThese should be removed or avoided:\n\n• Age\n• Address\n• Traditional room status field\n• Hotel-style check-in status\n\nYou explicitly said these were unnecessary and not suited to UVG.\n\nFreelancer Chat History\n\n## 7. Perm or Preference Logic\n\nThis is one of the most important parts of Guest Management.\n\n### The control\n\nInstead of a vague \"Allow perm room\" option, the screen should use a clear control called:\n\n**Perm or Preference**\n\nThe user then selects one of the following:\n\n• None\n• Preference\n• Permanent\n\nEven if the wording remains exactly \"Perm or Preference,\" the underlying logic needs three operational outcomes, because not every guest has either. Your earlier feedback made clear that sometimes there is no preference at all.\n\nFreelancer Chat History\n\n### Preference meaning\n\nA preference means:\n\n• this guest likes a certain room\n• it is only a preference\n• it does not reserve or lock the room\n• staff should try to use it when available\n• the preferred room should appear first when creating a booking\n• if unavailable, it should still show at the top, but disabled or highlighted as unavailable\n\nThis behaviour was specified for the calendar booking flow and therefore must be driven from the guest profile data.\n\nUVG Program Notes\n\nUVG Promgram Notes & Feedback\n\nFreelancer Chat History\n\n### Permanent meaning\n\nA permanent room means:\n\n• the room belongs solely to that guest\n• no other guest should be able to use it\n• it must auto-assign when that guest is booked\n• it should only be selectable if the company has permanent room allocation in Company Management\n• permanent room rules override ordinary room availability logic\n\nThis rule is repeated in multiple places and is critical.\n\nUVG Program Notes\n\nUVG Program Feedback 5th Feb 1.…\n\n### Dependency on Company Management\n\nPermanent rooms cannot be freely assigned at the guest level. The system must first confirm the linked company actually has permanent room allocation available through Company Management.\n\nUVG Program Feedback 5th Feb 1.…\n\nSo Guest Management must validate against Company Management before allowing a permanent room to be saved.\n\n## 8. Notes Section\n\nThere must be a dedicated notes section under the permanent/preference area. That was explicitly requested.\n\nUVG Program Notes\n\n### What notes are for\n\nThis notes field is for operational information such as:\n\n• guest has a special room preference\n• guest prefers ground floor\n• health or support notes relevant to accommodation operations\n• internal comments for booking staff\n• recurring behaviour or important context\n\n### Sync rule\n\nThis notes field must be synced everywhere relevant.\n\nNotes must remain consistent across:\n\n• Guest Management\n• booking creation\n• booking editing\n• booking details\n• calendar-related booking views\n\nYou repeatedly raised that notes being inconsistent across screens was a major problem.\n\nUVG Promgram Notes & Feedback\n\nSo in system design terms, this should be a **single source of truth field**, not copied text in multiple places.\n\n## 9. Bookings Section\n\nThis is one of the biggest responsibilities of the screen.\n\nYou made it very clear that the guest profile should show all bookings, with all rooms and stay details, across past and future.\n\nFreelancer Chat History\n\n### What the bookings section should show\n\nThe Bookings tab or area should list every booking for the selected guest, including:\n\n• booking reference\n• company\n• sub-company\n• room number\n• booking start date\n• booking end date\n• shift type\n• booking notes\n• booking status in practical terms, or alteration summary rather than hotel-style status\n• whether the room was permanent / preference / standard\n• link to open the booking in Booking Management or Calendar\n\n### Why this matters\n\nA guest at UVG may have:\n\n• multiple historic stays\n• multiple future roster bookings\n• recurring booking patterns\n• booking changes over time\n\nThat means a single static \"Room Number\" field in the profile is not enough and is actually misleading. You specifically rejected that.\n\nFreelancer Chat History\n\n### Booking list behaviour\n\nThe bookings list should allow:\n\n• sorting\n• filtering\n• viewing all history\n• opening details\n• creating a new booking from the guest record\n\n## 10. Shift Type in Guest Management\n\nYou required that bookings should have a tab or visible field for Shift Type, so staff can see whether a guest is on Nightshift or Dayshift.\n\nUVG Program Notes\n\nThis means:\n\n• shift type is tied to each booking, not necessarily permanently tied to the guest\n• the Guest Management screen must expose shift information within the booking history\n• staff should not need to leave the guest profile to see shift context\n\nA good implementation would show shift type as:\n\n• a text tag in the bookings table\n• or a dedicated column in the bookings section\n• or both\n\nIt should support:\n\n• Dayshift\n• Nightshift\n• Unknown / blank where not known\n\nBut it should not be compulsory on every booking, because elsewhere you specified shift type is not always known at booking time.\n\nUVG Promgram Notes & Feedback\n\n## 11. Alterations Section\n\nYou also required that booking alterations must be able to be added from Guest Management.\n\nUVG Program Notes\n\nThat means the guest screen must not only display guest details and bookings, it must also be an operational entry point for adjustments.\n\n### What this section should do\n\nThe Alterations section should allow staff to:\n\n• view all alterations linked to the guest\n• add a new alteration for a selected booking\n• open and edit an existing alteration\n• clearly see original dates vs actual dates\n• see comments and reasons\n• jump to the linked booking\n\n### Alteration types likely relevant here\n\nFrom the broader UVG alteration logic, the common types include:\n\n• Early check-in / walk-in\n• Overstay\n• Early checkout / early departure\n• No-show\n• Room move\n• Other custom alteration types where configured in settings\n\nBooking Alterations Specs\n\n### Why this matters in Guest Management\n\nThe guest profile is where staff often need the full story of that person's stay pattern, not just the original bookings. So showing alterations here is essential.\n\nYou later explicitly noted that **bookings and alterations were not showing in this section at all**, which confirms both are mandatory parts of the module.\n\nUVG Program Feedback 5th Feb 1.…\n\n## 12. File Upload and Attachments\n\nThe Guest Management screen must include file upload capability.\n\nYour requirements were very clear that:\n\n• the upload section should allow more than 4 files\n• it should be designed more cleanly and neatly\n• it later also needed download capability\n• the current file upload area was too long and awkward\n\nUVG Program Notes\n\nUVG Program Feedback 5th Feb 1.…\n\n### What the files section should support\n\nIt should support:\n\n• uploading multiple files\n• no tiny hard cap like 4 files\n• document list with file name, upload date, uploaded by\n• download action\n• optional preview if practical\n• cleaner compact layout rather than a long stretched section\n\n### Likely use of files\n\nThis may include:\n\n• identification docs\n• company correspondence\n• booking-related documents\n• induction or accommodation documents\n• guest-specific operational paperwork\n\nEven if not all of that is used immediately, the module should support it in a scalable way.\n\n## 13. Active / Inactive Logic\n\nThe screen needs an active/inactive guest filter, and you later specifically said it was not working.\n\nUVG Program Feedback 5th Feb 1.…\n\n### What active/inactive should mean\n\nA guest profile can be made inactive when that person is no longer relevant for current operations.\n\nBut when marking inactive, the system must check if the guest has any upcoming bookings.\n\nIf upcoming bookings exist, the system should:\n\n• show those future bookings\n• warn the user\n• prompt them to deal with those bookings, such as deleting or resolving them first\n\nThis is an important logic rule because otherwise the system could leave future bookings attached to inactive profiles.\n\n## 14. Company Occupancy on the Guest Screen\n\nOne of the later feedback notes said that **company occupancy should be displayed on the left under the guest list**.\n\nUVG Promgram Notes & Feedback\n\nThis suggests the Guest Management page should include a small side visibility widget that shows occupancy context for the selected company or currently filtered company.\n\nThis should not dominate the page, because you later said the screen felt crowded and the profile needs to remain the focus.\n\nUVG Program Feedback 5th Feb 1.…\n\nSo the likely correct design is:\n\n• small left-side company occupancy summary under the guest list\n• main profile still takes most of the screen\n• side summary is supportive context only\n\n## 15. Key Functional Rules and Logic\n\n### Rule 1. One guest profile, many bookings\n\nA guest profile must support multiple bookings over time. It must never be reduced to one current room field only.\n\nFreelancer Chat History\n\n### Rule 2. Notes are central and synced\n\nGuest notes must stay identical across all modules that expose them.\n\nUVG Promgram Notes & Feedback\n\n### Rule 3. Preference is not permanent\n\nPreference only influences room suggestions. It does not reserve the room.\n\nUVG Program Notes\n\n### Rule 4. Permanent rooms are controlled\n\nPermanent rooms:\n\n• are exclusive\n• can only be used by the assigned guest\n• must only be assignable if the company has permanent room allocation\n• must influence room selection rules in booking flows\n\nUVG Program Notes\n\nUVG Program Feedback 5th Feb 1.…\n\n### Rule 5. Guest Management must expose booking and alteration history\n\nThe profile is incomplete without both.\n\nUVG Program Feedback 5th Feb 1.…\n\n### Rule 6. Hotel-style status is not the right model\n\nStandard hotel check-in/out status logic is not the focus for UVG and should not clutter the profile.\n\nFreelancer Chat History\n\n### Rule 7. Search results must be configurable\n\nAdd/hide columns and sort are required.\n\nUVG Program Notes\n\n### Rule 8. Inactive logic must protect future bookings\n\nInactive guests with upcoming bookings must trigger a warning and prompt.\n\nUVG Program Feedback 5th Feb 1.…\n\n## 16. Relationship to Other Modules\n\n### With Booking Calendar\n\nGuest Management feeds the calendar with:\n\n• guest identity\n• company link\n• preferred room\n• permanent room\n• notes\n\nThe calendar booking flow should use the guest profile to auto-suggest or enforce room logic.\n\nUVG Promgram Notes & Feedback\n\n### With Booking Management\n\nThe guest profile should expose the same booking records that appear in booking management, but organised around the person rather than around all bookings system-wide.\n\n### With Booking Alterations\n\nGuest Management must surface alteration history and allow new alterations to be created.\n\nUVG Program Notes\n\nBooking Alterations Specs\n\n### With Company Management\n\nPermanent room eligibility depends on company-level permanent room allocation.\n\nUVG Program Feedback 5th Feb 1.…\n\n## 17. Practical Page Flow\n\nA likely operational flow for the screen would be:\n\n1. Staff search for a guest in the left panel.\n2. Staff click the guest.\n3. Main profile loads.\n4. Staff immediately see:\n   ○ company\n   ○ room preference or permanent room\n   ○ notes\n   ○ files\n   ○ bookings\n   ○ alterations\n5. From there, staff can:\n   ○ edit the guest\n   ○ add a booking\n   ○ add an alteration\n   ○ review booking history\n   ○ download attachments\n   ○ mark inactive if needed\n\nThat is much closer to your spreadsheet-style operational workflow than the earlier mockup direction you rejected.\n\nFreelancer Chat History\n\nFreelancer Chat History\n\n## 18. Usability Requirements\n\nBased on your feedback, the Guest Management screen must be:\n\n• less crowded\n• easier to navigate\n• profile-focused\n• operational rather than decorative\n• consistent with spreadsheet logic\n• practical for admin staff rather than hotel reception workflows\n\nYou also indicated the layout simplification was important because the page had felt overcrowded and difficult to use.\n\nUVG Promgram Notes & Feedback\n\nUVG Program Feedback 5th Feb 1.…\n\nSo visually it should favour:\n\n• clean profile cards\n• clear section headings\n• fewer unnecessary fields\n• better use of space\n• a more compact files section\n• obvious buttons for the main actions\n\n## 19. Acceptance Criteria, What \"Done\" Looks Like\n\nThe Guest Management screen can be considered complete when all of the following are true:\n\n### Profile structure\n\n• Each guest has an individual profile view.\n• The profile is the main focus of the page.\n• The page is similar in spirit to your customer management spreadsheet.\n\nFreelancer Chat History\n\n### Search and list\n\n• Guests can be searched quickly.\n• Columns can be shown/hidden.\n• Sorting works.\n• Active/inactive filter works.\n\nUVG Program Notes\n\nUVG Program Feedback 5th Feb 1.…\n\n### Details\n\n• Company and sub-company are linked correctly.\n• Optional phone and email can be stored.\n• Unnecessary fields like age and address are removed.\n\nFreelancer Chat History\n\n### Permanent / preference logic\n\n• \"Perm or Preference\" control exists.\n• Preference is only a preference.\n• Permanent is only allowed when company allocation permits it.\n• Room number is clearly shown with Preference: Room X or Permanent: Room X style logic.\n\nFreelancer Chat History\n\n### Notes\n\n• Notes section exists under the room setting.\n• Notes sync everywhere relevant.\n\nUVG Program Notes\n\nUVG Promgram Notes & Feedback\n\n### Bookings\n\n• All bookings, past and future, show in the profile.\n• Room numbers and stay details are visible.\n• Shift type is visible within bookings.\n\nFreelancer Chat History\n\nUVG Program Notes\n\n### Alterations\n\n• Alterations can be added from Guest Management.\n• Existing alterations display in the profile.\n• Booking and alteration history are both visible.\n\nUVG Program Notes\n\nUVG Program Feedback 5th Feb 1.…\n\n### Files\n\n• More than 4 files can be uploaded.\n• Files can be downloaded.\n• Layout is cleaner and more compact.\n\nUVG Program Notes\n\nUVG Program Feedback 5th Feb 1.…\n\n### Inactive logic\n\n• Marking inactive works.\n• System warns if future bookings exist.\n\nUVG Program Feedback 5th Feb 1.…\n\n## 20. Best Summary in One Sentence\n\nThe **Guest Management screen** should be the **single source of truth for each guest's profile, history, room assignment logic, notes, files, bookings, and alterations**, designed around **individual guest profiles** rather than a generic guest table, and built to support the operational realities of UVG rather than traditional hotel workflows."},{"id":"id1774490544122dtd598mh5t","name":"Maintenance Specs pdf","type":"pdf","created":"2026-03-26T02:02:24.122Z","wordCount":5038,"content":"# UVG Operations · Maintenance Management Module Specifications v6.x\n\n## CONFIDENTIAL — Internal Use Only\n\n---\n\n## Executive Summary\n\n### 1.1 What This System Does\n\n- Tracks all open, overdue, scheduled, and completed maintenance tasks across every asset at UVG\n- Manages preventive/recurring maintenance schedules with configurable frequency templates\n- Provides a daily operations dashboard showing real-time status of facility maintenance\n- Generates printable run sheets for maintenance staff to carry during their shift\n- Produces a habit-tracker style progress grid showing completion rates per task type per asset\n- Maintains a full historical timeline of all maintenance activity per room and asset\n- Supports bulk task generation from recurring templates to populate the schedule forward\n\n### 1.2 Who Uses This System\n\n- **Operations Manager** — Primary user. Monitors dashboard, reviews overdue tasks, generates schedules, reviews reports. Uses on desktop via internal operations portal.\n- **Maintenance Staff** — Views their assigned tasks, marks tasks complete, uploads photos as proof of work. Likely accesses via tablet or shared workstation.\n- **Camp Manager** — Reviews reports and overall completion rates. Spot-checks room histories to confirm maintenance standards.\n- **Administrators** — Manages assets (rooms, areas, vehicles), configures recurring templates, manages the asset register.\n\n### 1.3 Scope of This Document\n\n- Full module overview and purpose\n- Design system and visual standards\n- Global navigation and layout specification\n- Detailed per-screen functional specifications for all 7 primary screens\n- Task modal specification (shared component)\n- Template modal specification (shared component)\n\n---\n\n## 2. Design System & Visual Standards\n\n### 2.1 Colour Palette\n\n| Token Name | Hex Value | Usage |\n|---|---|---|\n| --navy / Primary Dark | #0F172A | Sidebar background, table headers, hero banners |\n| --pm / Primary Blue | #2563EB | Primary buttons, active states, links, open task indicators |\n| --plt / Blue Light | #EFF4FF | Open task cell backgrounds, active sidebar highlights |\n| --good / Green | #16A34A | Completed tasks, success states, positive KPIs |\n| --good-lt / Green Light | #F0FDF4 | Completed card backgrounds |\n| --crit / Red | #DC2626 | Overdue tasks, critical priority, error states |\n| --crit-lt / Red Light | #FEF2F2 | Overdue card backgrounds, alert banners |\n| --high / Orange | #EA580C | High priority tasks |\n| --med / Amber | #D97706 | Medium priority tasks, warnings |\n| --low / Cyan | #0891B2 | Low priority tasks |\n| --bg / Page Background | #F1F3F8 | Page background outside cards |\n| --surface / Card | #FFFFFF | Card backgrounds |\n| --surface2 / Alt Surface | #F7F8FC | Alternating table rows, section headers |\n| --border | #E2E5EE | All card and table borders |\n| --text | #0F1629 | Primary body text |\n| --text2 | #4A5270 | Secondary / label text |\n| --text3 | #8B92AA | Muted / placeholder text |\n\n### 2.2 Typography\n\n- **Display / Headings** — \"Syne\" geometric sans-serif. Weights: 700–900. Used for screen titles, KPI numbers, large headers, and card headings.\n- **Body / UI Text** — \"DM Sans\" clean sans-serif. Weights: 400–800. Used for all body copy, labels, table content, buttons, and navigation.\n- **Monospace** — \"JetBrains Mono\". Used for dates in schedule grid, room numbers, and code-like display content.\n- **Base Font Size** — 12pt equivalent. UI labels: 9.5–10.5px. Body text: 12–13px. Headings: 13–22px. KPI numbers: 24–52px.\n- **Font Loading** — Google Fonts CDN. Fallback: system-ui, sans-serif.\n\n### 2.3 Priority & Status Visual System\n\n#### Priority Badges\n- 🔴 CRITICAL\n- 🟠 HIGH\n- 🟡 MEDIUM\n- 🔵 LOW\n\n#### Status Badges / Pills\n- ○ OPEN\n- ↻ IN PROGRESS\n- ✓ COMPLETE\n- — CANCELLED\n\n### 2.4 Card & Layout System\n\n- **Card Component** — White background, 1.5px solid border (#E2E5EE), 10px border radius, subtle box shadow (0 1px 3px rgba(0,0,0,.06))\n- **Card Header** — surface2 background, 12px bottom border, contains title (h3), optional badge count, and action buttons right-aligned\n- **Grid Layout** — CSS Grid. Most screens single-column. Some screens 2-column or sidebar+main layout.\n- **Border Radius** — Cards: 10px (--r). Small elements (badges, pills): 7px (--r-sm). Large containers: 16px (--r-lg).\n- **Shadows** — Cards: subtle (--sh). Hover states: medium (--sh-m). Modals: large (--sh-lg).\n- **Spacing Unit** — 4px base unit. Common spacings: 8px, 12px, 14px, 16px, 20px, 24px.\n\n### 2.5 Interactive Components\n\n#### Buttons\n\n- **Primary Button** — Navy/blue background (#2563EB), white text, 10px border radius. Used for primary actions: \"+ New Task\", \"Save\", \"Generate\".\n- **Default Button** — White background, border (#E2E5EE), dark text. Used for secondary actions.\n- **Danger Button** — Red light background (#FEF2F2), red text and border. Used for destructive actions.\n- **Ghost / Link Button** — No background, text-only with underline or arrow. Used for navigation shortcuts.\n- **Size Variants** — sm (small), xs (extra small), standard. All share same border radius and font weight (700+).\n\n#### Form Inputs\n\n- **Text Inputs** — White background, 1px solid border (#E2E5EE), 10px border radius, DM Sans font. Focus state: blue border (#2563EB) with box-glow.\n- **Select Dropdowns** — Same styling as text inputs. Native browser select element styled to match.\n- **Date Inputs** — type=\"date\" HTML input styled to match text inputs. Always shows DD/MM/YYYY format (locale-aware).\n- **Checkboxes** — Custom styled. Checked state uses navy/blue fill with white tick SVG. Used in checklist items and bulk selection.\n\n#### Tables\n\n- **Table Class (.tbl)** — Full-width table, collapsed borders. Header row has navy background with white text, 10.5px uppercase labels, 0.5px letter spacing. Alternating row backgrounds (white / surface2). 1px bottom border between rows.\n- **Hover State** — Entire row has brightness filter on hover (brightness(.97)) to indicate clickability.\n- **Row Click** — Most table rows are clickable and open the task/item modal. Cursor: pointer.\n- **Overdue Row** — Rows for overdue tasks get class \"row-ov\" — a subtle red-left-border or red-tinted background to visually flag urgency.\n\n---\n\n## 3. Global Layout & Navigation\n\n### 3.1 Application Shell\n\n- **Sidebar (Left)** — 262px wide fixed panel. Dark navy background (#0F172A). Contains: app brand logo/name, navigation buttons, room quick-filter list, user info footer.\n- **Main Content (Right)** — Remaining viewport width. Light grey background (#F1F3F8). Contains: topbar header + scrollable content area per screen.\n- **Topbar** — 56px tall horizontal bar at top of main area. Contains: breadcrumb trail (\"UVG Operations › Maintenance\"), current page title, global search input, quick action buttons.\n- **Content Area** — Scrollable region below topbar. Padding: 20px. Contains per-screen content.\n\n### 3.2 Sidebar Navigation\n\nElements from top to bottom:\n\n1. Brand area: \"UVG Operations\" title with \"v6.x · Maintenance\" subtitle and logo mark\n2. Section label: \"Navigation\"\n3. Navigation buttons — one per screen:\n   - ◼ Overview (with overdue badge count)\n   - 📋 Schedule & Print (with overdue badge count)\n   - ♻ Preventive Maintenance\n   - ✅ Completed Work\n   - 🚗 Vehicles\n   - 📊 Reports\n4. Section label: \"Rooms\"\n5. Room filter search input (searches by room name or tag)\n6. Scrollable room list — every active accommodation room listed. Clicking navigates to that room's detail screen.\n7. Footer: logged-in user name, initials avatar, last data refresh timestamp\n\n#### Room List Behaviour\n\n- Coloured dot indicating occupancy: green = Vacant, orange = Occupied, red = Maintenance Hold/Blocked\n- Room name/number\n- Blue badge showing count of open tasks (only shown if count > 0)\n- \"EX\" prefix for rooms tagged as Executive\n- Active room (currently viewed) highlighted with lighter background and left border\n- Filter input narrows list in real time as user types\n\n### 3.3 Global Search\n\n- Search input sits in topbar and is always visible\n- Typing filters current screen's content in real time\n- Matches against task title, asset name, notes, and assigned staff\n- Cleared when navigating to different screen\n\n### 3.4 Topbar Quick Actions\n\nFour quick-action buttons always displayed in topbar:\n\n- 📅 Calendar — switches Overview screen to Calendar sub-view\n- 📋 Schedule — navigates directly to Schedule & Print screen\n- ⚡ Generate — opens bulk task generation modal from anywhere\n- \\+ New Task — opens New Task modal from anywhere in app\n\n### 3.5 Overdue Badge\n\n- Red badge appears on both \"Overview\" and \"Schedule & Print\" sidebar buttons whenever there are overdue tasks\n- Number inside badge reflects current count of tasks past due date and not yet completed or cancelled\n- Badge updates automatically every time data refreshes\n\n---\n\n## 4. Data Model Overview\n\n### 4.1 Task\n\n| Field | Description |\n|---|---|\n| **id** | Unique identifier (string/UUID) |\n| **title** | Task name (e.g. \"Check light globes\", \"HVAC filter clean\", \"Smoke alarm test\") |\n| **assetId** | Reference to the Asset this task belongs to |\n| **status** | One of: Open \\| In Progress \\| Complete \\| Cancelled |\n| **priority** | One of: Critical \\| High \\| Medium \\| Low |\n| **dueDate** | ISO date string (YYYY-MM-DD). Date this task must be completed by. |\n| **completedAt** | ISO datetime when task was marked Complete. Null if not complete. |\n| **completedBy** | Name/ID of staff member who completed it. Optional. |\n| **assignedTo** | Name/ID of staff member assigned. Optional. |\n| **notes** | Free-text notes/description. Optional. |\n| **checklist** | Array of checklist items: [{id, label, done: boolean}]. Optional. |\n| **photos** | Array of photo objects: [{url, uploadedAt}]. Optional. |\n| **attachments** | Array of file attachments: [{url, name, isPhoto}]. Optional. |\n| **templateId** | If generated from recurring template, the template's ID. Otherwise null. |\n| **recurring** | Boolean flag if this is a recurring task instance. |\n| **recurringSettings** | Object describing the recurrence (used when manually set, not from template). |\n| **createdAt** | ISO datetime when task was created. |\n\n### 4.2 Asset\n\n| Field | Description |\n|---|---|\n| **id** | Unique identifier |\n| **name** | Asset name. For rooms: room number/name (e.g. \"101\", \"A12\"). For vehicles: registration or fleet number. For areas: descriptive name (e.g. \"Kitchen\", \"Pool Area\"). |\n| **type** | One of: room \\| common \\| vehicle |\n| **active** | Boolean. Inactive assets are hidden from all lists and task assignment. |\n| **occupancy** | For rooms only. One of: Vacant \\| Occupied \\| Blocked |\n| **maintenanceHold** | Boolean. True if room is under maintenance hold (blocks booking system). |\n| **tags** | Array of strings (e.g. [\"executive\", \"accessible\", \"twin\"]). Used for filtering. |\n| **rego** | For vehicles only. Vehicle registration number. |\n| **createdAt** | ISO datetime of asset creation. |\n\n### 4.3 Recurring Template\n\n| Field | Description |\n|---|---|\n| **id** | Unique identifier |\n| **name** | Template name (e.g. \"Monthly Smoke Alarm Test\", \"Weekly HVAC Check\") |\n| **appliesTo** | Asset type: room \\| common \\| vehicle |\n| **priority** | Default priority for tasks generated from this template |\n| **active** | Boolean. Inactive templates do not generate tasks. |\n| **nextDueDate** | Date when next batch of tasks should be generated |\n| **frequency** | Object: { type: \"simple\"\\|\"weekly_days\"\\|\"monthly_day_of_month\", interval, unit, days[], dayOfMonth } |\n| **scope** | Object: { mode: \"all_assets\"\\|\"specific_assets\"\\|\"tag_filter\", assetIds[], tag }. Determines which assets get tasks generated. |\n| **checklist** | Default checklist items to pre-populate on generated tasks |\n| **notes** | Default notes for generated tasks |\n\n---\n\n## SCREEN 1: Overview Dashboard\n\n### Purpose\n\nDefault screen when application loads. Gives operations management an immediate, at-a-glance view of entire facility's maintenance health. All critical information visible without scrolling on standard desktop. Staff arriving at shift start should see everything requiring attention within seconds of opening application.\n\n### Two Sub-Views\n\n- **Dashboard View (default)** — KPI cards, charts, and task lists\n- **Calendar View** — monthly calendar grid showing tasks by due date\n\n### Dashboard Sub-View — Components\n\n#### Overdue Alert Banner\n\nIf any tasks are overdue, full-width red alert banner appears at very top of content area, above all other content. Shows:\n\n- 🚨 Icon and \"X overdue tasks — requires immediate attention\" message\n- Preview of up to 3 overdue task names (Asset: Task title format)\n- \"View All →\" button that navigates to Schedule screen\n- NOT shown when zero overdue tasks\n- Entire banner clickable to navigate to Schedule screen\n\n#### KPI Cards Row\n\nFour KPI cards displayed in 4-column grid:\n\n- **⚠ Overdue** — Count of all active tasks past their due date. Red styling. Clickable → navigates to Schedule screen.\n- **📋 Due Today** — Count of tasks due today (not yet complete). Orange/amber styling. Clickable → navigates to Schedule screen.\n- **↻ In Progress** — Count of tasks with status \"In Progress\". Blue styling.\n- **✅ Completed** — Total count of completed tasks. Green styling. Shows completion rate % as sub-label. Clickable → navigates to Completed Work screen.\n\n#### Open Tasks by Priority Panel\n\nCard below KPI row showing task counts broken into 4 priority columns (Critical, High, Medium, Low). Each column shows:\n\n- Large bold count number in priority colour\n- Priority label\n- Overdue sub-count within that priority (only shown if > 0)\n- Clicking priority column navigates to Schedule screen with that priority filter pre-applied\n\n#### Quick Actions Sidebar\n\nRight-side sidebar (260px) containing two cards:\n\n- **Quick Actions card:** \"+ Create New Task\", \"Schedule & Print\", \"Recurring Templates\", \"Generate Tasks\" buttons\n- **System Status card:** shows live counts of Active Tasks, Templates, Assets, and All-time Completed tasks\n\n#### Activity Chart (buildDonutAndBar)\n\nFull-width card containing donut chart and either bar chart or activity sparkline:\n\n- **Left:** Donut chart showing completed (green), overdue (red), and remaining (grey) proportions. Shows completion rate % in centre.\n- **Right:** If 14-day activity data exists — grouped bar chart showing daily completed, due, and overdue bars for past 14 days. X-axis shows day labels.\n- **Right sidebar of chart:** \"Open by Priority\" mini bar chart showing relative task counts by priority level.\n- If no activity data exists yet, only donut and summary legend shown\n\n#### Overdue Tasks Section\n\nCollapsible card (defaults open) showing all overdue tasks sorted by priority then days-overdue. Header is red-tinted when overdue tasks exist. Each task row shows:\n\n- Task title\n- Asset name\n- Due date\n- Days overdue\n- Priority badge\n- \"✓ Done\" quick-complete button\n- Section toggled by clicking card header\n\n#### Due Today Section\n\nCollapsible card showing tasks due today, styled with amber/orange header. Same row format as overdue section. Shows \"All done for today ✓\" empty state when no tasks are due.\n\n#### Upcoming (30 days) Section\n\nCollapsible card showing tasks due in next 30 days, grouped by day. Each group shows date header and tasks beneath it. Provides forward-looking view for planning.\n\n### Calendar Sub-View\n\nAccessed by clicking \"📅 Dashboard\" / \"📅 Calendar\" toggle tabs at top. Shows standard monthly calendar grid:\n\n- Month navigation: Previous / Next arrows, \"Today\" button, current month/year displayed\n- Each day cell shows coloured pill indicators for tasks due on that date: green = complete, red = overdue, blue = open\n- Clicking a day opens slide-in or modal showing all tasks for that date\n- Days with overdue tasks have red-tinted cell border\n- Today's date highlighted with navy background\n\n---\n\n## SCREEN 2: Schedule & Print\n\n### Purpose\n\nPrimary day-to-day task management screen. Operations managers use this screen to review all tasks for any given date, manage task statuses, perform bulk actions, and generate printable run sheets for maintenance staff to carry during their shift. Most-used screen in system.\n\n### Two Sub-Views\n\n- **Schedule List (default)** — searchable, filterable list of tasks for selected date\n- **Print Sheet** — formatted, printable run sheet for selected date\n\n### Schedule List Sub-View\n\n#### Date Selector\n\nDate navigation control at top allows staff to view any date. Controls:\n\n- ← Previous day arrow button\n- Date display (shows \"Today\", \"Tomorrow\", \"Yesterday\" for relative dates, otherwise \"Mon 23 Mar 2026\" format)\n- → Next day arrow button\n- Date picker input for jumping to specific date\n- \"Today\" button to return to current date immediately\n\n#### Filter Bar\n\nBelow date selector, horizontal filter bar allows filtering tasks by:\n\n- Status: All | Open | In Progress | Overdue | Complete\n- Priority: All | Critical | High | Medium | Low\n- Asset Type: All | Rooms | Common Areas | Vehicles\n- Text search (matches task title and asset name)\n- \"Clear Filters\" button to reset all filters\n\n#### Bulk Actions Bar\n\nWhen any tasks are selected (via checkboxes), bulk actions bar appears:\n\n- \"Select All\" / \"Deselect All\" buttons\n- \"Mark Selected as Complete\" button (bulk quick-done)\n- Count of selected tasks shown\n\n#### Task Groups\n\nTasks for selected date displayed in groups, organised by priority (Critical first, then High, Medium, Low). Within each priority group, tasks sorted by asset name. Each task row shows:\n\n- Checkbox for bulk selection\n- Asset name (Room/Area/Vehicle name with appropriate icon 🏠/🏢/🚗). Clickable → opens Room Detail screen.\n- Task title (bold task name. If recurring, shows ♻ icon.)\n- Notes preview (first 60 characters of task notes if present, shown in muted text below title)\n- Checklist progress (if checklist exists: mini horizontal progress bar + \"X/Y ✓\" count)\n- Due date (date display with relative overdue flag, e.g. \"⚠ 3d overdue\" in red or \"In 2d\" for upcoming)\n- Priority badge (coloured badge: Critical/High/Medium/Low)\n- Status pill (Status indicator: Open / In Progress / Complete / Cancelled)\n- ✓ Done button (quick-complete button. Marks task complete immediately without opening modal.)\n- Clicking anywhere on row (except checkbox or Done button) opens Task Modal for full editing\n\n#### Empty State\n\nWhen no tasks match selected date/filters: friendly empty state shown with message and \"Generate Tasks\" call-to-action button.\n\n### Print Sheet Sub-View\n\nAccessed via \"Print Sheet\" tab. Generates formatted checklist-style run sheet for selected date that can be printed and given to maintenance staff.\n\n#### Print Sheet Contents\n\n- Header: UVG logo/name, date, shift information\n- Custom instructions block: editable free-text that prints at top of sheet (e.g. \"Focus on Block A today — Building manager inspection at 2pm\")\n- Custom checklist items: operator can add ad-hoc checklist items to print (e.g. \"Check generator fuel level\")\n- Task list: all scheduled tasks for date, formatted as printable checklist with: room/area name, task description, priority indicator, □ checkbox for manual tick-off\n- Footer: signature line, date, completion confirmation\n\n#### Print Sheet Controls\n\n- \"Edit Instructions\" button: opens inline text editor for custom instructions\n- \"Add Item\" button: adds custom line item to print sheet\n- \"🖨 Print\" button: triggers browser print dialog with print-specific CSS hiding all nav/UI elements\n- \"← Back to Schedule\" button: returns to list view\n- Each custom item has delete (×) button\n- Instructions can be saved and persist for that date\n\n---\n\n## SCREEN 3: Preventive Maintenance\n\n### Purpose\n\nWhere recurring maintenance schedules are defined and managed. Each template represents a maintenance task that must be performed on recurring basis (e.g. \"Monthly smoke alarm test for all rooms\", \"Weekly pool area clean\"). Templates used to bulk-generate task instances on a schedule.\n\n### Two Sub-Views\n\n- **Templates (default)** — view and manage all recurring templates\n- **Bulk Generate** — generate task instances from templates for date range\n\n### Templates Sub-View\n\n#### Template Summary Stats\n\nAt top: three summary stat cards showing Active Templates count, total tasks generated from templates (all time), and tasks due within 7 days.\n\n#### Template Grouping\n\nTemplates grouped by \"Applies To\" type (Rooms, Common Areas, Vehicles). Each group shows a card header and list of template cards.\n\n#### Template Card Rows\n\nEach template shows as a card row displaying:\n\n- Template name\n- Applies To type icon and label\n- Frequency description (e.g. \"Every 7 days\", \"Monthly on the 15th\")\n- Status badge (Active / Inactive)\n- Count of assets this template applies to\n- Count of tasks generated to date from this template\n- Action buttons: \"Edit\", \"Generate\", \"Delete\"\n- Clicking the template card opens Template Modal for editing\n\n#### New Template Button\n\n\"+ New Template\" button at bottom of list opens the Template Modal in create mode.\n\n### Bulk Generate Sub-View\n\nAccessed via \"Generate Tasks\" tab. Allows operator to generate multiple task instances from active templates for a future date range.\n\n#### Filter Controls\n\nAt top: dropdown selectors for:\n\n- Template name (or \"All Templates\")\n- Asset type (Rooms / Common Areas / Vehicles)\n- Date range selector (start and end dates)\n\n#### Summary Stats Row\n\nShows count of templates that will be affected by generation, estimated count of tasks to be created, and affected asset count.\n\n#### Completed Task List\n\nA list showing which templates will have tasks generated (once \"Generate\" is clicked). Each row shows template name, affected asset count, and task count estimate.\n\n#### Export\n\nAfter generation: \"✓ Tasks Generated\" confirmation, with options to \"Print Run Sheet\" or \"View in Schedule\". Option to export task list as CSV.\n\n---\n\n## SCREEN 4: Completed Work Log\n\n### Purpose\n\nHistorical record and analytics of all completed maintenance tasks. Shows completion rates, trends, and proof of work (photos, notes). Used by management and camp manager to verify maintenance standards are being met.\n\n### Two Sub-Views\n\n- **Dashboard** (default) — Summary view with charts and completed task cards\n- **Grid/Habit Tracker** — Habit-tracker style grid showing completion rates\n\n#### Dashboard View\n\nShows:\n\n- Date range selector (Last 30 days / Last 90 days / Custom range)\n- Summary stat cards: Completed Count, Completion Rate %, Tasks Overdue Before Completion, Average Completion Time\n- Large chart: Completed tasks by priority (stacked bar chart showing daily completed tasks by priority colour)\n- Chart: Completion rate trend (line chart showing completion rate % over selected period)\n- List section: \"Recently Completed Tasks\" showing most recent 10 completed tasks. Each row shows task title, asset, completed date/time, completed by, checklist completion status, and a \"View Details\" link.\n- Each row clickable to open task detail modal showing: full task info, checklist, notes, photos uploaded\n\n#### Grid/Habit Tracker View\n\nHabit-tracker style grid showing:\n\n- Rows: Assets (rooms, areas, vehicles) sorted by name\n- Columns: Task types (distinct task titles/templates)\n- Grid cells: colour-coded to show completion status for that asset+task type combo\n  - Green = completed on time\n  - Amber = completed but late\n  - Red = overdue / not completed\n  - Grey = not applicable or no task scheduled\n- Number in each cell shows count of completions or days since last completion\n- Date range selector at top to filter the view (Last 30 / 90 / custom days)\n- Tooltip on hover showing details (e.g. \"Rooms 101, 102, 104 completed; 105, 106 pending\")\n- Clicking cell opens task list for that asset+task combination\n- \"Export Grid as CSV\" button at bottom\n\n---\n\n## SCREEN 5: Vehicles\n\n### Purpose\n\nDedicated dashboard for vehicle fleet maintenance. Shows all vehicles and their maintenance status, similar to Completed Work but focused on vehicle assets rather than rooms.\n\n### Purpose\n\nDedicated vehicle maintenance dashboard. Shows all vehicles in fleet and their maintenance status, upcoming services, and completion history.\n\n### Two Sub-Views\n\n- **Task Tracker (default)** — progress grid showing completion per vehicle per task type\n- **Analytics** — timeline and reports view per vehicle\n\n### Task Tracker Sub-View\n\n#### Global Summary Banner\n\nAt top: banner showing Total Vehicles, Vehicles Due for Maintenance, Vehicles Overdue, Fleet Completion Rate %.\n\n#### Left Sidebar — Task Type Selector\n\nVertical list of all task types/templates applicable to vehicles. Clicking a task type filters the completion grid (below) to show only that task type.\n\n#### Task Header Card\n\nShows selected task type name, frequency, priority, and count of vehicles with this task scheduled.\n\n#### Completion Grid Table\n\nGrid showing:\n\n- Rows: Vehicle names/registration numbers\n- Columns: Last 12 months (showing as \"Jan\", \"Feb\", etc. with year on first row)\n- Grid cells: colour-coded completion status for that vehicle+month\n  - Green = completed\n  - Red = overdue\n  - Grey = not yet due / no task\n- Cell shows date of completion or \"Due\" text\n- Clicking cell opens task detail\n\n#### Column Totals Row\n\nBottom row shows completion count and rate % for each month column.\n\n### Analytics Sub-View\n\nShows detailed analytics and history for a selected vehicle (selected via dropdown at top).\n\n#### Asset Header Banner\n\nShows vehicle name, registration, active status, and fleet ID.\n\n#### Stat Strip\n\nShows key stats: Last Service Date, Next Service Due, Maintenance Cost YTD, Open Tasks Count.\n\n#### Three Tabs\n\n##### History Timeline Tab (default)\n\nShows chronological timeline of all maintenance activity (completed and in-progress) for selected vehicle.\n\n###### Layout\n\nVertical timeline with left/right alternating event cards.\n\n###### Month Grouping\n\nEvents grouped by month. Month header shows month and year. Months with no events are collapsed.\n\n###### Timeline Dot and Connector\n\nVertical line connecting all dots. Each event has a coloured dot matching task status/priority.\n\n###### Event Cards\n\nEach event card shows:\n\n- Task title\n- Task type/template name\n- Completion date and time\n- Completed by staff member name\n- Brief notes excerpt (first 120 chars)\n- Checklist completion status (X/Y items)\n- Thumbnail of any photo attached\n- \"View Full Task\" link opens task detail modal\n\n###### Timeline End Marker\n\nBottom of timeline shows \"No older records\" or \"View Archived Tasks\" link.\n\n###### Empty State\n\nIf no activity history exists: \"No maintenance records yet\" message with \"Create First Task\" call-to-action.\n\n###### Monthly Activity Chart (Sidebar)\n\nRight sidebar shows mini bar chart: count of completed tasks per month for past 12 months. Tooltip on hover shows month and count.\n\n##### Open Tasks Tab\n\nShows all tasks currently open (not complete) for selected vehicle. Same format as Schedule List (date, priority, status, assigned to, due date, Done button).\n\n##### Templates Tab\n\nShows all recurring maintenance templates that apply to vehicles in general (not specific to selected vehicle). Same format as Templates sub-view. \"Edit Template\" or \"View Applied Vehicles\" options.\n\n---\n\n## SCREEN 6: Reports & Analytics\n\n### Purpose\n\nAggregated reporting and analytics view. Provides management with insights into maintenance performance, trends, staff productivity, and facility health. Used by camp manager and operations manager for strategic decision-making.\n\nComponents include:\n\n- Date range selector (Last 30 / 90 / 365 days, or custom)\n- Period-over-period comparison toggle (This vs Last period)\n- Export options (PDF, CSV)\n\n#### Dashboard View\n\nSummary metrics:\n\n- Total Tasks (all time)\n- Completion Rate % (period)\n- Average Completion Time (period)\n- Tasks Overdue (period)\n- Most Active Asset (by task count, period)\n- Most Active Staff Member (by completions, period)\n\nCharts:\n\n- Tasks by Priority (donut chart)\n- Tasks by Status (stacked bar by month)\n- Task Volume Trend (line chart, monthly)\n- Completion Rate Trend (line chart, monthly)\n- Tasks by Asset Type (bar chart: Rooms vs Common Areas vs Vehicles)\n- Staff Productivity (bar chart: staff member vs completed tasks)\n\n#### Drill-Down Views\n\nClicking any chart or stat card navigates to a detailed sub-report:\n\n- **By Priority Report** — breakdown of tasks by priority with completion rates per priority\n- **By Asset Type Report** — completion rates and task volume per asset type\n- **By Staff Member Report** — productivity metrics per maintenance staff member\n- **By Room/Asset Report** — full history and metrics per individual room or asset\n\nEach drill-down includes table of underlying tasks and export options.\n\n---\n\n## SCREEN 7: Asset / Room Detail & History Timeline\n\n### Purpose\n\nDetailed view of a single asset (room, area, or vehicle). Shows comprehensive history, all associated tasks (open and completed), and allows inline task management. Accessed by clicking a room name in sidebar or in any task list.\n\n### Two Sub-Views\n\n- **History Timeline (default)** — chronological timeline of all maintenance activity\n- **Analytics** — trends and metrics for this specific asset\n\n### History Timeline Sub-View\n\n#### Asset Header Banner\n\nTop of screen shows asset name (large heading), asset type, occupancy status (if room), tags, and \"Edit Asset\" button.\n\n#### Stat Strip\n\nRow showing: Open Tasks (count), Due Today (count), Overdue (count), Last Maintenance (date), Next Scheduled (date).\n\n#### History Timeline\n\nVertical timeline showing all maintenance activity (completed and in-progress) for this asset:\n\n- Events grouped by month\n- Month header shows month and year\n- Each event is a card showing:\n  - Task title\n  - Task type/template (if from template)\n  - Completion date and time\n  - Completed by staff name\n  - Priority badge\n  - Status indicator\n  - Brief notes excerpt\n  - Checklist completion (X/Y)\n  - Thumbnail of attached photo\n  - \"View Full Task\" link opens task detail modal\n- Timeline line connects all dots\n- Each dot colour-coded by status/priority\n- Bottom marker: \"No older records\" or \"View Archived Tasks\"\n\n#### Monthly Activity Chart (Sidebar)\n\nRight sidebar shows mini bar chart of completed tasks per month (last 12 months). Tooltip shows month and count.\n\n#### Empty State\n\nIf no history: \"No maintenance records for this asset yet. Create first task.\" with \"+ New Task\" button.\n\n### Analytics Sub-View\n\nDetailed metrics and trends for this specific asset:\n\n#### Dashboard\n\nSummary stats:\n\n- Total Tasks (all time)\n- Completion Rate %\n- Average Task Completion Time\n- Tasks Overdue (ever)\n- Open Tasks (count)\n- Days Since Last Maintenance\n- Most Common Task Type\n\nCharts:\n\n- Task Completion Rate Trend (line chart, monthly)\n- Task Volume by Priority (bar chart, stacked)\n- Tasks by Status (donut chart)\n- Task Completion Rate by Month (bar chart)\n\n#### Details Tab\n\nTable showing all tasks (open and completed) for this asset:\n\n- Columns: Task Title, Status, Priority, Due Date, Completed Date, Completed By, Notes (excerpt)\n- Rows clickable to open task detail\n- Filters available: Status, Priority, Date range\n- Export as CSV\n\n---\n\n## 5. Shared Components — Modals\n\n### 5.1 Task Modal (Create / Edit)\n\n#### Modal Header\n\nTitle: \"New Task\" or \"Edit Task\"\nClose button (×) top right\nOptional breadcrumb showing parent asset name\n\n#### Overdue Warning\n\nIf editing a task that is overdue: red warning banner at top of modal showing \"This task is X days overdue — requires urgent attention\"\n\n#### Modal Tabs\n\nTwo tabs: Details | Attachments\n\n#### Details Tab — Fields\n\n- **Asset Selector** (required) — dropdown showing all active assets. Searchable. Shows asset name, type icon, occupancy status.\n- **Title** (required) — text"}]</script>
 <script id="ea" type="application/json">[{"id":"s1","name":"Assist","role":"For everyday staff","color":"#2D5A3D","persona":"You are a friendly assistant for camp staff. Answer in plain language, step by step. No jargon. Use markdown formatting — bullet points, bold, headings — to make answers easy to scan.","guardrails":"Do not answer questions about pay, HR disputes, or legal matters. Redirect to management.","suggestions":["How do I log an early check-in?","What is a Pre-Arrival check?","How do I report maintenance?","What does Out of Order mean?"]},{"id":"s2","name":"Logic","role":"For developers and managers","color":"#3D2D5A","persona":"You are a precise technical assistant for developers and managers. Explain rules, logic, and edge cases in structured detail using markdown formatting.","guardrails":"","suggestions":["Explain alteration vs cancellation logic","Occupancy calculation rules","Booking conflict edge cases","Maintenance SLA escalation"]}]</script>
 <script id="eac" type="application/json">{"code":"2850","org":"UVG Staff Portal","ann":""}</script>
 <script id="ebrand" type="application/json">{"primary":"#2D5A3D","name":"UVG Knowledge","title":"What can we help you with?","sub":"Select an assistant. Each one is trained on the same knowledge base.","footer":"UVG Staff Portal"}</script>
@@ -497,8 +497,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-h
         <!-- BRAIN -->
         <div class="apanel" id="tab-brain">
           <div class="srow">
-            <div class="scard"><div class="sval" id="sts">1</div><div class="slbl">Sections</div></div>
-            <div class="scard"><div class="sval" id="stw">173</div><div class="slbl">Words</div></div>
+            <div class="scard"><div class="sval" id="sts">10</div><div class="slbl">Sections</div></div>
+            <div class="scard"><div class="sval" id="stw">10,328</div><div class="slbl">Words</div></div>
             <div class="scard"><div class="sval" id="sta">2</div><div class="slbl">Agents</div></div>
             <div class="scard"><div class="sval" id="stl">0</div><div class="slbl">Questions</div></div>
             <div class="scard"><div class="sval" id="stk">Set</div><div class="slbl">API key</div></div>
@@ -529,7 +529,1890 @@ Workforce accommodation services for FIFO and long-term guests.
 Occupancy=(occupied/total)x100. Occupied=checked in AND not out. Arrivals included, departures excluded.
 
 ## Terminology
-FIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alteration=booking change. OOO=Out of Order.</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('def')">Save</button><span class="st" id="bst-def"></span></div></div></div></div>
+FIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alteration=booking change. OOO=Out of Order.</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('def')">Save</button><span class="st" id="bst-def"></span></div></div></div><div class="bsec"><div class="bshdr" onclick="tSec('id1774490112053fc8uiohgna7')"><div class="bico idoc">📄</div><div class="bmeta"><div class="bname">Booking Alterations Specs</div><div class="binfo">113 words · 26/03/2026</div></div><button class="bdel" onclick="event.stopPropagation();dSec('id1774490112053fc8uiohgna7')" title="Delete">✕</button></div><div class="bbody" id="bb-id1774490112053fc8uiohgna7"><textarea class="bed" id="be-id1774490112053fc8uiohgna7">I appreciate you sharing this, but I need to clarify the situation:
+
+**What I received:**
+- A message indicating binary/encoded Word document data
+- Instructions on how to extract text, rather than the actual document content
+
+**What I need to complete your request:**
+- The actual readable text content from "Booking Alterations Specs.docx"
+
+**To proceed, please:**
+
+1. Open the .docx file in Microsoft Word, Google Docs, or compatible application
+2. Select and copy all the text content
+3. Paste the plain text directly into our chat
+4. I will then format it with # headings and bullets, preserving all facts
+
+Once you provide the readable text content, I'll structure it exactly as requested.</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('id1774490112053fc8uiohgna7')">Save</button><span class="st" id="bst-id1774490112053fc8uiohgna7"></span></div></div></div><div class="bsec"><div class="bshdr" onclick="tSec('id1774490126123cwwho6ns0h')"><div class="bico idoc">📄</div><div class="bmeta"><div class="bname">Booking Calendar Specs</div><div class="binfo">111 words · 26/03/2026</div></div><button class="bdel" onclick="event.stopPropagation();dSec('id1774490126123cwwho6ns0h')" title="Delete">✕</button></div><div class="bbody" id="bb-id1774490126123cwwho6ns0h"><textarea class="bed" id="be-id1774490126123cwwho6ns0h">I appreciate you trying to share the document, but I don't have access to the actual file "Booking Calendar Specs.docx" or its contents.
+
+To help you format this document as structured knowledge, please:
+
+1. **Copy and paste the text content** directly from the Word document into our chat
+2. **Or provide a screenshot** of the document
+3. **Or share the plain text version** of the content
+
+Once you provide the actual text content, I'll immediately format it with:
+- `#` headings for main sections
+- `##` subheadings where appropriate
+- **Bullet points** for lists
+- **Preservation of ALL facts and details**
+
+Please share the content and I'll get started right away!</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('id1774490126123cwwho6ns0h')">Save</button><span class="st" id="bst-id1774490126123cwwho6ns0h"></span></div></div></div><div class="bsec"><div class="bshdr" onclick="tSec('id1774490143420w358pkesw6c')"><div class="bico idoc">📄</div><div class="bmeta"><div class="bname">Specs - Company Management</div><div class="binfo">117 words · 26/03/2026</div></div><button class="bdel" onclick="event.stopPropagation();dSec('id1774490143420w358pkesw6c')" title="Delete">✕</button></div><div class="bbody" id="bb-id1774490143420w358pkesw6c"><textarea class="bed" id="be-id1774490143420w358pkesw6c">I understand you want me to format content from "Specs - Company Management.docx" as structured knowledge, but I haven't received the actual document content.
+
+To proceed, please provide the document text in one of these ways:
+
+1. **Copy and paste the text directly** from the Word document
+2. **Share as plain text** - the readable content without formatting codes
+3. **Provide readable content** in any text format
+
+Once you share the actual content, I will:
+- Format it with `#` headings for main topics
+- Use `##` for subtopics
+- Organize information as bullet points
+- Preserve ALL facts and details
+- Return only the formatted content
+
+Please paste the document content and I'll structure it immediately.</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('id1774490143420w358pkesw6c')">Save</button><span class="st" id="bst-id1774490143420w358pkesw6c"></span></div></div></div><div class="bsec"><div class="bshdr" onclick="tSec('id17744901518101hd1we8yfofj')"><div class="bico idoc">📄</div><div class="bmeta"><div class="bname">Dashboard Specs</div><div class="binfo">204 words · 26/03/2026</div></div><button class="bdel" onclick="event.stopPropagation();dSec('id17744901518101hd1we8yfofj')" title="Delete">✕</button></div><div class="bbody" id="bb-id17744901518101hd1we8yfofj"><textarea class="bed" id="be-id17744901518101hd1we8yfofj"># Document Content Extraction
+
+I appreciate your request, but I'm unable to directly extract text from the Base64-encoded Word document content you've provided. The data you've shared is a compressed binary format (.docx file encoded as Base64), which requires proper decompression and parsing.
+
+However, I can explain what you can do:
+
+## Options to Extract Text:
+
+1. **Use Online Tools**: Convert the Base64 to a .docx file using an online decoder, then open it in Microsoft Word or a compatible application.
+
+2. **Use Python**: 
+```python
+import zipfile
+import xml.etree.ElementTree as ET
+from base64 import b64decode
+
+# Decode and save
+docx_data = b64decode(your_base64_string)
+with open('document.docx', 'wb') as f:
+    f.write(docx_data)
+
+# Extract text
+with zipfile.ZipFile('document.docx') as zip_ref:
+    xml_content = zip_ref.read('word/document.xml')
+    root = ET.fromstring(xml_content)
+    # Parse text elements
+```
+
+3. **Use Python-docx Library**:
+```python
+from docx import Document
+
+doc = Document('document.docx')
+for para in doc.paragraphs:
+    print(para.text)
+```
+
+## What I Can See:
+
+From the file structure encoded, this appears to be a standard .docx document containing:
+- Main document content (word/document.xml)
+- Headers and footers
+- Styles and formatting
+- Comments and footnotes
+- Numbering and fonts
+
+**Could you provide the document in plain text format, or would you like guidance on how to extract it yourself?**</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('id17744901518101hd1we8yfofj')">Save</button><span class="st" id="bst-id17744901518101hd1we8yfofj"></span></div></div></div><div class="bsec"><div class="bshdr" onclick="tSec('id1774490185170807nuy0637p')"><div class="bico idoc">📄</div><div class="bmeta"><div class="bname">Housekeeping Specs</div><div class="binfo">165 words · 26/03/2026</div></div><button class="bdel" onclick="event.stopPropagation();dSec('id1774490185170807nuy0637p')" title="Delete">✕</button></div><div class="bbody" id="bb-id1774490185170807nuy0637p"><textarea class="bed" id="be-id1774490185170807nuy0637p"># Word Document Content
+
+I appreciate your request, but I need to let you know that the content you've provided appears to be the binary/encoded data from a Word document file rather than extractable text content.
+
+The string you've shared looks like Base64-encoded or compressed document data (typical of the internal .docx file format, which is actually a zipped XML structure). This cannot be directly converted to readable text without:
+
+1. **Decoding the binary data** first
+2. **Extracting the XML** from the compressed archive
+3. **Parsing the document structure** to retrieve the text content
+
+## To help you better, please:
+
+- **Copy and paste the actual text** from the Word document directly, or
+- **Upload or share the .docx file** through a file-sharing method that preserves the document format, or
+- **Use Word's "Save As" feature** to export as plain text (.txt) first
+
+Once you provide the actual text content, I'll be happy to extract and organize it while preserving all headings and structural formatting!</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('id1774490185170807nuy0637p')">Save</button><span class="st" id="bst-id1774490185170807nuy0637p"></span></div></div></div><div class="bsec"><div class="bshdr" onclick="tSec('id1774490233196pji8r3gi7z')"><div class="bico idoc">📄</div><div class="bmeta"><div class="bname">Room Management Specs</div><div class="binfo">171 words · 26/03/2026</div></div><button class="bdel" onclick="event.stopPropagation();dSec('id1774490233196pji8r3gi7z')" title="Delete">✕</button></div><div class="bbody" id="bb-id1774490233196pji8r3gi7z"><textarea class="bed" id="be-id1774490233196pji8r3gi7z">I appreciate you sharing this file, but I need to let you know that what you've provided is a base64-encoded binary file (a .docx Word document file), not plain text content.
+
+To extract text from this Word document, I would need to:
+
+1. **Decode the base64** data
+2. **Decompress the ZIP archive** (docx files are ZIP archives)
+3. **Parse the XML files** inside to extract the text content
+
+However, I cannot directly process binary files or execute decompression operations.
+
+**Here are your options:**
+
+1. **Convert the document to plain text or PDF** using Microsoft Word, Google Docs, or an online converter, then share the text version with me
+
+2. **Copy and paste the text directly** from your Word document into our chat
+
+3. **Use an online tool** to convert the DOCX to text, then share the result
+
+4. **Share a screenshot** of the document content
+
+Once you provide the text in one of these formats, I'll be happy to help you extract and organize any headings, structure, and content you need!</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('id1774490233196pji8r3gi7z')">Save</button><span class="st" id="bst-id1774490233196pji8r3gi7z"></span></div></div></div><div class="bsec"><div class="bshdr" onclick="tSec('id17744903723195pqusy7nnjt')"><div class="bico ipdf">📄</div><div class="bmeta"><div class="bname">Permanent Room Logic</div><div class="binfo">730 words · 26/03/2026</div></div><button class="bdel" onclick="event.stopPropagation();dSec('id17744903723195pqusy7nnjt')" title="Delete">✕</button></div><div class="bbody" id="bb-id17744903723195pqusy7nnjt"><textarea class="bed" id="be-id17744903723195pqusy7nnjt"># Permanent Rooms – Occupancy vs Usage Logic
+
+## 1. Concept Overview
+
+Permanent rooms are **specific physical rooms allocated to a company** and optionally assigned to a specific guest within that company for a defined period.
+
+They represent **room ownership, not necessarily room usage**.
+
+This means a permanent room can exist in three states:
+
+1. Allocated but unused
+2. Allocated and used
+3. Allocated but temporarily vacant
+
+The system must treat **ownership and usage as separate concepts**.
+
+## 2. Two Different Metrics
+
+The system must distinguish between two key metrics:
+
+### Physical Usage (Actual Occupancy)
+
+This represents **whether a guest is physically staying in the room on a given night**.
+
+Example:
+
+| Room | Guest | Used |
+|------|-------|------|
+| 101 | John Smith | Yes |
+| 102 | — | No |
+| 103 | — | No |
+
+Physical usage = **1 room**
+
+Only one room is actually occupied.
+
+### Allocated Occupancy (Company Allocation)
+
+This represents **how many rooms belong to a company regardless of whether they are being used**.
+
+Example:
+
+Company permanent allocation:
+
+| Room | Status |
+|------|--------|
+| 101 | Used |
+| 102 | Empty |
+| 103 | Empty |
+
+Allocated occupancy = **3 rooms**
+
+Even though only one guest is staying.
+
+## 3. Why This Separation Is Required
+
+Workforce accommodation contracts often involve **capacity ownership rather than purely nightly usage**.
+
+Permanent rooms guarantee that:
+
+• specific rooms are always available for a company
+• long-term workers keep the same room
+• other companies cannot use those rooms
+
+Because of this, **vacant permanent rooms are still reserved inventory**.
+
+They are **not available for general bookings**.
+
+## 4. Behaviour Rules for Permanent Rooms
+
+Permanent rooms must follow strict system rules.
+
+### Rule 1: Company Ownership
+
+Permanent rooms belong to a company allocation.
+
+Example:
+
+Company: Yancoal
+Permanent rooms:
+101
+102
+103
+
+Other companies cannot book these rooms.
+
+### Rule 2: Guest Assignment (Optional)
+
+A permanent room may be assigned to a specific guest.
+
+Example:
+
+| Guest | Permanent Room |
+|-------|----------------|
+| John Smith | 101 |
+
+When a booking is created for that guest:
+
+• the system automatically assigns room 101
+• other rooms cannot be selected
+
+### Rule 3: Room Reservation Even When Empty
+
+If the assigned guest is not currently staying, the room remains reserved.
+
+Example:
+
+| Room | Guest | Occupied |
+|------|-------|----------|
+| 101 | John Smith | No |
+
+The room is still unavailable to other guests.
+
+### Rule 4: Permanent Room Expiry
+
+Permanent room assignments can have an expiry date.
+
+Example:
+
+| Guest | Room | Start | Expiry |
+|-------|------|-------|--------|
+| John Smith | 101 | Jan 1 | Jun 30 |
+
+After expiry:
+
+• the room returns to the company's permanent allocation pool
+• it can be reassigned to another guest.
+
+## 5. Impact on Availability
+
+Permanent rooms reduce the general availability pool.
+
+Example:
+
+Total rooms: **200**
+
+Permanent allocations:
+
+| Company | Permanent Rooms |
+|---------|-----------------|
+| Yancoal | 10 |
+| ABM | 5 |
+
+Available general rooms:
+
+200 - 15 = **185**
+
+Those 15 rooms cannot be used by other companies.
+
+## 6. Impact on Occupancy Reporting
+
+Reports must distinguish between **physical occupancy and allocated capacity**.
+
+### Physical Occupancy Example
+
+| Room | Occupied |
+|------|----------|
+| 101 | Yes |
+| 102 | No |
+| 103 | No |
+
+Physical occupancy = **1**
+
+### Allocation Example
+
+| Company | Permanent Rooms |
+|---------|-----------------|
+| Yancoal | 3 |
+
+Allocation occupancy = **3**
+
+## 7. Calendar Behaviour
+
+Permanent rooms must display clearly in the booking calendar.
+
+Required behaviour:
+
+• show lock icon on permanent rooms
+• prevent other guests from selecting those rooms
+• automatically assign the room to the correct guest
+• keep the room blocked when unused
+
+## 8. Example Scenario
+
+Camp capacity:
+
+200 rooms
+
+Company allocations:
+
+| Company | Permanent | Prepaid |
+|---------|-----------|---------|
+| Yancoal | 10 | 30 |
+
+Tonight:
+
+| Company | Guests Staying |
+|---------|-----------------|
+| Yancoal | 24 |
+
+Results:
+
+Physical occupancy:
+
+24 rooms used
+
+Financial/allocated occupancy:
+
+30 rooms charged
+
+Permanent rooms simply ensure **specific rooms remain reserved for certain workers within that allocation**.
+
+## 9. Key Principle for the System
+
+Permanent rooms represent:
+
+**Room ownership**
+
+**not**
+
+**room usage**
+
+Usage is determined by **actual guest bookings**.
+
+Ownership is determined by **company allocation and permanent room assignments**.
+
+Both must be tracked separately in the system.</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('id17744903723195pqusy7nnjt')">Save</button><span class="st" id="bst-id17744903723195pqusy7nnjt"></span></div></div></div><div class="bsec"><div class="bshdr" onclick="tSec('id177449042462094xdkdsjymf')"><div class="bico ipdf">📄</div><div class="bmeta"><div class="bname">Guest Management Screen Specs pdf</div><div class="binfo">3506 words · 26/03/2026</div></div><button class="bdel" onclick="event.stopPropagation();dSec('id177449042462094xdkdsjymf')" title="Delete">✕</button></div><div class="bbody" id="bb-id177449042462094xdkdsjymf"><textarea class="bed" id="be-id177449042462094xdkdsjymf"># Guest Management Screen, Full Functional Description &amp; Operational Guide
+
+## 1. Overview and Purpose
+
+The Guest Management screen is the guest **profile and guest history module** of the UVG Program.
+
+Its purpose is to give staff a single place where they can look up any guest and immediately understand:
+
+• who the guest is
+• which company and sub-company they belong to
+• whether they have a room preference or a permanent room
+• all past, current, and future bookings
+• all booking alterations linked to that guest
+• any internal notes or operational comments
+• any files or documents attached to that guest profile
+
+This screen is not supposed to behave like a traditional hotel CRM. UVG is not a public hotel with normal front-desk check-in workflows. It is workforce accommodation, and the guest profile is more of an **operational record** than a hospitality contact card. That is why traditional fields like age, address, room status, and hotel-style check-in status are not important here, while booking history, allocation logic, and internal notes are critical.
+
+Freelancer Chat History
+
+Freelancer Chat History
+
+At a high level, the Guest Management screen exists to answer these questions quickly:
+
+• Who is this guest?
+• What company are they linked to?
+• Have they stayed here before?
+• What room do they usually prefer?
+• Do they have a permanent room?
+• What bookings do they currently have?
+• Have any alterations happened to their bookings?
+• Are there any notes staff need to know before booking or moving them?
+
+## 2. Core Responsibility of the Screen
+
+This screen is responsible for the **individual guest as an entity across time**, while the Booking Calendar is responsible for the **live room allocation by date**.
+
+That means the Guest Management screen should own:
+
+• guest master record
+• company association
+• room preference or permanent room profile settings
+• guest notes
+• files and attachments
+• booking history
+• future bookings
+• alteration history
+• quick access to create bookings or alterations for that guest
+
+It should not be reduced to a simple grid of guest names. You made it very clear that the correct direction is **individual guest profiles**, similar to your existing customer management spreadsheet, where the profile is the focus and the list is mainly for finding the person.
+
+Freelancer Chat History
+
+Freelancer Chat History
+
+## 3. What the Screen Is Not
+
+The Guest Management screen is not:
+
+• a payment screen
+• a public guest portal
+• a traditional hotel check-in screen
+• a front-desk arrival-status tool
+• a room allocation screen by itself
+• a company management screen
+
+It should not focus on unnecessary hospitality-style fields that do not help operations, such as:
+
+• age
+• address
+• room status as a hotel-style field
+• generic "status" fields that do not serve a practical purpose
+
+You specifically rejected those types of fields because they clutter the screen and distract from the real operational use case.
+
+Freelancer Chat History
+
+## 4. Main Design Philosophy
+
+The key design principle for Guest Management is:
+
+**The profile should be the focus, not the search list.**
+
+You also noted that the page felt overcrowded when too much space was being given to the search area and side widgets, rather than the selected guest's profile. The main panel should focus on the selected guest's information, while the search/list area should simply help locate the guest.
+
+UVG Program Feedback 5th Feb 1.…
+
+So the page should feel like:
+
+• left side, searchable guest list and basic filters
+• main centre/right side, full guest profile view
+• tabs or structured sections inside the profile for bookings, alterations, files, and notes
+
+That is the operationally correct layout for UVG.
+
+## 5. Page Layout and Structure
+
+### A. Left Panel, Guest Search and Guest List
+
+The left-hand section should be a **guest finder panel**.
+
+It should include:
+
+• search bar
+• active/inactive filter
+• optional company/sub-company filter
+• configurable guest list columns
+• sorting controls
+• quick new guest button
+
+The user must be able to:
+
+• search by typing guest name
+• sort by selected columns
+• add or hide columns in the search results
+• filter active vs inactive guests
+
+This was explicitly required.
+
+UVG Program Notes
+
+#### Search/list expectations
+
+The search results should show enough information to identify the guest quickly, but not overload the list. Likely useful columns include:
+
+• guest name
+• company
+• sub-company
+• phone
+• email
+• preference/permanent indicator
+• current in-house or future booking indicator
+
+The list should not dominate the screen. It should be functional and compact.
+
+### B. Main Guest Profile Area
+
+Once a guest is clicked, the main panel should show that guest's profile in full detail.
+
+This main area is the true heart of the screen.
+
+It should show:
+
+• guest identity details
+• linked company/sub-company
+• preference or permanent room setting
+• notes
+• bookings
+• alterations
+• uploaded files
+
+The selected guest should remain visible while related tabs are browsed.
+
+### C. Top Action Bar
+
+At the top of the guest profile there should be action buttons for common tasks.
+
+These should include things like:
+
+• Edit Guest
+• New Booking
+• Add Alteration
+• Upload File
+• Mark Active / Inactive
+• Status button, moved to top because it is not frequently used in the main form area
+
+You specifically noted that "status" should be moved to a button at the top, because it is not something used frequently enough to deserve major form space.
+
+UVG Program Notes
+
+### D. Profile Sections or Tabs
+
+The profile should ideally be broken into structured sections or tabs, such as:
+
+#### 1. Guest Details
+
+Basic personal and operational profile fields.
+
+#### 2. Bookings
+
+All past, present, and future bookings for the guest.
+
+#### 3. Alterations
+
+All alterations linked to that guest.
+
+#### 4. Files
+
+Attachments and downloads.
+
+#### 5. Notes
+
+Operational notes, preferences, special instructions.
+
+#### 6. Shift Type view inside bookings
+
+Shift is booking-specific, not just guest-specific, so this belongs in booking records, but the guest screen must expose it clearly.
+
+UVG Program Notes
+
+## 6. Guest Details Section, What It Must Contain
+
+The guest details section should contain the important identifying and operational fields only.
+
+### Core fields
+
+These should include:
+
+• Guest full name
+• Company
+• Sub-company, if applicable
+• Phone number, optional
+• Email address, optional
+• Active / inactive status
+• Perm or Preference selector
+• Selected room if applicable
+• Notes section beneath the room setting
+
+This comes directly from your notes that:
+
+• "Allow perm room" should be replaced with "Perm or Preference"
+• depending on what is selected, the user is then prompted to choose a room
+• there should be a notes section beneath that area
+
+UVG Program Notes
+
+### Fields that are not required
+
+These should be removed or avoided:
+
+• Age
+• Address
+• Traditional room status field
+• Hotel-style check-in status
+
+You explicitly said these were unnecessary and not suited to UVG.
+
+Freelancer Chat History
+
+## 7. Perm or Preference Logic
+
+This is one of the most important parts of Guest Management.
+
+### The control
+
+Instead of a vague "Allow perm room" option, the screen should use a clear control called:
+
+**Perm or Preference**
+
+The user then selects one of the following:
+
+• None
+• Preference
+• Permanent
+
+Even if the wording remains exactly "Perm or Preference," the underlying logic needs three operational outcomes, because not every guest has either. Your earlier feedback made clear that sometimes there is no preference at all.
+
+Freelancer Chat History
+
+### Preference meaning
+
+A preference means:
+
+• this guest likes a certain room
+• it is only a preference
+• it does not reserve or lock the room
+• staff should try to use it when available
+• the preferred room should appear first when creating a booking
+• if unavailable, it should still show at the top, but disabled or highlighted as unavailable
+
+This behaviour was specified for the calendar booking flow and therefore must be driven from the guest profile data.
+
+UVG Program Notes
+
+UVG Promgram Notes &amp; Feedback
+
+Freelancer Chat History
+
+### Permanent meaning
+
+A permanent room means:
+
+• the room belongs solely to that guest
+• no other guest should be able to use it
+• it must auto-assign when that guest is booked
+• it should only be selectable if the company has permanent room allocation in Company Management
+• permanent room rules override ordinary room availability logic
+
+This rule is repeated in multiple places and is critical.
+
+UVG Program Notes
+
+UVG Program Feedback 5th Feb 1.…
+
+### Dependency on Company Management
+
+Permanent rooms cannot be freely assigned at the guest level. The system must first confirm the linked company actually has permanent room allocation available through Company Management.
+
+UVG Program Feedback 5th Feb 1.…
+
+So Guest Management must validate against Company Management before allowing a permanent room to be saved.
+
+## 8. Notes Section
+
+There must be a dedicated notes section under the permanent/preference area. That was explicitly requested.
+
+UVG Program Notes
+
+### What notes are for
+
+This notes field is for operational information such as:
+
+• guest has a special room preference
+• guest prefers ground floor
+• health or support notes relevant to accommodation operations
+• internal comments for booking staff
+• recurring behaviour or important context
+
+### Sync rule
+
+This notes field must be synced everywhere relevant.
+
+Notes must remain consistent across:
+
+• Guest Management
+• booking creation
+• booking editing
+• booking details
+• calendar-related booking views
+
+You repeatedly raised that notes being inconsistent across screens was a major problem.
+
+UVG Promgram Notes &amp; Feedback
+
+So in system design terms, this should be a **single source of truth field**, not copied text in multiple places.
+
+## 9. Bookings Section
+
+This is one of the biggest responsibilities of the screen.
+
+You made it very clear that the guest profile should show all bookings, with all rooms and stay details, across past and future.
+
+Freelancer Chat History
+
+### What the bookings section should show
+
+The Bookings tab or area should list every booking for the selected guest, including:
+
+• booking reference
+• company
+• sub-company
+• room number
+• booking start date
+• booking end date
+• shift type
+• booking notes
+• booking status in practical terms, or alteration summary rather than hotel-style status
+• whether the room was permanent / preference / standard
+• link to open the booking in Booking Management or Calendar
+
+### Why this matters
+
+A guest at UVG may have:
+
+• multiple historic stays
+• multiple future roster bookings
+• recurring booking patterns
+• booking changes over time
+
+That means a single static "Room Number" field in the profile is not enough and is actually misleading. You specifically rejected that.
+
+Freelancer Chat History
+
+### Booking list behaviour
+
+The bookings list should allow:
+
+• sorting
+• filtering
+• viewing all history
+• opening details
+• creating a new booking from the guest record
+
+## 10. Shift Type in Guest Management
+
+You required that bookings should have a tab or visible field for Shift Type, so staff can see whether a guest is on Nightshift or Dayshift.
+
+UVG Program Notes
+
+This means:
+
+• shift type is tied to each booking, not necessarily permanently tied to the guest
+• the Guest Management screen must expose shift information within the booking history
+• staff should not need to leave the guest profile to see shift context
+
+A good implementation would show shift type as:
+
+• a text tag in the bookings table
+• or a dedicated column in the bookings section
+• or both
+
+It should support:
+
+• Dayshift
+• Nightshift
+• Unknown / blank where not known
+
+But it should not be compulsory on every booking, because elsewhere you specified shift type is not always known at booking time.
+
+UVG Promgram Notes &amp; Feedback
+
+## 11. Alterations Section
+
+You also required that booking alterations must be able to be added from Guest Management.
+
+UVG Program Notes
+
+That means the guest screen must not only display guest details and bookings, it must also be an operational entry point for adjustments.
+
+### What this section should do
+
+The Alterations section should allow staff to:
+
+• view all alterations linked to the guest
+• add a new alteration for a selected booking
+• open and edit an existing alteration
+• clearly see original dates vs actual dates
+• see comments and reasons
+• jump to the linked booking
+
+### Alteration types likely relevant here
+
+From the broader UVG alteration logic, the common types include:
+
+• Early check-in / walk-in
+• Overstay
+• Early checkout / early departure
+• No-show
+• Room move
+• Other custom alteration types where configured in settings
+
+Booking Alterations Specs
+
+### Why this matters in Guest Management
+
+The guest profile is where staff often need the full story of that person's stay pattern, not just the original bookings. So showing alterations here is essential.
+
+You later explicitly noted that **bookings and alterations were not showing in this section at all**, which confirms both are mandatory parts of the module.
+
+UVG Program Feedback 5th Feb 1.…
+
+## 12. File Upload and Attachments
+
+The Guest Management screen must include file upload capability.
+
+Your requirements were very clear that:
+
+• the upload section should allow more than 4 files
+• it should be designed more cleanly and neatly
+• it later also needed download capability
+• the current file upload area was too long and awkward
+
+UVG Program Notes
+
+UVG Program Feedback 5th Feb 1.…
+
+### What the files section should support
+
+It should support:
+
+• uploading multiple files
+• no tiny hard cap like 4 files
+• document list with file name, upload date, uploaded by
+• download action
+• optional preview if practical
+• cleaner compact layout rather than a long stretched section
+
+### Likely use of files
+
+This may include:
+
+• identification docs
+• company correspondence
+• booking-related documents
+• induction or accommodation documents
+• guest-specific operational paperwork
+
+Even if not all of that is used immediately, the module should support it in a scalable way.
+
+## 13. Active / Inactive Logic
+
+The screen needs an active/inactive guest filter, and you later specifically said it was not working.
+
+UVG Program Feedback 5th Feb 1.…
+
+### What active/inactive should mean
+
+A guest profile can be made inactive when that person is no longer relevant for current operations.
+
+But when marking inactive, the system must check if the guest has any upcoming bookings.
+
+If upcoming bookings exist, the system should:
+
+• show those future bookings
+• warn the user
+• prompt them to deal with those bookings, such as deleting or resolving them first
+
+This is an important logic rule because otherwise the system could leave future bookings attached to inactive profiles.
+
+## 14. Company Occupancy on the Guest Screen
+
+One of the later feedback notes said that **company occupancy should be displayed on the left under the guest list**.
+
+UVG Promgram Notes &amp; Feedback
+
+This suggests the Guest Management page should include a small side visibility widget that shows occupancy context for the selected company or currently filtered company.
+
+This should not dominate the page, because you later said the screen felt crowded and the profile needs to remain the focus.
+
+UVG Program Feedback 5th Feb 1.…
+
+So the likely correct design is:
+
+• small left-side company occupancy summary under the guest list
+• main profile still takes most of the screen
+• side summary is supportive context only
+
+## 15. Key Functional Rules and Logic
+
+### Rule 1. One guest profile, many bookings
+
+A guest profile must support multiple bookings over time. It must never be reduced to one current room field only.
+
+Freelancer Chat History
+
+### Rule 2. Notes are central and synced
+
+Guest notes must stay identical across all modules that expose them.
+
+UVG Promgram Notes &amp; Feedback
+
+### Rule 3. Preference is not permanent
+
+Preference only influences room suggestions. It does not reserve the room.
+
+UVG Program Notes
+
+### Rule 4. Permanent rooms are controlled
+
+Permanent rooms:
+
+• are exclusive
+• can only be used by the assigned guest
+• must only be assignable if the company has permanent room allocation
+• must influence room selection rules in booking flows
+
+UVG Program Notes
+
+UVG Program Feedback 5th Feb 1.…
+
+### Rule 5. Guest Management must expose booking and alteration history
+
+The profile is incomplete without both.
+
+UVG Program Feedback 5th Feb 1.…
+
+### Rule 6. Hotel-style status is not the right model
+
+Standard hotel check-in/out status logic is not the focus for UVG and should not clutter the profile.
+
+Freelancer Chat History
+
+### Rule 7. Search results must be configurable
+
+Add/hide columns and sort are required.
+
+UVG Program Notes
+
+### Rule 8. Inactive logic must protect future bookings
+
+Inactive guests with upcoming bookings must trigger a warning and prompt.
+
+UVG Program Feedback 5th Feb 1.…
+
+## 16. Relationship to Other Modules
+
+### With Booking Calendar
+
+Guest Management feeds the calendar with:
+
+• guest identity
+• company link
+• preferred room
+• permanent room
+• notes
+
+The calendar booking flow should use the guest profile to auto-suggest or enforce room logic.
+
+UVG Promgram Notes &amp; Feedback
+
+### With Booking Management
+
+The guest profile should expose the same booking records that appear in booking management, but organised around the person rather than around all bookings system-wide.
+
+### With Booking Alterations
+
+Guest Management must surface alteration history and allow new alterations to be created.
+
+UVG Program Notes
+
+Booking Alterations Specs
+
+### With Company Management
+
+Permanent room eligibility depends on company-level permanent room allocation.
+
+UVG Program Feedback 5th Feb 1.…
+
+## 17. Practical Page Flow
+
+A likely operational flow for the screen would be:
+
+1. Staff search for a guest in the left panel.
+2. Staff click the guest.
+3. Main profile loads.
+4. Staff immediately see:
+   ○ company
+   ○ room preference or permanent room
+   ○ notes
+   ○ files
+   ○ bookings
+   ○ alterations
+5. From there, staff can:
+   ○ edit the guest
+   ○ add a booking
+   ○ add an alteration
+   ○ review booking history
+   ○ download attachments
+   ○ mark inactive if needed
+
+That is much closer to your spreadsheet-style operational workflow than the earlier mockup direction you rejected.
+
+Freelancer Chat History
+
+Freelancer Chat History
+
+## 18. Usability Requirements
+
+Based on your feedback, the Guest Management screen must be:
+
+• less crowded
+• easier to navigate
+• profile-focused
+• operational rather than decorative
+• consistent with spreadsheet logic
+• practical for admin staff rather than hotel reception workflows
+
+You also indicated the layout simplification was important because the page had felt overcrowded and difficult to use.
+
+UVG Promgram Notes &amp; Feedback
+
+UVG Program Feedback 5th Feb 1.…
+
+So visually it should favour:
+
+• clean profile cards
+• clear section headings
+• fewer unnecessary fields
+• better use of space
+• a more compact files section
+• obvious buttons for the main actions
+
+## 19. Acceptance Criteria, What "Done" Looks Like
+
+The Guest Management screen can be considered complete when all of the following are true:
+
+### Profile structure
+
+• Each guest has an individual profile view.
+• The profile is the main focus of the page.
+• The page is similar in spirit to your customer management spreadsheet.
+
+Freelancer Chat History
+
+### Search and list
+
+• Guests can be searched quickly.
+• Columns can be shown/hidden.
+• Sorting works.
+• Active/inactive filter works.
+
+UVG Program Notes
+
+UVG Program Feedback 5th Feb 1.…
+
+### Details
+
+• Company and sub-company are linked correctly.
+• Optional phone and email can be stored.
+• Unnecessary fields like age and address are removed.
+
+Freelancer Chat History
+
+### Permanent / preference logic
+
+• "Perm or Preference" control exists.
+• Preference is only a preference.
+• Permanent is only allowed when company allocation permits it.
+• Room number is clearly shown with Preference: Room X or Permanent: Room X style logic.
+
+Freelancer Chat History
+
+### Notes
+
+• Notes section exists under the room setting.
+• Notes sync everywhere relevant.
+
+UVG Program Notes
+
+UVG Promgram Notes &amp; Feedback
+
+### Bookings
+
+• All bookings, past and future, show in the profile.
+• Room numbers and stay details are visible.
+• Shift type is visible within bookings.
+
+Freelancer Chat History
+
+UVG Program Notes
+
+### Alterations
+
+• Alterations can be added from Guest Management.
+• Existing alterations display in the profile.
+• Booking and alteration history are both visible.
+
+UVG Program Notes
+
+UVG Program Feedback 5th Feb 1.…
+
+### Files
+
+• More than 4 files can be uploaded.
+• Files can be downloaded.
+• Layout is cleaner and more compact.
+
+UVG Program Notes
+
+UVG Program Feedback 5th Feb 1.…
+
+### Inactive logic
+
+• Marking inactive works.
+• System warns if future bookings exist.
+
+UVG Program Feedback 5th Feb 1.…
+
+## 20. Best Summary in One Sentence
+
+The **Guest Management screen** should be the **single source of truth for each guest's profile, history, room assignment logic, notes, files, bookings, and alterations**, designed around **individual guest profiles** rather than a generic guest table, and built to support the operational realities of UVG rather than traditional hotel workflows.</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('id177449042462094xdkdsjymf')">Save</button><span class="st" id="bst-id177449042462094xdkdsjymf"></span></div></div></div><div class="bsec"><div class="bshdr" onclick="tSec('id1774490544122dtd598mh5t')"><div class="bico ipdf">📄</div><div class="bmeta"><div class="bname">Maintenance Specs pdf</div><div class="binfo">5038 words · 26/03/2026</div></div><button class="bdel" onclick="event.stopPropagation();dSec('id1774490544122dtd598mh5t')" title="Delete">✕</button></div><div class="bbody" id="bb-id1774490544122dtd598mh5t"><textarea class="bed" id="be-id1774490544122dtd598mh5t"># UVG Operations · Maintenance Management Module Specifications v6.x
+
+## CONFIDENTIAL — Internal Use Only
+
+---
+
+## Executive Summary
+
+### 1.1 What This System Does
+
+- Tracks all open, overdue, scheduled, and completed maintenance tasks across every asset at UVG
+- Manages preventive/recurring maintenance schedules with configurable frequency templates
+- Provides a daily operations dashboard showing real-time status of facility maintenance
+- Generates printable run sheets for maintenance staff to carry during their shift
+- Produces a habit-tracker style progress grid showing completion rates per task type per asset
+- Maintains a full historical timeline of all maintenance activity per room and asset
+- Supports bulk task generation from recurring templates to populate the schedule forward
+
+### 1.2 Who Uses This System
+
+- **Operations Manager** — Primary user. Monitors dashboard, reviews overdue tasks, generates schedules, reviews reports. Uses on desktop via internal operations portal.
+- **Maintenance Staff** — Views their assigned tasks, marks tasks complete, uploads photos as proof of work. Likely accesses via tablet or shared workstation.
+- **Camp Manager** — Reviews reports and overall completion rates. Spot-checks room histories to confirm maintenance standards.
+- **Administrators** — Manages assets (rooms, areas, vehicles), configures recurring templates, manages the asset register.
+
+### 1.3 Scope of This Document
+
+- Full module overview and purpose
+- Design system and visual standards
+- Global navigation and layout specification
+- Detailed per-screen functional specifications for all 7 primary screens
+- Task modal specification (shared component)
+- Template modal specification (shared component)
+
+---
+
+## 2. Design System &amp; Visual Standards
+
+### 2.1 Colour Palette
+
+| Token Name | Hex Value | Usage |
+|---|---|---|
+| --navy / Primary Dark | #0F172A | Sidebar background, table headers, hero banners |
+| --pm / Primary Blue | #2563EB | Primary buttons, active states, links, open task indicators |
+| --plt / Blue Light | #EFF4FF | Open task cell backgrounds, active sidebar highlights |
+| --good / Green | #16A34A | Completed tasks, success states, positive KPIs |
+| --good-lt / Green Light | #F0FDF4 | Completed card backgrounds |
+| --crit / Red | #DC2626 | Overdue tasks, critical priority, error states |
+| --crit-lt / Red Light | #FEF2F2 | Overdue card backgrounds, alert banners |
+| --high / Orange | #EA580C | High priority tasks |
+| --med / Amber | #D97706 | Medium priority tasks, warnings |
+| --low / Cyan | #0891B2 | Low priority tasks |
+| --bg / Page Background | #F1F3F8 | Page background outside cards |
+| --surface / Card | #FFFFFF | Card backgrounds |
+| --surface2 / Alt Surface | #F7F8FC | Alternating table rows, section headers |
+| --border | #E2E5EE | All card and table borders |
+| --text | #0F1629 | Primary body text |
+| --text2 | #4A5270 | Secondary / label text |
+| --text3 | #8B92AA | Muted / placeholder text |
+
+### 2.2 Typography
+
+- **Display / Headings** — "Syne" geometric sans-serif. Weights: 700–900. Used for screen titles, KPI numbers, large headers, and card headings.
+- **Body / UI Text** — "DM Sans" clean sans-serif. Weights: 400–800. Used for all body copy, labels, table content, buttons, and navigation.
+- **Monospace** — "JetBrains Mono". Used for dates in schedule grid, room numbers, and code-like display content.
+- **Base Font Size** — 12pt equivalent. UI labels: 9.5–10.5px. Body text: 12–13px. Headings: 13–22px. KPI numbers: 24–52px.
+- **Font Loading** — Google Fonts CDN. Fallback: system-ui, sans-serif.
+
+### 2.3 Priority &amp; Status Visual System
+
+#### Priority Badges
+- 🔴 CRITICAL
+- 🟠 HIGH
+- 🟡 MEDIUM
+- 🔵 LOW
+
+#### Status Badges / Pills
+- ○ OPEN
+- ↻ IN PROGRESS
+- ✓ COMPLETE
+- — CANCELLED
+
+### 2.4 Card &amp; Layout System
+
+- **Card Component** — White background, 1.5px solid border (#E2E5EE), 10px border radius, subtle box shadow (0 1px 3px rgba(0,0,0,.06))
+- **Card Header** — surface2 background, 12px bottom border, contains title (h3), optional badge count, and action buttons right-aligned
+- **Grid Layout** — CSS Grid. Most screens single-column. Some screens 2-column or sidebar+main layout.
+- **Border Radius** — Cards: 10px (--r). Small elements (badges, pills): 7px (--r-sm). Large containers: 16px (--r-lg).
+- **Shadows** — Cards: subtle (--sh). Hover states: medium (--sh-m). Modals: large (--sh-lg).
+- **Spacing Unit** — 4px base unit. Common spacings: 8px, 12px, 14px, 16px, 20px, 24px.
+
+### 2.5 Interactive Components
+
+#### Buttons
+
+- **Primary Button** — Navy/blue background (#2563EB), white text, 10px border radius. Used for primary actions: "+ New Task", "Save", "Generate".
+- **Default Button** — White background, border (#E2E5EE), dark text. Used for secondary actions.
+- **Danger Button** — Red light background (#FEF2F2), red text and border. Used for destructive actions.
+- **Ghost / Link Button** — No background, text-only with underline or arrow. Used for navigation shortcuts.
+- **Size Variants** — sm (small), xs (extra small), standard. All share same border radius and font weight (700+).
+
+#### Form Inputs
+
+- **Text Inputs** — White background, 1px solid border (#E2E5EE), 10px border radius, DM Sans font. Focus state: blue border (#2563EB) with box-glow.
+- **Select Dropdowns** — Same styling as text inputs. Native browser select element styled to match.
+- **Date Inputs** — type="date" HTML input styled to match text inputs. Always shows DD/MM/YYYY format (locale-aware).
+- **Checkboxes** — Custom styled. Checked state uses navy/blue fill with white tick SVG. Used in checklist items and bulk selection.
+
+#### Tables
+
+- **Table Class (.tbl)** — Full-width table, collapsed borders. Header row has navy background with white text, 10.5px uppercase labels, 0.5px letter spacing. Alternating row backgrounds (white / surface2). 1px bottom border between rows.
+- **Hover State** — Entire row has brightness filter on hover (brightness(.97)) to indicate clickability.
+- **Row Click** — Most table rows are clickable and open the task/item modal. Cursor: pointer.
+- **Overdue Row** — Rows for overdue tasks get class "row-ov" — a subtle red-left-border or red-tinted background to visually flag urgency.
+
+---
+
+## 3. Global Layout &amp; Navigation
+
+### 3.1 Application Shell
+
+- **Sidebar (Left)** — 262px wide fixed panel. Dark navy background (#0F172A). Contains: app brand logo/name, navigation buttons, room quick-filter list, user info footer.
+- **Main Content (Right)** — Remaining viewport width. Light grey background (#F1F3F8). Contains: topbar header + scrollable content area per screen.
+- **Topbar** — 56px tall horizontal bar at top of main area. Contains: breadcrumb trail ("UVG Operations › Maintenance"), current page title, global search input, quick action buttons.
+- **Content Area** — Scrollable region below topbar. Padding: 20px. Contains per-screen content.
+
+### 3.2 Sidebar Navigation
+
+Elements from top to bottom:
+
+1. Brand area: "UVG Operations" title with "v6.x · Maintenance" subtitle and logo mark
+2. Section label: "Navigation"
+3. Navigation buttons — one per screen:
+   - ◼ Overview (with overdue badge count)
+   - 📋 Schedule &amp; Print (with overdue badge count)
+   - ♻ Preventive Maintenance
+   - ✅ Completed Work
+   - 🚗 Vehicles
+   - 📊 Reports
+4. Section label: "Rooms"
+5. Room filter search input (searches by room name or tag)
+6. Scrollable room list — every active accommodation room listed. Clicking navigates to that room's detail screen.
+7. Footer: logged-in user name, initials avatar, last data refresh timestamp
+
+#### Room List Behaviour
+
+- Coloured dot indicating occupancy: green = Vacant, orange = Occupied, red = Maintenance Hold/Blocked
+- Room name/number
+- Blue badge showing count of open tasks (only shown if count &gt; 0)
+- "EX" prefix for rooms tagged as Executive
+- Active room (currently viewed) highlighted with lighter background and left border
+- Filter input narrows list in real time as user types
+
+### 3.3 Global Search
+
+- Search input sits in topbar and is always visible
+- Typing filters current screen's content in real time
+- Matches against task title, asset name, notes, and assigned staff
+- Cleared when navigating to different screen
+
+### 3.4 Topbar Quick Actions
+
+Four quick-action buttons always displayed in topbar:
+
+- 📅 Calendar — switches Overview screen to Calendar sub-view
+- 📋 Schedule — navigates directly to Schedule &amp; Print screen
+- ⚡ Generate — opens bulk task generation modal from anywhere
+- \+ New Task — opens New Task modal from anywhere in app
+
+### 3.5 Overdue Badge
+
+- Red badge appears on both "Overview" and "Schedule &amp; Print" sidebar buttons whenever there are overdue tasks
+- Number inside badge reflects current count of tasks past due date and not yet completed or cancelled
+- Badge updates automatically every time data refreshes
+
+---
+
+## 4. Data Model Overview
+
+### 4.1 Task
+
+| Field | Description |
+|---|---|
+| **id** | Unique identifier (string/UUID) |
+| **title** | Task name (e.g. "Check light globes", "HVAC filter clean", "Smoke alarm test") |
+| **assetId** | Reference to the Asset this task belongs to |
+| **status** | One of: Open \| In Progress \| Complete \| Cancelled |
+| **priority** | One of: Critical \| High \| Medium \| Low |
+| **dueDate** | ISO date string (YYYY-MM-DD). Date this task must be completed by. |
+| **completedAt** | ISO datetime when task was marked Complete. Null if not complete. |
+| **completedBy** | Name/ID of staff member who completed it. Optional. |
+| **assignedTo** | Name/ID of staff member assigned. Optional. |
+| **notes** | Free-text notes/description. Optional. |
+| **checklist** | Array of checklist items: [{id, label, done: boolean}]. Optional. |
+| **photos** | Array of photo objects: [{url, uploadedAt}]. Optional. |
+| **attachments** | Array of file attachments: [{url, name, isPhoto}]. Optional. |
+| **templateId** | If generated from recurring template, the template's ID. Otherwise null. |
+| **recurring** | Boolean flag if this is a recurring task instance. |
+| **recurringSettings** | Object describing the recurrence (used when manually set, not from template). |
+| **createdAt** | ISO datetime when task was created. |
+
+### 4.2 Asset
+
+| Field | Description |
+|---|---|
+| **id** | Unique identifier |
+| **name** | Asset name. For rooms: room number/name (e.g. "101", "A12"). For vehicles: registration or fleet number. For areas: descriptive name (e.g. "Kitchen", "Pool Area"). |
+| **type** | One of: room \| common \| vehicle |
+| **active** | Boolean. Inactive assets are hidden from all lists and task assignment. |
+| **occupancy** | For rooms only. One of: Vacant \| Occupied \| Blocked |
+| **maintenanceHold** | Boolean. True if room is under maintenance hold (blocks booking system). |
+| **tags** | Array of strings (e.g. ["executive", "accessible", "twin"]). Used for filtering. |
+| **rego** | For vehicles only. Vehicle registration number. |
+| **createdAt** | ISO datetime of asset creation. |
+
+### 4.3 Recurring Template
+
+| Field | Description |
+|---|---|
+| **id** | Unique identifier |
+| **name** | Template name (e.g. "Monthly Smoke Alarm Test", "Weekly HVAC Check") |
+| **appliesTo** | Asset type: room \| common \| vehicle |
+| **priority** | Default priority for tasks generated from this template |
+| **active** | Boolean. Inactive templates do not generate tasks. |
+| **nextDueDate** | Date when next batch of tasks should be generated |
+| **frequency** | Object: { type: "simple"\|"weekly_days"\|"monthly_day_of_month", interval, unit, days[], dayOfMonth } |
+| **scope** | Object: { mode: "all_assets"\|"specific_assets"\|"tag_filter", assetIds[], tag }. Determines which assets get tasks generated. |
+| **checklist** | Default checklist items to pre-populate on generated tasks |
+| **notes** | Default notes for generated tasks |
+
+---
+
+## SCREEN 1: Overview Dashboard
+
+### Purpose
+
+Default screen when application loads. Gives operations management an immediate, at-a-glance view of entire facility's maintenance health. All critical information visible without scrolling on standard desktop. Staff arriving at shift start should see everything requiring attention within seconds of opening application.
+
+### Two Sub-Views
+
+- **Dashboard View (default)** — KPI cards, charts, and task lists
+- **Calendar View** — monthly calendar grid showing tasks by due date
+
+### Dashboard Sub-View — Components
+
+#### Overdue Alert Banner
+
+If any tasks are overdue, full-width red alert banner appears at very top of content area, above all other content. Shows:
+
+- 🚨 Icon and "X overdue tasks — requires immediate attention" message
+- Preview of up to 3 overdue task names (Asset: Task title format)
+- "View All →" button that navigates to Schedule screen
+- NOT shown when zero overdue tasks
+- Entire banner clickable to navigate to Schedule screen
+
+#### KPI Cards Row
+
+Four KPI cards displayed in 4-column grid:
+
+- **⚠ Overdue** — Count of all active tasks past their due date. Red styling. Clickable → navigates to Schedule screen.
+- **📋 Due Today** — Count of tasks due today (not yet complete). Orange/amber styling. Clickable → navigates to Schedule screen.
+- **↻ In Progress** — Count of tasks with status "In Progress". Blue styling.
+- **✅ Completed** — Total count of completed tasks. Green styling. Shows completion rate % as sub-label. Clickable → navigates to Completed Work screen.
+
+#### Open Tasks by Priority Panel
+
+Card below KPI row showing task counts broken into 4 priority columns (Critical, High, Medium, Low). Each column shows:
+
+- Large bold count number in priority colour
+- Priority label
+- Overdue sub-count within that priority (only shown if &gt; 0)
+- Clicking priority column navigates to Schedule screen with that priority filter pre-applied
+
+#### Quick Actions Sidebar
+
+Right-side sidebar (260px) containing two cards:
+
+- **Quick Actions card:** "+ Create New Task", "Schedule &amp; Print", "Recurring Templates", "Generate Tasks" buttons
+- **System Status card:** shows live counts of Active Tasks, Templates, Assets, and All-time Completed tasks
+
+#### Activity Chart (buildDonutAndBar)
+
+Full-width card containing donut chart and either bar chart or activity sparkline:
+
+- **Left:** Donut chart showing completed (green), overdue (red), and remaining (grey) proportions. Shows completion rate % in centre.
+- **Right:** If 14-day activity data exists — grouped bar chart showing daily completed, due, and overdue bars for past 14 days. X-axis shows day labels.
+- **Right sidebar of chart:** "Open by Priority" mini bar chart showing relative task counts by priority level.
+- If no activity data exists yet, only donut and summary legend shown
+
+#### Overdue Tasks Section
+
+Collapsible card (defaults open) showing all overdue tasks sorted by priority then days-overdue. Header is red-tinted when overdue tasks exist. Each task row shows:
+
+- Task title
+- Asset name
+- Due date
+- Days overdue
+- Priority badge
+- "✓ Done" quick-complete button
+- Section toggled by clicking card header
+
+#### Due Today Section
+
+Collapsible card showing tasks due today, styled with amber/orange header. Same row format as overdue section. Shows "All done for today ✓" empty state when no tasks are due.
+
+#### Upcoming (30 days) Section
+
+Collapsible card showing tasks due in next 30 days, grouped by day. Each group shows date header and tasks beneath it. Provides forward-looking view for planning.
+
+### Calendar Sub-View
+
+Accessed by clicking "📅 Dashboard" / "📅 Calendar" toggle tabs at top. Shows standard monthly calendar grid:
+
+- Month navigation: Previous / Next arrows, "Today" button, current month/year displayed
+- Each day cell shows coloured pill indicators for tasks due on that date: green = complete, red = overdue, blue = open
+- Clicking a day opens slide-in or modal showing all tasks for that date
+- Days with overdue tasks have red-tinted cell border
+- Today's date highlighted with navy background
+
+---
+
+## SCREEN 2: Schedule &amp; Print
+
+### Purpose
+
+Primary day-to-day task management screen. Operations managers use this screen to review all tasks for any given date, manage task statuses, perform bulk actions, and generate printable run sheets for maintenance staff to carry during their shift. Most-used screen in system.
+
+### Two Sub-Views
+
+- **Schedule List (default)** — searchable, filterable list of tasks for selected date
+- **Print Sheet** — formatted, printable run sheet for selected date
+
+### Schedule List Sub-View
+
+#### Date Selector
+
+Date navigation control at top allows staff to view any date. Controls:
+
+- ← Previous day arrow button
+- Date display (shows "Today", "Tomorrow", "Yesterday" for relative dates, otherwise "Mon 23 Mar 2026" format)
+- → Next day arrow button
+- Date picker input for jumping to specific date
+- "Today" button to return to current date immediately
+
+#### Filter Bar
+
+Below date selector, horizontal filter bar allows filtering tasks by:
+
+- Status: All | Open | In Progress | Overdue | Complete
+- Priority: All | Critical | High | Medium | Low
+- Asset Type: All | Rooms | Common Areas | Vehicles
+- Text search (matches task title and asset name)
+- "Clear Filters" button to reset all filters
+
+#### Bulk Actions Bar
+
+When any tasks are selected (via checkboxes), bulk actions bar appears:
+
+- "Select All" / "Deselect All" buttons
+- "Mark Selected as Complete" button (bulk quick-done)
+- Count of selected tasks shown
+
+#### Task Groups
+
+Tasks for selected date displayed in groups, organised by priority (Critical first, then High, Medium, Low). Within each priority group, tasks sorted by asset name. Each task row shows:
+
+- Checkbox for bulk selection
+- Asset name (Room/Area/Vehicle name with appropriate icon 🏠/🏢/🚗). Clickable → opens Room Detail screen.
+- Task title (bold task name. If recurring, shows ♻ icon.)
+- Notes preview (first 60 characters of task notes if present, shown in muted text below title)
+- Checklist progress (if checklist exists: mini horizontal progress bar + "X/Y ✓" count)
+- Due date (date display with relative overdue flag, e.g. "⚠ 3d overdue" in red or "In 2d" for upcoming)
+- Priority badge (coloured badge: Critical/High/Medium/Low)
+- Status pill (Status indicator: Open / In Progress / Complete / Cancelled)
+- ✓ Done button (quick-complete button. Marks task complete immediately without opening modal.)
+- Clicking anywhere on row (except checkbox or Done button) opens Task Modal for full editing
+
+#### Empty State
+
+When no tasks match selected date/filters: friendly empty state shown with message and "Generate Tasks" call-to-action button.
+
+### Print Sheet Sub-View
+
+Accessed via "Print Sheet" tab. Generates formatted checklist-style run sheet for selected date that can be printed and given to maintenance staff.
+
+#### Print Sheet Contents
+
+- Header: UVG logo/name, date, shift information
+- Custom instructions block: editable free-text that prints at top of sheet (e.g. "Focus on Block A today — Building manager inspection at 2pm")
+- Custom checklist items: operator can add ad-hoc checklist items to print (e.g. "Check generator fuel level")
+- Task list: all scheduled tasks for date, formatted as printable checklist with: room/area name, task description, priority indicator, □ checkbox for manual tick-off
+- Footer: signature line, date, completion confirmation
+
+#### Print Sheet Controls
+
+- "Edit Instructions" button: opens inline text editor for custom instructions
+- "Add Item" button: adds custom line item to print sheet
+- "🖨 Print" button: triggers browser print dialog with print-specific CSS hiding all nav/UI elements
+- "← Back to Schedule" button: returns to list view
+- Each custom item has delete (×) button
+- Instructions can be saved and persist for that date
+
+---
+
+## SCREEN 3: Preventive Maintenance
+
+### Purpose
+
+Where recurring maintenance schedules are defined and managed. Each template represents a maintenance task that must be performed on recurring basis (e.g. "Monthly smoke alarm test for all rooms", "Weekly pool area clean"). Templates used to bulk-generate task instances on a schedule.
+
+### Two Sub-Views
+
+- **Templates (default)** — view and manage all recurring templates
+- **Bulk Generate** — generate task instances from templates for date range
+
+### Templates Sub-View
+
+#### Template Summary Stats
+
+At top: three summary stat cards showing Active Templates count, total tasks generated from templates (all time), and tasks due within 7 days.
+
+#### Template Grouping
+
+Templates grouped by "Applies To" type (Rooms, Common Areas, Vehicles). Each group shows a card header and list of template cards.
+
+#### Template Card Rows
+
+Each template shows as a card row displaying:
+
+- Template name
+- Applies To type icon and label
+- Frequency description (e.g. "Every 7 days", "Monthly on the 15th")
+- Status badge (Active / Inactive)
+- Count of assets this template applies to
+- Count of tasks generated to date from this template
+- Action buttons: "Edit", "Generate", "Delete"
+- Clicking the template card opens Template Modal for editing
+
+#### New Template Button
+
+"+ New Template" button at bottom of list opens the Template Modal in create mode.
+
+### Bulk Generate Sub-View
+
+Accessed via "Generate Tasks" tab. Allows operator to generate multiple task instances from active templates for a future date range.
+
+#### Filter Controls
+
+At top: dropdown selectors for:
+
+- Template name (or "All Templates")
+- Asset type (Rooms / Common Areas / Vehicles)
+- Date range selector (start and end dates)
+
+#### Summary Stats Row
+
+Shows count of templates that will be affected by generation, estimated count of tasks to be created, and affected asset count.
+
+#### Completed Task List
+
+A list showing which templates will have tasks generated (once "Generate" is clicked). Each row shows template name, affected asset count, and task count estimate.
+
+#### Export
+
+After generation: "✓ Tasks Generated" confirmation, with options to "Print Run Sheet" or "View in Schedule". Option to export task list as CSV.
+
+---
+
+## SCREEN 4: Completed Work Log
+
+### Purpose
+
+Historical record and analytics of all completed maintenance tasks. Shows completion rates, trends, and proof of work (photos, notes). Used by management and camp manager to verify maintenance standards are being met.
+
+### Two Sub-Views
+
+- **Dashboard** (default) — Summary view with charts and completed task cards
+- **Grid/Habit Tracker** — Habit-tracker style grid showing completion rates
+
+#### Dashboard View
+
+Shows:
+
+- Date range selector (Last 30 days / Last 90 days / Custom range)
+- Summary stat cards: Completed Count, Completion Rate %, Tasks Overdue Before Completion, Average Completion Time
+- Large chart: Completed tasks by priority (stacked bar chart showing daily completed tasks by priority colour)
+- Chart: Completion rate trend (line chart showing completion rate % over selected period)
+- List section: "Recently Completed Tasks" showing most recent 10 completed tasks. Each row shows task title, asset, completed date/time, completed by, checklist completion status, and a "View Details" link.
+- Each row clickable to open task detail modal showing: full task info, checklist, notes, photos uploaded
+
+#### Grid/Habit Tracker View
+
+Habit-tracker style grid showing:
+
+- Rows: Assets (rooms, areas, vehicles) sorted by name
+- Columns: Task types (distinct task titles/templates)
+- Grid cells: colour-coded to show completion status for that asset+task type combo
+  - Green = completed on time
+  - Amber = completed but late
+  - Red = overdue / not completed
+  - Grey = not applicable or no task scheduled
+- Number in each cell shows count of completions or days since last completion
+- Date range selector at top to filter the view (Last 30 / 90 / custom days)
+- Tooltip on hover showing details (e.g. "Rooms 101, 102, 104 completed; 105, 106 pending")
+- Clicking cell opens task list for that asset+task combination
+- "Export Grid as CSV" button at bottom
+
+---
+
+## SCREEN 5: Vehicles
+
+### Purpose
+
+Dedicated dashboard for vehicle fleet maintenance. Shows all vehicles and their maintenance status, similar to Completed Work but focused on vehicle assets rather than rooms.
+
+### Purpose
+
+Dedicated vehicle maintenance dashboard. Shows all vehicles in fleet and their maintenance status, upcoming services, and completion history.
+
+### Two Sub-Views
+
+- **Task Tracker (default)** — progress grid showing completion per vehicle per task type
+- **Analytics** — timeline and reports view per vehicle
+
+### Task Tracker Sub-View
+
+#### Global Summary Banner
+
+At top: banner showing Total Vehicles, Vehicles Due for Maintenance, Vehicles Overdue, Fleet Completion Rate %.
+
+#### Left Sidebar — Task Type Selector
+
+Vertical list of all task types/templates applicable to vehicles. Clicking a task type filters the completion grid (below) to show only that task type.
+
+#### Task Header Card
+
+Shows selected task type name, frequency, priority, and count of vehicles with this task scheduled.
+
+#### Completion Grid Table
+
+Grid showing:
+
+- Rows: Vehicle names/registration numbers
+- Columns: Last 12 months (showing as "Jan", "Feb", etc. with year on first row)
+- Grid cells: colour-coded completion status for that vehicle+month
+  - Green = completed
+  - Red = overdue
+  - Grey = not yet due / no task
+- Cell shows date of completion or "Due" text
+- Clicking cell opens task detail
+
+#### Column Totals Row
+
+Bottom row shows completion count and rate % for each month column.
+
+### Analytics Sub-View
+
+Shows detailed analytics and history for a selected vehicle (selected via dropdown at top).
+
+#### Asset Header Banner
+
+Shows vehicle name, registration, active status, and fleet ID.
+
+#### Stat Strip
+
+Shows key stats: Last Service Date, Next Service Due, Maintenance Cost YTD, Open Tasks Count.
+
+#### Three Tabs
+
+##### History Timeline Tab (default)
+
+Shows chronological timeline of all maintenance activity (completed and in-progress) for selected vehicle.
+
+###### Layout
+
+Vertical timeline with left/right alternating event cards.
+
+###### Month Grouping
+
+Events grouped by month. Month header shows month and year. Months with no events are collapsed.
+
+###### Timeline Dot and Connector
+
+Vertical line connecting all dots. Each event has a coloured dot matching task status/priority.
+
+###### Event Cards
+
+Each event card shows:
+
+- Task title
+- Task type/template name
+- Completion date and time
+- Completed by staff member name
+- Brief notes excerpt (first 120 chars)
+- Checklist completion status (X/Y items)
+- Thumbnail of any photo attached
+- "View Full Task" link opens task detail modal
+
+###### Timeline End Marker
+
+Bottom of timeline shows "No older records" or "View Archived Tasks" link.
+
+###### Empty State
+
+If no activity history exists: "No maintenance records yet" message with "Create First Task" call-to-action.
+
+###### Monthly Activity Chart (Sidebar)
+
+Right sidebar shows mini bar chart: count of completed tasks per month for past 12 months. Tooltip on hover shows month and count.
+
+##### Open Tasks Tab
+
+Shows all tasks currently open (not complete) for selected vehicle. Same format as Schedule List (date, priority, status, assigned to, due date, Done button).
+
+##### Templates Tab
+
+Shows all recurring maintenance templates that apply to vehicles in general (not specific to selected vehicle). Same format as Templates sub-view. "Edit Template" or "View Applied Vehicles" options.
+
+---
+
+## SCREEN 6: Reports &amp; Analytics
+
+### Purpose
+
+Aggregated reporting and analytics view. Provides management with insights into maintenance performance, trends, staff productivity, and facility health. Used by camp manager and operations manager for strategic decision-making.
+
+Components include:
+
+- Date range selector (Last 30 / 90 / 365 days, or custom)
+- Period-over-period comparison toggle (This vs Last period)
+- Export options (PDF, CSV)
+
+#### Dashboard View
+
+Summary metrics:
+
+- Total Tasks (all time)
+- Completion Rate % (period)
+- Average Completion Time (period)
+- Tasks Overdue (period)
+- Most Active Asset (by task count, period)
+- Most Active Staff Member (by completions, period)
+
+Charts:
+
+- Tasks by Priority (donut chart)
+- Tasks by Status (stacked bar by month)
+- Task Volume Trend (line chart, monthly)
+- Completion Rate Trend (line chart, monthly)
+- Tasks by Asset Type (bar chart: Rooms vs Common Areas vs Vehicles)
+- Staff Productivity (bar chart: staff member vs completed tasks)
+
+#### Drill-Down Views
+
+Clicking any chart or stat card navigates to a detailed sub-report:
+
+- **By Priority Report** — breakdown of tasks by priority with completion rates per priority
+- **By Asset Type Report** — completion rates and task volume per asset type
+- **By Staff Member Report** — productivity metrics per maintenance staff member
+- **By Room/Asset Report** — full history and metrics per individual room or asset
+
+Each drill-down includes table of underlying tasks and export options.
+
+---
+
+## SCREEN 7: Asset / Room Detail &amp; History Timeline
+
+### Purpose
+
+Detailed view of a single asset (room, area, or vehicle). Shows comprehensive history, all associated tasks (open and completed), and allows inline task management. Accessed by clicking a room name in sidebar or in any task list.
+
+### Two Sub-Views
+
+- **History Timeline (default)** — chronological timeline of all maintenance activity
+- **Analytics** — trends and metrics for this specific asset
+
+### History Timeline Sub-View
+
+#### Asset Header Banner
+
+Top of screen shows asset name (large heading), asset type, occupancy status (if room), tags, and "Edit Asset" button.
+
+#### Stat Strip
+
+Row showing: Open Tasks (count), Due Today (count), Overdue (count), Last Maintenance (date), Next Scheduled (date).
+
+#### History Timeline
+
+Vertical timeline showing all maintenance activity (completed and in-progress) for this asset:
+
+- Events grouped by month
+- Month header shows month and year
+- Each event is a card showing:
+  - Task title
+  - Task type/template (if from template)
+  - Completion date and time
+  - Completed by staff name
+  - Priority badge
+  - Status indicator
+  - Brief notes excerpt
+  - Checklist completion (X/Y)
+  - Thumbnail of attached photo
+  - "View Full Task" link opens task detail modal
+- Timeline line connects all dots
+- Each dot colour-coded by status/priority
+- Bottom marker: "No older records" or "View Archived Tasks"
+
+#### Monthly Activity Chart (Sidebar)
+
+Right sidebar shows mini bar chart of completed tasks per month (last 12 months). Tooltip shows month and count.
+
+#### Empty State
+
+If no history: "No maintenance records for this asset yet. Create first task." with "+ New Task" button.
+
+### Analytics Sub-View
+
+Detailed metrics and trends for this specific asset:
+
+#### Dashboard
+
+Summary stats:
+
+- Total Tasks (all time)
+- Completion Rate %
+- Average Task Completion Time
+- Tasks Overdue (ever)
+- Open Tasks (count)
+- Days Since Last Maintenance
+- Most Common Task Type
+
+Charts:
+
+- Task Completion Rate Trend (line chart, monthly)
+- Task Volume by Priority (bar chart, stacked)
+- Tasks by Status (donut chart)
+- Task Completion Rate by Month (bar chart)
+
+#### Details Tab
+
+Table showing all tasks (open and completed) for this asset:
+
+- Columns: Task Title, Status, Priority, Due Date, Completed Date, Completed By, Notes (excerpt)
+- Rows clickable to open task detail
+- Filters available: Status, Priority, Date range
+- Export as CSV
+
+---
+
+## 5. Shared Components — Modals
+
+### 5.1 Task Modal (Create / Edit)
+
+#### Modal Header
+
+Title: "New Task" or "Edit Task"
+Close button (×) top right
+Optional breadcrumb showing parent asset name
+
+#### Overdue Warning
+
+If editing a task that is overdue: red warning banner at top of modal showing "This task is X days overdue — requires urgent attention"
+
+#### Modal Tabs
+
+Two tabs: Details | Attachments
+
+#### Details Tab — Fields
+
+- **Asset Selector** (required) — dropdown showing all active assets. Searchable. Shows asset name, type icon, occupancy status.
+- **Title** (required) — text</textarea><div class="bfoot"><button class="btn btn-p" style="padding:5px 10px;font-size:11.5px" onclick="svSec('id1774490544122dtd598mh5t')">Save</button><span class="st" id="bst-id1774490544122dtd598mh5t"></span></div></div></div></div>
           <div class="ac">
             <h3>Add knowledge</h3>
             <p style="font-size:12.5px;color:var(--tx2);margin-bottom:12px">Upload files, paste text, or fetch from a URL. Claude reads and structures everything.</p>
@@ -702,7 +2585,7 @@ FIFO=fly-in fly-out. Run Sheet=daily task list. Pre-Arrival=readiness check. Alt
             <h3>Claude API key (free tier)</h3>
             <p style="font-size:12.5px;color:var(--tx2);margin-bottom:10px">Get your free key at <strong>console.anthropic.com</strong> → API Keys → Create Key. Starts with <code>sk-ant-</code>.</p>
             <div class="fld"><label>Claude API key</label><input type="password" id="ki" placeholder="sk-ant-..."></div>
-            <div class="acts"><button class="btn btn-p" onclick="saveKey()">Save</button><button class="btn btn-d" onclick="clearKey()">Clear</button><span class="st ok" id="kst">Saved</span></div>
+            <div class="acts"><button class="btn btn-p" onclick="saveKey()">Save</button><button class="btn btn-d" onclick="clearKey()">Clear</button><span class="st" id="kst"></span></div>
           </div>
           <div class="ac">
             <h3>Change admin password</h3>
@@ -1884,4 +3767,4 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 
 
-<div id="uvg-widget-root"><button id="uvg-bubble" title="UVG Assistant" style="background: rgb(45, 90, 61);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span id="uvg-badge"></span></button><div id="uvg-panel"><div id="uvg-header" style="background: rgb(45, 90, 61);"><span id="uvg-header-dot" style="background: rgb(45, 90, 61);"></span><span id="uvg-header-name">Assist</span><span id="uvg-header-role">For everyday staff</span><button class="uvg-hbtn" id="uvg-dark-btn" title="Toggle dark mode">☾</button><button class="uvg-hbtn" id="uvg-clear-btn" title="Clear chat">⟳</button><button class="uvg-hbtn" id="uvg-open-btn" title="Open full platform">↗</button><button class="uvg-hbtn" id="uvg-close-btn" title="Close">✕</button></div><div id="uvg-agents"><button class="uvg-agent-btn active" data-agent="a1" style="border-bottom-color:#2D5A3D;color:#2D5A3D">Assist</button><button class="uvg-agent-btn" data-agent="a2" style="">Logic</button></div><div id="uvg-setup" style="display: block;"><div id="uvg-setup-title">🔑 One-time setup</div><div id="uvg-setup-sub">Enter your Claude API key to activate the assistant. You only do this once.</div><input type="password" id="uvg-setup-input" placeholder="sk-ant-..."><button id="uvg-setup-btn" style="background: rgb(45, 90, 61);">Activate assistant</button></div><div id="uvg-attach-prev"></div><div id="uvg-msgs"></div><div id="uvg-input-area"><div id="uvg-ibar"><button id="uvg-attach-btn" title="Attach file">📎</button><input type="file" id="uvg-file-input" multiple="" accept=".pdf,.txt,.md,.csv,.docx,.doc,.jpg,.jpeg,.png,.gif,.webp" style="display:none"><textarea id="uvg-textarea" rows="1" placeholder="Ask anything..."></textarea><button id="uvg-send" style="background: rgb(45, 90, 61);"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7H2M12 7L8 3M12 7L8 11"></path></svg></button></div><div id="uvg-mode-row"><button class="uvg-mode-pill" data-mode="brief">Brief</button><button class="uvg-mode-pill active" data-mode="normal">Normal</button><button class="uvg-mode-pill" data-mode="detail">Detailed</button><button id="uvg-open-full">Open full ↗</button></div></div></div></div></body></html>
+<div id="uvg-widget-root"><button id="uvg-bubble" title="UVG Assistant" style="background: rgb(45, 90, 61);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span id="uvg-badge"></span></button><div id="uvg-panel"><div id="uvg-header" style="background: rgb(45, 90, 61);"><span id="uvg-header-dot" style="background: rgb(45, 90, 61);"></span><span id="uvg-header-name">Assist</span><span id="uvg-header-role">For everyday staff</span><button class="uvg-hbtn" id="uvg-dark-btn" title="Toggle dark mode">☾</button><button class="uvg-hbtn" id="uvg-clear-btn" title="Clear chat">⟳</button><button class="uvg-hbtn" id="uvg-open-btn" title="Open full platform">↗</button><button class="uvg-hbtn" id="uvg-close-btn" title="Close">✕</button></div><div id="uvg-agents"><button class="uvg-agent-btn active" data-agent="a1" style="border-bottom-color:#2D5A3D;color:#2D5A3D">Assist</button><button class="uvg-agent-btn" data-agent="a2" style="">Logic</button></div><div id="uvg-setup" style="display:none"><div id="uvg-setup-title">🔑 One-time setup</div><div id="uvg-setup-sub">Enter your Claude API key to activate the assistant. You only do this once.</div><input type="password" id="uvg-setup-input" placeholder="sk-ant-..."><button id="uvg-setup-btn" style="background: rgb(45, 90, 61);">Activate assistant</button></div><div id="uvg-attach-prev"></div><div id="uvg-msgs"><div class="uvg-mrow"><div class="uvg-av" style="background:rgba(45,90,61,.13);color:rgb(18,37,25);border-color:rgba(0,0,0,.06)">AS</div><div class="uvg-bub uvg-ai-bub" style="background:rgba(45,90,61,.13);color:rgb(18,37,25);border:1px solid rgba(0,0,0,.06);border-top-left-radius:3px"><p>Hi, I'm <strong>Assist</strong>. You are a friendly assistant for camp staff. How can I help?</p></div></div></div><div id="uvg-input-area"><div id="uvg-ibar"><button id="uvg-attach-btn" title="Attach file">📎</button><input type="file" id="uvg-file-input" multiple="" accept=".pdf,.txt,.md,.csv,.docx,.doc,.jpg,.jpeg,.png,.gif,.webp" style="display:none"><textarea id="uvg-textarea" rows="1" placeholder="Ask anything..."></textarea><button id="uvg-send" style="background: rgb(45, 90, 61);"><svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7H2M12 7L8 3M12 7L8 11"></path></svg></button></div><div id="uvg-mode-row"><button class="uvg-mode-pill" data-mode="brief">Brief</button><button class="uvg-mode-pill active" data-mode="normal">Normal</button><button class="uvg-mode-pill" data-mode="detail">Detailed</button><button id="uvg-open-full">Open full ↗</button></div></div></div></div></body></html>
