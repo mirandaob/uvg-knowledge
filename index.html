@@ -2030,16 +2030,31 @@ async function driveFolderList(){
     if(!files.length){showSt('drive-st','No files found in this folder',false);return;}
 
     // Filter to supported types
-    var supported=files.filter(function(f){
-      return f.mimeType==='application/vnd.google-apps.document'||
-             f.mimeType==='application/vnd.google-apps.spreadsheet'||
-             f.mimeType==='application/pdf'||
-             f.mimeType==='text/plain'||
-             f.mimeType==='text/csv'||
-             f.mimeType.startsWith('image/')||
-             f.mimeType==='application/vnd.openxmlformats-officedocument.wordprocessingml.document'||
-             f.mimeType==='application/msword';
-    });
+    // Show ALL files but mark unsupported ones
+    var SUPPORTED_TYPES=[
+      'application/vnd.google-apps.document',
+      'application/vnd.google-apps.spreadsheet',
+      'application/vnd.google-apps.presentation',
+      'application/vnd.google-apps.form',
+      'application/pdf',
+      'text/plain','text/csv','text/markdown',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'application/msword',
+      'application/zip',
+      'application/x-zip-compressed'
+    ];
+    var SUPPORTED_STARTS=['image/','text/'];
+    function isSupported(mime){
+      if(SUPPORTED_TYPES.indexOf(mime)!==-1)return true;
+      for(var i=0;i<SUPPORTED_STARTS.length;i++){if(mime.startsWith(SUPPORTED_STARTS[i]))return true;}
+      return false;
+    }
+    // Skip only Drive shortcuts and internal Google types with no export
+    var SKIP_TYPES=['application/vnd.google-apps.shortcut','application/vnd.google-apps.folder','application/vnd.google-apps.unknown'];
+    var supported=files.filter(function(f){return SKIP_TYPES.indexOf(f.mimeType)===-1;});
+    var skipped=files.length-supported.length;
 
     var skipped=files.length-supported.length;
 
@@ -2047,7 +2062,7 @@ async function driveFolderList(){
     var list=document.getElementById('drive-file-list');
     list.style.display='block';
     list.innerHTML='<div style="padding:12px 14px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between">'+
-      '<div style="font-size:13px;font-weight:500">'+supported.length+' files ready to import'+(skipped?' ('+skipped+' skipped — unsupported type)':'')+'</div>'+
+      '<div style="font-size:13px;font-weight:500">'+supported.length+' files ready to import'+(skipped?' ('+skipped+' skipped — shortcuts/folders)':'')+'</div>'+
       '<button onclick="driveSelectAll()" style="font-size:11.5px;color:var(--bl);background:none;border:none;cursor:pointer">Select all</button>'+
     '</div>'+
     supported.map(function(f){
@@ -2073,13 +2088,18 @@ async function driveFolderList(){
 }
 
 function getMimeLabel(mime){
-  if(mime.includes('document'))return'Google Doc';
-  if(mime.includes('spreadsheet'))return'Google Sheet';
+  if(mime==='application/vnd.google-apps.document')return'Google Doc';
+  if(mime==='application/vnd.google-apps.spreadsheet')return'Google Sheet';
+  if(mime==='application/vnd.google-apps.presentation')return'Google Slides';
+  if(mime==='application/vnd.google-apps.form')return'Google Form';
   if(mime==='application/pdf')return'PDF';
   if(mime.startsWith('image/'))return'Image';
   if(mime.includes('word'))return'Word';
-  if(mime==='text/plain')return'Text';
+  if(mime==='text/plain'||mime==='text/markdown')return'Text';
   if(mime==='text/csv')return'CSV';
+  if(mime.includes('spreadsheetml'))return'Excel';
+  if(mime.includes('presentationml'))return'PowerPoint';
+  if(mime.includes('zip'))return'ZIP';
   return'File';
 }
 
@@ -2149,16 +2169,19 @@ async function driveImportAll(){
 
 async function driveReadFile(file){
   var url='';
-  // Google Docs → export as plain text
   if(file.mimeType==='application/vnd.google-apps.document'){
     url='https://www.googleapis.com/drive/v3/files/'+file.id+'/export?mimeType=text/plain';
-  }
-  // Google Sheets → export as CSV
-  else if(file.mimeType==='application/vnd.google-apps.spreadsheet'){
+  } else if(file.mimeType==='application/vnd.google-apps.spreadsheet'){
     url='https://www.googleapis.com/drive/v3/files/'+file.id+'/export?mimeType=text/csv';
-  }
-  // Everything else (PDF, images, Word, text) → download directly
-  else{
+  } else if(file.mimeType==='application/vnd.google-apps.presentation'){
+    // Export Slides as plain text
+    url='https://www.googleapis.com/drive/v3/files/'+file.id+'/export?mimeType=text/plain';
+  } else if(file.mimeType==='application/vnd.google-apps.form'){
+    // Forms export as zip — fall back to text
+    url='https://www.googleapis.com/drive/v3/files/'+file.id+'/export?mimeType=text/plain';
+  } else if(file.mimeType.includes('spreadsheetml')){
+    url='https://www.googleapis.com/drive/v3/files/'+file.id+'?alt=media';
+  } else {
     url='https://www.googleapis.com/drive/v3/files/'+file.id+'?alt=media';
   }
 
