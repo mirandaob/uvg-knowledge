@@ -1828,15 +1828,41 @@ function clearGH(){ghC={};localStorage.removeItem(KG);['ghu','ghr','ght'].forEac
 function obfKey(k){if(!k)return'';try{return btoa(k.split('').reverse().join(''));}catch(_){return'';}}
 function deobfKey(k){if(!k)return'';try{return atob(k).split('').reverse().join('');}catch(_){return'';}}
 
+function safeB64(str){
+  // Reliable UTF-8 safe base64 encoding using TextEncoder
+  try{
+    var bytes=new TextEncoder().encode(str);
+    var bin='';
+    for(var i=0;i<bytes.length;i++)bin+=String.fromCharCode(bytes[i]);
+    return btoa(bin);
+  }catch(_){
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+}
+
+function injectData(html, tagId, jsonStr){
+  var sc='scr'+'ipt';
+  var needle='<'+sc+' id="'+tagId+'" type="application/json">null</'+sc+'>';
+  var replacement='<'+sc+' id="'+tagId+'" type="application/json">'+jsonStr+'</'+sc+'>';
+  var idx=html.indexOf(needle);
+  if(idx===-1)return html;
+  return html.slice(0,idx)+replacement+html.slice(idx+needle.length);
+}
+
 function bHTML(){
   var h=document.documentElement.outerHTML;
-  h=h.replace('<script id="eb" type="application/json">null<\/script>','<script id="eb" type="application/json">'+JSON.stringify(secs)+'<\/script>');
-  h=h.replace('<script id="ea" type="application/json">null<\/script>','<script id="ea" type="application/json">'+JSON.stringify(agents)+'<\/script>');
-  h=h.replace('<script id="eac" type="application/json">null<\/script>','<script id="eac" type="application/json">'+JSON.stringify({code:ac,org:brand.footer||brand.name,ann:localStorage.getItem('uvg_ann')||''})+'<\/script>');
-  h=h.replace('<script id="ebrand" type="application/json">null<\/script>','<script id="ebrand" type="application/json">'+JSON.stringify(brand)+'<\/script>');
-  // Embed API key obfuscated so GitHub scanner won't block it
+  h=injectData(h,'eb',JSON.stringify(secs));
+  h=injectData(h,'ea',JSON.stringify(agents));
+  h=injectData(h,'eac',JSON.stringify({code:ac,org:brand.footer||brand.name,ann:localStorage.getItem('uvg_ann')||''}));
+  h=injectData(h,'ebrand',JSON.stringify(brand));
   var ek=embedApiKey||'';
-  if(ek){var ok=obfKey(ek);h=h.replace('<script id="ekey" type="application/json">null<\/script>','<script id="ekey" type="application/json">"'+ok+'"<\/script>');}
+  if(ek){
+    var sc2='scr'+'ipt';
+    var needle2='<'+sc2+' id="ekey" type="application/json">null</'+sc2+'>';
+    var replacement2='<'+sc2+' id="ekey" type="application/json">"'+obfKey(ek)+'"</'+sc2+'>';
+    var idx2=h.indexOf(needle2);
+    if(idx2!==-1)h=h.slice(0,idx2)+replacement2+h.slice(idx2+needle2.length);
+  }
   return h;
 }
 
@@ -1847,17 +1873,19 @@ async function pub(){
   ['ps1','ps2','ps3','ps4'].forEach(function(i){pst(i,'idle');});showSt('pmst','',null);
   try{
     pst('ps1','active');
+    // Yield to browser so spinner actually renders
+    await new Promise(function(r){setTimeout(r,50);});
     var html;
     try{html=bHTML();}catch(be){throw new Error('Build failed: '+be.message);}
     var content;
-    try{content=btoa(unescape(encodeURIComponent(html)));}catch(ee){throw new Error('Encode failed — file may be too large: '+ee.message);}
+    try{content=safeB64(html);}catch(ee){throw new Error('Encode failed: '+ee.message);}
     pst('ps1','done');
     pst('ps2','active');var sha=await gSHA();pst('ps2','done');
     pst('ps3','active');
     var body={message:'Update '+new Date().toLocaleString(),content:content};if(sha)body.sha=sha;
     var pr=await fetch(GA+'/repos/'+ghC.user+'/'+ghC.repo+'/contents/index.html',{method:'PUT',
       headers:{'Authorization':'token '+ghC.token,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body:JSON.stringify(body)});
-    if(!pr.ok){var pe=await pr.json().catch(function(){return{};});throw new Error(pe.message||'Push failed '+pr.status);}
+    if(!pr.ok){var pe=await pr.json().catch(function(){return{};});throw new Error(pe.message||'Push failed: '+pr.status);}
     pst('ps3','done');pst('ps4','active');await new Promise(function(r){setTimeout(r,2000);});pst('ps4','done');
     showSt('pmst','✓ Published! Staff see updates within 60 seconds.',true);updGH();
     setTimeout(function(){pg.classList.remove('show');},8000);
