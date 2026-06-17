@@ -427,7 +427,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-h
       <h1 class="title" id="land-title">What can we help you<br><em>with?</em></h1>
       <p class="subtitle" id="land-sub">Select an assistant. Each one is trained on the same knowledge base.</p>
       <div class="cards" id="agent-cards"><div class="card" onclick="openChat('s1',null)" style="border-top-color:#2D5A3D"><div class="ctag" style="background:rgba(45,90,61,.13);color:rgb(18,37,25)"><svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>For everyday staff</div><div class="cname">Assist</div><div class="cdesc">You are a friendly assistant for camp staff. Answer in plain language, step by s...</div><button class="ccta" style="background:#2D5A3D;color:#fff">Open Assist</button></div><div class="card" onclick="openChat('s2',null)" style="border-top-color:#2D5A3D"><div class="ctag" style="background:rgba(45,90,61,.13);color:rgb(18,37,25)"><svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"></circle></svg>For developers and managers</div><div class="cname">Logic</div><div class="cdesc">You are a precise technical assistant for developers and managers. Explain rules...</div><button class="ccta" style="background:#2D5A3D;color:#fff">Open Logic</button></div></div>
-      <div class="bbar"><div class="bdot on" id="bdot"></div><span id="blbl">1 sections · 173 words</span></div>
+      <div class="bbar"><div class="bdot on" id="bdot"></div><span id="blbl">29 sections · 78267 words</span></div>
       <div id="setup-banner" style="display: none;">
         <h4>🔑 One-time setup required</h4>
         <p>Enter the Claude API key provided by your admin to activate the assistants.</p>
@@ -11952,11 +11952,11 @@ The Asset Detail screen provides a single source of truth for all maintenance hi
             <h3>Add knowledge</h3>
             <p style="font-size:12.5px;color:var(--tx2);margin-bottom:12px">Upload files, paste text, or fetch from a URL. Claude reads and structures everything.</p>
             <div class="atabs2">
-              <button class="atab2" onclick="satab('upload')">📄 Upload</button>
-              <button class="atab2 act" onclick="satab('paste')">✎ Paste</button>
+              <button class="atab2 act" onclick="satab('upload')">📄 Upload</button>
+              <button class="atab2" onclick="satab('paste')">✎ Paste</button>
               <button class="atab2" onclick="satab('url')">🌐 URL</button>
             </div>
-            <div class="ap" id="ap-upload">
+            <div class="ap act" id="ap-upload">
               <div class="upzone" id="dz" ondragover="onDrag(event,true)" ondragleave="onDrag(event,false)" ondrop="onDrop(event)">
                 <input type="file" id="fi" multiple="" accept=".pdf,.txt,.md,.csv,.docx,.doc,.jpg,.jpeg,.png,.gif,.webp" onchange="onFS(event)">
                 <div style="font-size:22px;margin-bottom:8px">📄</div>
@@ -11966,7 +11966,7 @@ The Asset Detail screen provides a single source of truth for all maintenance hi
               </div>
               <div id="plist"></div>
             </div>
-            <div class="ap act" id="ap-paste">
+            <div class="ap" id="ap-paste">
               <div class="fld"><label>Section name</label><input type="text" id="pn" placeholder="e.g. Fire Safety Procedures"></div>
               <div class="fld"><label>Content</label><textarea id="pc" rows="6" placeholder="Paste procedures, policies, rules, FAQs..."></textarea></div>
               <div class="acts"><button class="btn btn-p" onclick="addPasted()">Add to brain</button><span class="st" id="pst"></span></div>
@@ -12258,6 +12258,10 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function uid(){return 'id'+Date.now()+Math.random().toString(36).slice(2);}
 function tw(){return secs.reduce(function(a,s){return a+(s.wordCount||0);},0);}
 function brain(){return secs.map(function(s){return'=== '+s.name.toUpperCase()+' ===\n'+s.content;}).join('\n\n---\n\n');}
+function brainForAgent(agentId){
+  return secs.filter(function(s){return !s.agentId||s.agentId===agentId;})
+    .map(function(s){return'=== '+s.name.toUpperCase()+' ===\n'+s.content;}).join('\n\n---\n\n');
+}
 function sys(a){
   var modeInstr=respMode==='brief'?'\n\nBE BRIEF: Give concise answers in 2-4 sentences max unless more is truly needed.':respMode==='detail'?'\n\nBE DETAILED: Give comprehensive, thorough answers with full context and examples.':'';
   var g=a.guardrails?'\n\nGUARDRAILS:\n'+a.guardrails+'\nPolitely decline and redirect to management if asked about these.':'';
